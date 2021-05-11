@@ -14,9 +14,9 @@ public class Trener   {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column
+	@Column(unique = true)
 	private String korisnickoime;
-	@Column
+	@Column(unique = true)
 	private String lozinka;
 	@Column
 	private String ime;
@@ -24,7 +24,7 @@ public class Trener   {
 	private String prezime;
 	@Column
 	private int telefon;
-	@Column
+	@Column(unique = true)
 	private String email;
 	@Column
 	private Date datumrodjenja;
@@ -83,12 +83,7 @@ public class Trener   {
 	public void setDatumrodjenja(Date datumrodjenja) {
 		this.datumrodjenja = datumrodjenja;
 	}
-//	public String getUloga() {
-//		return uloga;
-//	}
-//	public void setUloga(String uloga) {
-//		this.uloga = uloga;
-//	}
+
 
 
 	public Uloga getUloga() {
@@ -114,19 +109,7 @@ public class Trener   {
 		this.id = id;
 	}
 	
-	//@OneToOne
-	//@JoinColumn(name = "trening_ID")
-	//private Trening treninzi;
-	//@JoinTable(name ="trening",
-	         // joinColumns = @JoinColumn(name = "trener_id",referencedColumnName = "id"),
-	         // inverseJoinColumns = @JoinColumn(name = "trening_id", referencedColumnName = "id"))
-	//private Set<Trening> treninzi = new HashSet<>();
 
-
-	//public Trener(String korisnickoime, String lozinka, String ime, String prezime, int telefon, String email, int datumrodjenja, String uloga) {
-	//	super(korisnickoime, lozinka, ime, prezime, telefon, email, datumrodjenja, uloga);
-	//	this.id = id;
-	//}
 
 
 	public Trener(Long id, String korisnickoime, String lozinka, String ime, String prezime, int telefon, String email, Date datumrodjenja, Uloga uloga, double prosecnaocena) {
@@ -145,35 +128,7 @@ public class Trener   {
 	public Trener() {
 	}
 
-	//@ManyToOne(fetch = FetchType.EAGER)
-	//private Termin termin;
 
-
-
-	//@OneToMany(mappedBy ="trener", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	//private Set <Fitnesscentar>  fitnesscentar =  new HashSet<>();
-
-	//public Termin getTermin() {
-	//	return termin;
-	//}
-
-	//public void setTermin(Termin termin) {
-	//	this.termin = termin;
-	//}
-
-	//public Set<Fitnesscentar> getFitnesscentar() {
-	//	return fitnesscentar;
-	//}
-
-	//public void setFitnesscentar(Set<Fitnesscentar> fitnesscentar) {
-	//	this.fitnesscentar = fitnesscentar;
-	//}
-
-	//@ManyToMany
-	//@JoinTable(name = "Treninzikojedrzitrener",
-	//		joinColumns = @JoinColumn(name = "trener_id", referencedColumnName = "id"),
-	//		inverseJoinColumns = @JoinColumn(name = "termin_id", referencedColumnName = "id"))
-	//private Set<Termin> termin = new HashSet<>();
 
 	public Set<Termin> getTermin() {
 		return termin;
@@ -183,8 +138,6 @@ public class Trener   {
 		this.termin = termin;
 	}
 
-	//@ManyToMany(mappedBy = "trener")
-	//private Set<Fitnesscentar> fitnesscentar = new HashSet<>();
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Fitnesscentar fitnesscentar;
@@ -192,5 +145,8 @@ public class Trener   {
 
 	@OneToMany(mappedBy ="trener", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set <Termin>  termin =  new HashSet<>();
+
+
+
 
 }

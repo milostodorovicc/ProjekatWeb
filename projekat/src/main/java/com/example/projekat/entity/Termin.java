@@ -52,20 +52,14 @@ public class Termin implements Serializable {
         this.id = id;
     }
 
-   // public Trening getTreninzi() {
-     //   return treninzi;
-    //}
 
-//    public void setTreninzi(Trening treninzi) {
-      //  this.treninzi = treninzi;
-    //}
 
     public Termin(Long id, Date datum, double cena, int brojprijavljenihclanova) {
         this.id = id;
         this.datum = datum;
         this.cena = cena;
         this.brojprijavljenihclanova = brojprijavljenihclanova;
-      //  this.treninzi = treninzi;
+
     }
 
 
@@ -89,17 +83,10 @@ public class Termin implements Serializable {
         this.sala = sala;
     }
 
-    @ManyToMany
-    @JoinTable(name = "odradjentrening",
-            joinColumns = @JoinColumn(name = "termin_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "clan_id", referencedColumnName = "id"))
+    @ManyToMany(mappedBy = "termin")
     private Set<Clanfitnescentra> clan = new HashSet<>();
 
-
-    @ManyToMany
-    @JoinTable(name = "rezervisantrening",
-            joinColumns = @JoinColumn(name = "termin_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "clan_id", referencedColumnName = "id"))
+    @ManyToMany(mappedBy = "termin1")
     private Set<Clanfitnescentra> clan1 = new HashSet<>();
 
 
@@ -122,12 +109,7 @@ public class Termin implements Serializable {
     @OneToMany(mappedBy ="termin", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set <Ocenjentrening>  ocenjentrening =  new HashSet<>();
 
-    //@OneToMany(mappedBy ="termin", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    //private Set <Trener>  trener =  new HashSet<>();
 
-
-    //@ManyToMany(mappedBy = "termin")
-    //private Set<Trener> trener = new HashSet<>();
 
     public Set<Ocenjentrening> getOcenjentrening() {
         return ocenjentrening;
@@ -137,18 +119,32 @@ public class Termin implements Serializable {
         this.ocenjentrening = ocenjentrening;
     }
 
-   // public Set<Trener> getTrener() {
-     //   return trener;
-    //}
 
-   // public void setTrener(Set<Trener> trener) {
-     //   this.trener = trener;
-    //}
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Trener trener;
 
+    public Trening getTrening() {
+        return trening;
+    }
 
+    public void setTrening(Trening trening) {
+        this.trening = trening;
+    }
 
+    public Fitnesscentar getFitnesscentar() {
+        return fitnesscentar;
+    }
 
+    public void setFitnesscentar(Fitnesscentar fitnesscentar) {
+        this.fitnesscentar = fitnesscentar;
+    }
+
+    public Trener getTrener() {
+        return trener;
+    }
+
+    public void setTrener(Trener trener) {
+        this.trener = trener;
+    }
 }

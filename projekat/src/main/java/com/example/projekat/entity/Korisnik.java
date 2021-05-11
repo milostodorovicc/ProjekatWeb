@@ -82,12 +82,7 @@ public  class Korisnik  {
 	public void setUloga(String uloga) {
 		this.uloga = uloga;
 	}
-	//public Long getId() {
-		//return id;
-	//}
-	//public void setId(Long id) {
-		//this.id = id;
-	//}
+
 	@Override
 	public String toString() {
 		return "Korisnik [ korisnickoime=" + korisnickoime + ", lozinka=" + lozinka + ", ime=" + ime
@@ -97,7 +92,7 @@ public  class Korisnik  {
 	public Korisnik( String korisnickoime, String lozinka, String ime, String prezime, int telefon,
 			String email, int datumrodjenja, String uloga) {
 
-		//this.id = id;
+
 		this.korisnickoime = korisnickoime;
 		this.lozinka = lozinka;
 		this.ime = ime;
@@ -112,8 +107,7 @@ public  class Korisnik  {
 	}
 
 
-	//public Korisnik() {
-	//}
+
 
 
 	public Long getId() {

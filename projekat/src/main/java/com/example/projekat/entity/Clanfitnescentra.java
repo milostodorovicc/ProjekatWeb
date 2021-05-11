@@ -19,7 +19,7 @@ public class Clanfitnescentra    {
 
 	@Column(unique= true)
 	private String korisnickoime;
-	@Column
+	@Column(unique = true)
 	private String lozinka;
 	@Column
 	private String ime;
@@ -76,12 +76,7 @@ public class Clanfitnescentra    {
 	public void setDatumrodjenja(Date datumrodjenja) {
 		this.datumrodjenja = datumrodjenja;
 	}
-//	public String getUloga() {
-//		return uloga;
-//	}
-//	public void setUloga(String uloga) {
-//		this.uloga = uloga;
-//	}
+
 
 
 	public Long getId() {
@@ -97,43 +92,35 @@ public class Clanfitnescentra    {
 	public Clanfitnescentra() {
 	}
 
-    @ManyToMany(mappedBy = "clan")
-	private Set<Termin> odradjenitermini = new HashSet<>();
+	@ManyToMany
+	@JoinTable(name = "odradjentrening",
+			joinColumns = @JoinColumn(name = "clan_id", referencedColumnName = "id"),
+			inverseJoinColumns = @JoinColumn(name = "termin_id", referencedColumnName = "id"))
+	private Set<Termin> termin = new HashSet<>();
 
-	@ManyToMany(mappedBy = "clan1")
-	private Set<Termin> rezervisanitermini = new HashSet<>();
 
-	public Set<Termin> getOdradjenitermini() {
-		return odradjenitermini;
+	@ManyToMany
+	@JoinTable(name = "rezervisantrening",
+			joinColumns = @JoinColumn(name = "clan_id", referencedColumnName = "id"),
+			inverseJoinColumns = @JoinColumn(name = "termin_id", referencedColumnName = "id"))
+	private Set<Termin> termin1 = new HashSet<>();
+
+
+	public Set<Termin> getTermin() {
+		return termin;
 	}
 
-	public void setOdradjenitermini(Set<Termin> odradjenitermini) {
-		this.odradjenitermini = odradjenitermini;
+	public void setTermin(Set<Termin> termin) {
+		this.termin = termin;
 	}
 
-	public Set<Termin> getRezervisanitermini() {
-		return rezervisanitermini;
+	public Set<Termin> getTermin1() {
+		return termin1;
 	}
 
-	public void setRezervisanitermini(Set<Termin> rezervisanitermini) {
-		this.rezervisanitermini = rezervisanitermini;
+	public void setTermin1(Set<Termin> termin1) {
+		this.termin1 = termin1;
 	}
-//public Set<Termin> getTermini() {
-	//	return termini;
-	//}
-
-//	public void setTermini(Set<Termin> termini) {
-//		this.termini = termini;
-//	}
-
-//	public Set<Termin> getTermini1() {
-//		return termini1;
-//	}
-
-//	public void setTermini1(Set<Termin> termini1) {
-//		this.termini1 = termini1;
-//	}
-
 
 	public Uloga getUloga() {
 		return uloga;
@@ -142,4 +129,8 @@ public class Clanfitnescentra    {
 	public void setUloga(Uloga uloga) {
 		this.uloga = uloga;
 	}
+
+
+
+
 }

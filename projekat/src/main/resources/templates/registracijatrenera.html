@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "utf-8"/>
+    <title>Registracija</title>
+    <link rel = "stylesheet" type = "text/css" href = "../static/stil1.css">
+</head>
+
+<body>
+
+    <div class = "login-form">
+    <h1>Registrujte se</h1>
+    <form method="post" enctype="multipart/form-data"
+    action="#">
+
+    <label for="kimeField">Korisnicko ime: </label>
+    <input id="kimeField" type="text" name="korisnickoime" placeholder="Unesite korisnicko ime"
+     size="25" maxlength="35" required />
+
+    <br/>
+    <br/>
+
+    <label for="passField">Lozinka: </label>
+    
+    <input id="passField" type="password" name="lozinka" required />
+    <br/>
+    <br/>
+
+    <label for="imeField"> Ime: </label>
+    <input id="imeField" type="text" name="ime" placeholder="Unesite ime"
+     size="25" maxlength="35" required />
+<br/>
+<br/>
+
+<label for="prezimeField">Prezime: </label>
+<input id="prezimeField" type="text" name="prezime" placeholder="Unesite prezime"
+ size="25" maxlength="35" required />
+
+ <br/>
+ <br/>
+ <label for ="telefon">Broj telefona</label>
+<input id = "telefon" type = "number" name ="telefon" placeholder = "Unesite broj telefona"
+  required  />
+
+<br/>
+<br/>
+
+
+<label for="emailField">E-mail: </label>
+            <input id="emailField" type="email" name="email" required />
+            <br/>
+            <br/>
+
+<label for = "datumrodjenja">Datum rodjenja:</label>            
+<input id = "datumrodjenja" type = "date" name = "datum" required/>
+<br/>
+<br/>
+
+
+
+
+<fieldset>
+    
+    Registrujte se kao:<br/>
+    <label for="TRENER">TRENER</label>
+    <input id="TRENER" type="radio" name="uloga" value="t" checked="checked" />
+    <br/>
+    <label for="CLANFITNESCENTRA">CLANFITNESSCENTRA</label>
+    <input id="CLANFITNESCENTRA" type="radio" name="uloga" value="c" />
+    <br/>
+    <label for="ADMINISTRATOR">ADMINISTRATOR</label>
+    <input id="ADMINISTRATOR" type="radio" name="uloga" value="a" />
+</fieldset>
+<br/>
+<button type = "submit">Registruj se </button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </form>
+    </div>
+</body>
+
+
+
+
+
+
+
+
+</html>

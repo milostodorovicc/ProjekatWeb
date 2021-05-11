@@ -17,15 +17,9 @@ public class Fitnesscentar implements Serializable {
 	private String adresa;
 	@Column
 	private int brojtelefonacentrale;
-	@Column
+	@Column(unique = true)
 	private String email;
-	//@Column
-	//private List<Trener> treneriuovomfitcentru;
-	//@Column
-	//private List<Sala> saleuovomfitnescentru;
 
-	//@OneToMany(mappedBy ="sala", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	//private Set<Sala> sale = new HashSet<>();
 
 	public Fitnesscentar(Long id, String naziv, String adresa, int brojtelefonacentrale,String email) {
 		this.naziv = naziv;
@@ -40,11 +34,7 @@ public class Fitnesscentar implements Serializable {
 
 
 
-	//@ManyToOne(fetch = FetchType.EAGER)
-	//private Trener trener;
 
-	//@ManyToOne(fetch = FetchType.EAGER)
-	//private Sala sala;
 
 	public Long getId() {
 		return id;
@@ -87,18 +77,7 @@ public class Fitnesscentar implements Serializable {
 	}
 
 
-	//@ManyToMany
-	//@JoinTable(name = "Trenerikojiradeufitnesscentru",
-	//		joinColumns = @JoinColumn(name = "fitnesscentar_id", referencedColumnName = "id"),
-	//		inverseJoinColumns = @JoinColumn(name = "trener_id", referencedColumnName = "id"))
-	//private Set<Trener> trener = new HashSet<>();
 
-
-	//@ManyToMany
-	//@JoinTable(name = "Listasalakojesenalazeufitnesscentru",
-	//		joinColumns = @JoinColumn(name = "fitnesscentar_id", referencedColumnName = "id"),
-	//		inverseJoinColumns = @JoinColumn(name = "sala_id", referencedColumnName = "id"))
-	//private Set<Sala> sala = new HashSet<>();
 
 	@OneToMany(mappedBy ="fitnesscentar", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set <Trener>  trener =  new HashSet<>();
@@ -109,5 +88,27 @@ public class Fitnesscentar implements Serializable {
 	@OneToMany(mappedBy ="fitnesscentar", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set <Termin>  termin =  new HashSet<>();
 
+	public Set<Trener> getTrener() {
+		return trener;
+	}
 
+	public void setTrener(Set<Trener> trener) {
+		this.trener = trener;
+	}
+
+	public Set<Sala> getSala() {
+		return sala;
+	}
+
+	public void setSala(Set<Sala> sala) {
+		this.sala = sala;
+	}
+
+	public Set<Termin> getTermin() {
+		return termin;
+	}
+
+	public void setTermin(Set<Termin> termin) {
+		this.termin = termin;
+	}
 }

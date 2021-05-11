@@ -18,10 +18,7 @@ public class Trening implements Serializable {
 	private String tip;
 	@Column
 	private Double trajanje;
-	//@OneToOne(mappedBy = "treninzi")
-//private Trener treneri;
 
-	//private Set<Trener> treneri = new HashSet<>();
 	
 	@OneToMany(mappedBy ="trening", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set <Termin> termini = new HashSet<>();
@@ -89,8 +86,7 @@ public class Trening implements Serializable {
 		this.termini = termini;
 	}
 
-	//@ManyToOne(fetch = FetchType.EAGER)
-	//private Fitnesscentar fitnesscentar;
+
 
 
 

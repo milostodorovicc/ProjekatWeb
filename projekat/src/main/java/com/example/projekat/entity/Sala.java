@@ -15,8 +15,7 @@ public class Sala implements Serializable {
 	private int oznaka;
 
 
-	//@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	//private Sala sala;
+
 
 	public Sala(Long id, int kapacitet, int oznaka) {
 		this.kapacitet = kapacitet;
@@ -63,23 +62,20 @@ public class Sala implements Serializable {
 		this.termini = termini;
 	}
 
-	//@OneToMany(mappedBy ="sala", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	//private Set <Fitnesscentar>  fitnesscentar =  new HashSet<>();
 
-
-	//public Set<Fitnesscentar> getFitnesscentar() {
-	//	return fitnesscentar;
-	//}
-
-	//public void setFitnesscentar(Set<Fitnesscentar> fitnesscentar) {
-	//	this.fitnesscentar = fitnesscentar;
-	//}
-
-
-	//@ManyToMany(mappedBy = "sala")
-	//private Set<Fitnesscentar> fitnesscentar = new HashSet<>();
 
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Fitnesscentar fitnesscentar;
+
+	public Fitnesscentar getFitnesscentar() {
+		return fitnesscentar;
+	}
+
+	public void setFitnesscentar(Fitnesscentar fitnesscentar) {
+		this.fitnesscentar = fitnesscentar;
+	}
+
+
+
 }

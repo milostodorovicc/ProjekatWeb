@@ -9,9 +9,9 @@ public class Administrator {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(unique = true)
     private String korisnickoime;
-    @Column
+    @Column(unique = true)
     private String lozinka;
     @Column
     private String ime;
@@ -19,7 +19,7 @@ public class Administrator {
     private String prezime;
     @Column
     private int telefon;
-    @Column
+    @Column(unique = true)
     private String email;
     @Column
     private Date datumrodjenja;
@@ -68,12 +68,7 @@ public class Administrator {
     public void setDatumrodjenja(Date datumrodjenja) {
         this.datumrodjenja = datumrodjenja;
     }
-//    public String getUloga() {
-//        return uloga;
-//    }
-//    public void setUloga(String uloga) {
-//        this.uloga = uloga;
-//    }
+
 
 
 
@@ -111,4 +106,9 @@ public class Administrator {
     public void setUloga(Uloga uloga) {
         this.uloga = uloga;
     }
+
+
+
+
+
 }

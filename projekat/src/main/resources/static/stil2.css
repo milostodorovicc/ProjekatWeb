@@ -1,0 +1,71 @@
+table{
+	width: 70%;
+	margin: 0 auto;
+	font-family: Georgia, serif;
+	position:absolute;
+	top:30%;
+	left:15%;
+}
+table tr{
+	line-height: 3em;
+}
+
+
+body{
+
+background:url('Web-Page-Background-Color.jpg') no-repeat;
+background-size:cover;
+
+}
+
+.akt-tabela h1{
+left:40%;
+position:absolute;
+
+}
+
+
+
+thead{
+	background:olivedrab
+}
+
+
+
+tbody>tr:nth-child(2n){
+	background:silver;
+}
+
+tbody>tr:nth-child(2n+1){
+	background: white;
+}
+
+
+
+
+.button-form{
+    width:80px;
+      height:40px;      
+    position:relative;
+	left:270px;  
+    color:silver;
+	background-color: blue;
+
+}
+
+
+.button-forma{
+
+	
+	width:80px;
+	height:40px;      
+    color:silver;
+	background-color: red;
+
+
+
+
+
+
+
+}
