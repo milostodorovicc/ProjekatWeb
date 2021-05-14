@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-public class Trener   {
+public class Trener implements Serializable  {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

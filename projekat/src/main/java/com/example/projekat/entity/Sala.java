@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 @Entity
-public class Sala implements Serializable {
+public class Sala implements Serializable  {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

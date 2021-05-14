@@ -11,7 +11,7 @@ import static javax.persistence.InheritanceType.TABLE_PER_CLASS;
 
 
 
-public  class Korisnik  {
+public  class Korisnik   {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

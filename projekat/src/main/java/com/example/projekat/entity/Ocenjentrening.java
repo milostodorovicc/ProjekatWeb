@@ -1,9 +1,12 @@
 package com.example.projekat.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-public class Ocenjentrening {
+public class Ocenjentrening implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,4 +51,8 @@ public class Ocenjentrening {
 
     public Ocenjentrening() {
     }
+
+
+
+
 }

@@ -11,7 +11,7 @@ import static javax.persistence.DiscriminatorType.STRING;
 import static javax.persistence.InheritanceType.SINGLE_TABLE;
 
 @Entity
-public class Clanfitnescentra    {
+public class Clanfitnescentra implements Serializable    {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

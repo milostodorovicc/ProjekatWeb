@@ -147,4 +147,9 @@ public class Termin implements Serializable {
     public void setTrener(Trener trener) {
         this.trener = trener;
     }
+
+
+
+
+
 }
