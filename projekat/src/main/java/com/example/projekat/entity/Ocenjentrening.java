@@ -18,6 +18,11 @@ public class Ocenjentrening implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     private Termin termin;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Clanfitnescentra clan;
+
+
+
     public Long getId() {
         return id;
     }

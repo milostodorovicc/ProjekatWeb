@@ -1,0 +1,66 @@
+package com.example.projekat.controller;
+
+import com.example.projekat.entity.Clanfitnescentra;
+import com.example.projekat.entity.Trener;
+import com.example.projekat.service.KorisnikService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping(value = "/api/korisnici")
+public class KorisnikController {
+
+
+    private final KorisnikService korisnikService;
+
+    @Autowired
+    public KorisnikController(KorisnikService korisnikService) {
+        this.korisnikService = korisnikService;
+    }
+
+
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE, value ="/clanfitnescentra")
+    public ResponseEntity<Clanfitnescentra> createEmployee(@RequestBody Clanfitnescentra clanfitnescentra) throws Exception {
+
+        Clanfitnescentra noviclanfitnescentra = korisnikService.create(clanfitnescentra);
+
+
+        return new ResponseEntity<>(noviclanfitnescentra, HttpStatus.CREATED);
+    }
+
+
+
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE, value ="/trener")
+    public ResponseEntity<Trener> createEmployee(@RequestBody Trener trener) throws Exception {
+
+        Trener novitrener = korisnikService.create(trener);
+
+
+        return new ResponseEntity<>(novitrener, HttpStatus.CREATED);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

@@ -131,6 +131,9 @@ public class Clanfitnescentra implements Serializable    {
 	}
 
 
+	@OneToMany(mappedBy ="clan", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set <Ocenjentrening>  ocenjentrening =  new HashSet<>();
+
 
 
 }
