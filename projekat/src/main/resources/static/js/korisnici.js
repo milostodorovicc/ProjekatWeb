@@ -1,5 +1,5 @@
 
-$(document).on("submit", "form", function (event) {
+$(document).on("submit", "#form1", function (event) {
     event.preventDefault();
      if(document.getElementById("uloga").checked){
 
@@ -103,7 +103,7 @@ $(document).ready(function () {
                 row += "<td>" + res[i].prezime + "</td>";
                 row += "<td>" + res[i].korisnickoime + "</td>";
                 // row += "<td>" + res[i].uloga + "</td>";
-                let checkbox = "<input type=\"checkbox\" id=\"aktiviraj\" name=\"aktiviraj\" value=\"aktiviraj\" >\n" +
+                let checkbox = "<input type=\"checkbox\"  data-id=" + res[i].id + "  id=\"aktiviraj\" name=\"aktiviraj\" value=\"aktiviraj\" >\n" +
                     "<label for=\"aktiviraj\"> Aktivan</label><br>\n"
 
                 row += "<td>" +  checkbox + "</td>"

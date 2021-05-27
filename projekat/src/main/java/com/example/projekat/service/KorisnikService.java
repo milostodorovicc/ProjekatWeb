@@ -1,5 +1,6 @@
 package com.example.projekat.service;
 
+import com.example.projekat.entity.Administrator;
 import com.example.projekat.entity.Clanfitnescentra;
 import com.example.projekat.entity.Trener;
 
@@ -13,6 +14,11 @@ public interface KorisnikService {
 
     List<Trener> findAll();
 
+    Trener findOne(Long id);
 
+    Trener findByKorisnickoimeAndLozinka( String korisnickoime, String lozinka);
 
+   Clanfitnescentra findByKorisnickoimeAndLozinka1(String korisnickoime, String lozinka);
+
+   Administrator findByKorisnickoimeAndLozinka2(String korisnickoime, String lozinka);
 }

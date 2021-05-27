@@ -1,7 +1,6 @@
 package com.example.projekat.controller;
 
-import com.example.projekat.entity.Clanfitnescentra;
-import com.example.projekat.entity.Trener;
+import com.example.projekat.entity.*;
 import com.example.projekat.service.KorisnikService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -53,31 +52,53 @@ public class KorisnikController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Trener>> getTreneri() {
-        // Pozivanjem metode servisa dobavljamo sve zaposlene
+
         List<Trener> trenerList = this.korisnikService.findAll();
 
-        // Kreiramo listu DTO objekata koju ćemo vratiti u odgovoru na zahtev
-//        List<EmployeeDTO> employeeDTOS = new ArrayList<>();
 
-//        for (Employee employee : employeeList) {
-//            // Kreiramo EmployeeDTO za svakog zaposlenog, kojeg je vratila metoda findAll()
-//            // i ubacujemo ga u listu employeeDTOS
-//            EmployeeDTO employeeDTO = new EmployeeDTO(employee.getId(), employee.getFirstName(),
-//                    employee.getLastName(), employee.getPosition());
-//            employeeDTOS.add(employeeDTO);
-//        }
-
-        // Vraćamo odgovor 200 OK, a kroz body odgovora šaljemo podatke o pronađenim zaposlenima
         return new ResponseEntity<>(trenerList, HttpStatus.OK);
     }
 
 
 
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Trener> getEmployee(@PathVariable("id") Long id) {
+
+        Trener trener = this.korisnikService.findOne(id);
 
 
+        return new ResponseEntity<>(trener, HttpStatus.OK);
+    }
 
 
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE, value= "/login")
+    public ResponseEntity<LoginDTO> potvrdilogin(@RequestBody Trener trener) throws Exception {
+        LoginDTO loginDTO = new LoginDTO();
+       Trener trener1 =  this.korisnikService.findByKorisnickoimeAndLozinka(trener.getKorisnickoime(),trener.getLozinka());
+       if(trener1!=null){
 
+           loginDTO.setId(trener1.getId());
+           loginDTO.setUloga(trener1.getUloga());
+           loginDTO.setAktivan(trener1.isAktivan());
+
+       }
+
+       Clanfitnescentra clanfitnescentra1 = this.korisnikService.findByKorisnickoimeAndLozinka1(trener.getKorisnickoime(),trener.getLozinka());
+       if(clanfitnescentra1!=null){
+           loginDTO.setId(clanfitnescentra1.getId());
+           loginDTO.setUloga(clanfitnescentra1.getUloga());
+       }
+
+       Administrator administrator1 = this.korisnikService.findByKorisnickoimeAndLozinka2(trener.getKorisnickoime(), trener.getLozinka());
+       if(administrator1!=null){
+           loginDTO.setId(administrator1.getId());
+           loginDTO.setUloga(administrator1.getUloga());
+       }
+
+
+        return new ResponseEntity<>(loginDTO, HttpStatus.CREATED);
+    }
 
 
 

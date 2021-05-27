@@ -4,6 +4,11 @@
 <head>
 <title>Login</title>
 <link rel = "stylesheet" type = "text/css" href = "stil.css">
+    <script src="js/jquery.min.js"></script>
+
+    <script src="js/jquery.validate.min.js"></script>
+
+    <script src="js/login.js"></script>
 
 </head>
 <body>
@@ -14,10 +19,10 @@
 
 
 <p>Korisnicko ime</p>
-<input type = "text" name = "korisnik" placeholder = "Korisnicko ime" required>
+<input id = "korisnickoime" type = "text" name = "korisnik" placeholder = "Korisnicko ime" required>
 
 <p>Lozinka</p>
-<input type = "password" name = "password" placeholder = "Lozinka" required>
+<input id = "lozinka" type = "password" name = "password" placeholder = "Lozinka" required>
 
 <input type = "submit" value ="Login" >
 
