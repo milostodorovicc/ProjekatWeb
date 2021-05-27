@@ -63,7 +63,7 @@ $(document).on("submit", "form", function (event) {
              email,
              datumrodjenja,
              uloga,
-             prosecnaocena
+
          }
          console.log(novitrener);
 
@@ -76,7 +76,6 @@ $(document).on("submit", "form", function (event) {
              data: JSON.stringify(novitrener),
              success: function (res) {
 
-
                  console.log(res);
                  alert("Trener " + res.id + " je uspesno kreiran!");
                  window.location.href = "aktivacijatrenera.html";
@@ -86,4 +85,34 @@ $(document).on("submit", "form", function (event) {
              }
 
          });}
+});
+
+
+
+
+$(document).ready(function () {
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8011/api/korisnici",
+        dataType: "json",
+        success: function (res) {
+            console.log("SUCCESS:\n", res);
+            for (i = 0; i < res.length; i++) {
+                let row = "<tr>";
+                row += "<td>" + res[i].ime + "</td>";
+                row += "<td>" + res[i].prezime + "</td>";
+                row += "<td>" + res[i].korisnickoime + "</td>";
+                // row += "<td>" + res[i].uloga + "</td>";
+                let checkbox = "<input type=\"checkbox\" id=\"aktiviraj\" name=\"aktiviraj\" value=\"aktiviraj\" >\n" +
+                    "<label for=\"aktiviraj\"> Aktivan</label><br>\n"
+
+                row += "<td>" +  checkbox + "</td>"
+                row += "</tr>";
+                $('#aktivacijatrenera1').append(row);
+            }
+        },
+        error: function (res) {
+            console.log("ERROR:\n", res);
+        }
+    });
 });

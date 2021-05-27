@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/korisnici")
@@ -50,6 +50,26 @@ public class KorisnikController {
     }
 
 
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Trener>> getTreneri() {
+        // Pozivanjem metode servisa dobavljamo sve zaposlene
+        List<Trener> trenerList = this.korisnikService.findAll();
+
+        // Kreiramo listu DTO objekata koju ćemo vratiti u odgovoru na zahtev
+//        List<EmployeeDTO> employeeDTOS = new ArrayList<>();
+
+//        for (Employee employee : employeeList) {
+//            // Kreiramo EmployeeDTO za svakog zaposlenog, kojeg je vratila metoda findAll()
+//            // i ubacujemo ga u listu employeeDTOS
+//            EmployeeDTO employeeDTO = new EmployeeDTO(employee.getId(), employee.getFirstName(),
+//                    employee.getLastName(), employee.getPosition());
+//            employeeDTOS.add(employeeDTO);
+//        }
+
+        // Vraćamo odgovor 200 OK, a kroz body odgovora šaljemo podatke o pronađenim zaposlenima
+        return new ResponseEntity<>(trenerList, HttpStatus.OK);
+    }
 
 
 

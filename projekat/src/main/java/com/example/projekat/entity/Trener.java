@@ -1,5 +1,7 @@
 package com.example.projekat.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -138,11 +140,11 @@ public class Trener implements Serializable  {
 		this.termin = termin;
 	}
 
-
+    @JsonIgnore
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Fitnesscentar fitnesscentar;
 
-
+	@JsonIgnore
 	@OneToMany(mappedBy ="trener", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set <Termin>  termin =  new HashSet<>();
 

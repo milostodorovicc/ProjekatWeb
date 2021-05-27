@@ -8,6 +8,8 @@ import com.example.projekat.service.KorisnikService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class KorisnikServiceImpl implements KorisnikService {
 
@@ -38,6 +40,19 @@ public class KorisnikServiceImpl implements KorisnikService {
         Trener novitrener = this.trenerRepository.save(trener);
         return novitrener;
     }
+
+
+
+    @Override
+    public List<Trener> findAll() {
+        List<Trener> treneri = this.trenerRepository.findAll();
+        return treneri;
+    }
+
+
+
+
+
 
 
 
