@@ -2,14 +2,17 @@ package com.example.projekat.service.impl;
 
 import com.example.projekat.entity.Administrator;
 import com.example.projekat.entity.Clanfitnescentra;
+import com.example.projekat.entity.Termin;
 import com.example.projekat.entity.Trener;
 import com.example.projekat.repository.AdministratorRepository;
 import com.example.projekat.repository.ClanfitnescentraRepository;
+import com.example.projekat.repository.TerminRepository;
 import com.example.projekat.repository.TrenerRepository;
 import com.example.projekat.service.KorisnikService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -18,13 +21,15 @@ public class KorisnikServiceImpl implements KorisnikService {
     private final ClanfitnescentraRepository clanfitnescentraRepository;
     private final TrenerRepository trenerRepository;
     private final AdministratorRepository administratorRepository;
+    private final TerminRepository terminRepository;
 
 
     @Autowired
-    public KorisnikServiceImpl(ClanfitnescentraRepository clanfitnescentraRepository, TrenerRepository trenerRepository, AdministratorRepository administratorRepository) {
+    public KorisnikServiceImpl(ClanfitnescentraRepository clanfitnescentraRepository, TrenerRepository trenerRepository, AdministratorRepository administratorRepository, TerminRepository terminRepository) {
         this.clanfitnescentraRepository = clanfitnescentraRepository;
         this.trenerRepository = trenerRepository;
         this.administratorRepository = administratorRepository;
+        this.terminRepository = terminRepository;
     }
 
     @Override
@@ -93,7 +98,11 @@ public class KorisnikServiceImpl implements KorisnikService {
      }
 
 
-
+    public List<Termin> findTermini() {
+        Date datum = new Date();
+        List<Termin> termini = this.terminRepository.findByDatumAfter(datum);
+        return termini;
+    }
 
 
 }

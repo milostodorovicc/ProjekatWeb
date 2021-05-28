@@ -2,6 +2,7 @@ package com.example.projekat.service;
 
 import com.example.projekat.entity.Administrator;
 import com.example.projekat.entity.Clanfitnescentra;
+import com.example.projekat.entity.Termin;
 import com.example.projekat.entity.Trener;
 
 import java.util.List;
@@ -23,4 +24,8 @@ public interface KorisnikService {
    Administrator findByKorisnickoimeAndLozinka2(String korisnickoime, String lozinka);
 
    Trener update(Trener trener) ;
+
+   List<Termin> findTermini();
+
+
 }
