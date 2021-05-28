@@ -102,11 +102,9 @@ $(document).ready(function () {
                 row += "<td>" + res[i].ime + "</td>";
                 row += "<td>" + res[i].prezime + "</td>";
                 row += "<td>" + res[i].korisnickoime + "</td>";
-                // row += "<td>" + res[i].uloga + "</td>";
-                let checkbox = "<input type=\"checkbox\"  data-id=" + res[i].id + "  id=\"aktiviraj\" name=\"aktiviraj\" value=\"aktiviraj\" >\n" +
-                    "<label for=\"aktiviraj\"> Aktivan</label><br>\n"
 
-                row += "<td>" +  checkbox + "</td>"
+                let btn = "<button class='aktiviraj' data-id=" + res[i].id + ">Aktiviraj</button>";
+                row += "<td>" +  btn + "</td>"
                 row += "</tr>";
                 $('#aktivacijatrenera1').append(row);
             }
@@ -116,3 +114,28 @@ $(document).ready(function () {
         }
     });
 });
+
+$(document).on('click', '.aktiviraj', function (){
+
+
+  let trenerid = this.dataset.id;
+
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8011/api/korisnici/" + trenerid,
+        dataType: "json",
+        success: function (res) {
+            console.log("SUCCESS:\n", res);
+            alert("Trener je postao aktivan");
+        },
+        error: function (res) {
+            console.log("ERROR:\n", res);
+            alert("Nije uspela aktivacija trenera");
+        }
+    });
+});
+
+
+
+
+

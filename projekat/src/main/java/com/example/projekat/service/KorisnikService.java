@@ -21,4 +21,6 @@ public interface KorisnikService {
    Clanfitnescentra findByKorisnickoimeAndLozinka1(String korisnickoime, String lozinka);
 
    Administrator findByKorisnickoimeAndLozinka2(String korisnickoime, String lozinka);
+
+   Trener update(Trener trener) ;
 }

@@ -79,7 +79,18 @@ public class KorisnikServiceImpl implements KorisnikService {
         return administrator;
     }
 
+     @Override
+    public Trener update(Trener trener) {
+         Trener novitrener = this.trenerRepository.getOne(trener.getId());
 
+         novitrener.setAktivan(true);
+
+
+         Trener novitrener1 = this.trenerRepository.save(novitrener);
+         return novitrener1;
+
+
+     }
 
 
 

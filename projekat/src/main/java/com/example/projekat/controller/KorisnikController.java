@@ -63,17 +63,18 @@ public class KorisnikController {
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Trener> getEmployee(@PathVariable("id") Long id) {
+        Trener trener = new Trener();
+        trener.setId(id);
+         Trener trener1 =   korisnikService.update(trener);
 
-        Trener trener = this.korisnikService.findOne(id);
 
-
-        return new ResponseEntity<>(trener, HttpStatus.OK);
+        return new ResponseEntity<>(trener1, HttpStatus.OK);
     }
 
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE, value= "/login")
-    public ResponseEntity<LoginDTO> potvrdilogin(@RequestBody Trener trener) throws Exception {
+    public ResponseEntity<LoginDTO> potvrdilogin(@RequestBody Trener trener)  {
         LoginDTO loginDTO = new LoginDTO();
        Trener trener1 =  this.korisnikService.findByKorisnickoimeAndLozinka(trener.getKorisnickoime(),trener.getLozinka());
        if(trener1!=null){
