@@ -2,7 +2,7 @@
 
      $.ajax({
          type: "GET",
-         url: "http://localhost:8011/api/treninzi",
+         url: "http://localhost:8011/api/treninzi/svitreninzi",
          dataType: "json",
          success: function (res) {
 
@@ -34,6 +34,17 @@
          }
      });
  });
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -9,5 +9,7 @@ import java.util.List;
 
 public interface TerminRepository extends JpaRepository<Termin, Long> {
 
-    List<Termin> findByDatumAfter( Date datum);
+    List<Termin> findByDatumAfter( LocalDateTime datum);
+
+    List<Termin> findByTreningNazivContainsAndTreningOpisContainsAndTreningTipContainsAndDatumLessThanEqualAndCenaLessThanEqual(String naziv,String opis, String tip,LocalDateTime vremeTreninga, Double cena);
 }

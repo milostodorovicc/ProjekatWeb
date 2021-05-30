@@ -1,17 +1,13 @@
 package com.example.projekat.service.impl;
 
-import com.example.projekat.entity.Administrator;
-import com.example.projekat.entity.Clanfitnescentra;
-import com.example.projekat.entity.Termin;
-import com.example.projekat.entity.Trener;
-import com.example.projekat.repository.AdministratorRepository;
-import com.example.projekat.repository.ClanfitnescentraRepository;
-import com.example.projekat.repository.TerminRepository;
-import com.example.projekat.repository.TrenerRepository;
+import com.example.projekat.entity.*;
+import com.example.projekat.repository.*;
 import com.example.projekat.service.KorisnikService;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -22,14 +18,16 @@ public class KorisnikServiceImpl implements KorisnikService {
     private final TrenerRepository trenerRepository;
     private final AdministratorRepository administratorRepository;
     private final TerminRepository terminRepository;
+    private final TreningRepository treningRepository;
 
 
     @Autowired
-    public KorisnikServiceImpl(ClanfitnescentraRepository clanfitnescentraRepository, TrenerRepository trenerRepository, AdministratorRepository administratorRepository, TerminRepository terminRepository) {
+    public KorisnikServiceImpl(ClanfitnescentraRepository clanfitnescentraRepository, TrenerRepository trenerRepository, AdministratorRepository administratorRepository, TerminRepository terminRepository, TreningRepository treningRepository) {
         this.clanfitnescentraRepository = clanfitnescentraRepository;
         this.trenerRepository = trenerRepository;
         this.administratorRepository = administratorRepository;
         this.terminRepository = terminRepository;
+        this.treningRepository = treningRepository;
     }
 
     @Override
@@ -99,9 +97,22 @@ public class KorisnikServiceImpl implements KorisnikService {
 
 
     public List<Termin> findTermini() {
-        Date datum = new Date();
+        LocalDateTime datum = LocalDateTime.now();
         List<Termin> termini = this.terminRepository.findByDatumAfter(datum);
         return termini;
+    }
+
+
+    public List<Termin> findTermini1(String naziv, String opis, String tip, LocalDateTime vremeTreninga, Double cena) {
+
+        List<Termin> termini = this.terminRepository.findByTreningNazivContainsAndTreningOpisContainsAndTreningTipContainsAndDatumLessThanEqualAndCenaLessThanEqual( naziv, opis,  tip, vremeTreninga, cena);
+        return termini;
+    }
+
+
+    public Trening findTreningByNaziv(String naziv){
+        Trening trening1 = this.treningRepository.findByNaziv(naziv);
+        return trening1;
     }
 
 

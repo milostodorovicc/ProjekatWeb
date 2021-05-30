@@ -1,6 +1,7 @@
 
 $(document).on("submit", "#form1", function (event) {
     event.preventDefault();
+
      if(document.getElementById("uloga").checked){
 
     var korisnickoime = $("#korisnickoime").val();

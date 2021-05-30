@@ -1,10 +1,8 @@
 package com.example.projekat.service;
 
-import com.example.projekat.entity.Administrator;
-import com.example.projekat.entity.Clanfitnescentra;
-import com.example.projekat.entity.Termin;
-import com.example.projekat.entity.Trener;
+import com.example.projekat.entity.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface KorisnikService {
@@ -26,6 +24,13 @@ public interface KorisnikService {
    Trener update(Trener trener) ;
 
    List<Termin> findTermini();
+   Trening findTreningByNaziv(String naziv);
+    List<Termin> findTermini1(String naziv, String opis, String tip, LocalDateTime vremeTreninga, Double cena);
+
+
+
+
+
 
 
 }

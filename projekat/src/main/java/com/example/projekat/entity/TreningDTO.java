@@ -1,10 +1,11 @@
 package com.example.projekat.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class TreningDTO {
 
-    private Date datum;
+    private LocalDateTime datum;
     private double cena;
     private int brojprijavljenihclanova;
    private String nazivfitnescentra;
@@ -17,7 +18,7 @@ public class TreningDTO {
    private Double trajanje;
 
 
-    public TreningDTO(Date datum, double cena, int brojprijavljenihclanova, String nazivfitnescentra, int oznaka, String ime, String prezime, String nazivtreninga, String opis, String tip, Double trajanje) {
+    public TreningDTO(LocalDateTime datum, double cena, int brojprijavljenihclanova, String nazivfitnescentra, int oznaka, String ime, String prezime, String nazivtreninga, String opis, String tip, Double trajanje) {
         this.datum = datum;
         this.cena = cena;
         this.brojprijavljenihclanova = brojprijavljenihclanova;
@@ -36,11 +37,13 @@ public class TreningDTO {
     }
 
 
-    public Date getDatum() {
+
+
+    public LocalDateTime getDatum() {
         return datum;
     }
 
-    public void setDatum(Date datum) {
+    public void setDatum(LocalDateTime datum) {
         this.datum = datum;
     }
 

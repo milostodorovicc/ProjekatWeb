@@ -2,6 +2,8 @@ package com.example.projekat.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,16 +17,19 @@ public class Termin implements Serializable {
 
 
 
-    private Date datum;
+    private LocalDateTime datum;
     private double cena;
     private int brojprijavljenihclanova;
 
 
-    public Date getDatum() {
+
+
+
+    public LocalDateTime getDatum() {
         return datum;
     }
 
-    public void setDatum(Date datum) {
+    public void setDatum(LocalDateTime datum) {
         this.datum = datum;
     }
 
@@ -54,7 +59,7 @@ public class Termin implements Serializable {
 
 
 
-    public Termin(Long id, Date datum, double cena, int brojprijavljenihclanova) {
+    public Termin(Long id, LocalDateTime datum, double cena, int brojprijavljenihclanova) {
         this.id = id;
         this.datum = datum;
         this.cena = cena;
