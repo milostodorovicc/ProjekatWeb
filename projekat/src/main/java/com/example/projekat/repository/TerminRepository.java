@@ -12,4 +12,9 @@ public interface TerminRepository extends JpaRepository<Termin, Long> {
     List<Termin> findByDatumAfter( LocalDateTime datum);
 
     List<Termin> findByTreningNazivContainsAndTreningOpisContainsAndTreningTipContainsAndDatumLessThanEqualAndCenaLessThanEqual(String naziv,String opis, String tip,LocalDateTime vremeTreninga, Double cena);
+
+    List<Termin> findByOrderByCenaAsc();
+    List<Termin> findByOrderByCenaDesc();
+    List<Termin> findByOrderByDatumAsc();
+    List<Termin> findByOrderByDatumDesc();
 }

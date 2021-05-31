@@ -27,7 +27,7 @@ public interface KorisnikService {
    Trening findTreningByNaziv(String naziv);
     List<Termin> findTermini1(String naziv, String opis, String tip, LocalDateTime vremeTreninga, Double cena);
 
-
+   List<Termin> sortiraj(Long id);
 
 
 

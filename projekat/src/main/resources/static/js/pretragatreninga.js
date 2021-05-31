@@ -9,7 +9,9 @@ $(document).on("click", "#pretrazikriterijum", function () {
 
 });
 
-$(document).on("click", "#pretrazi", function(){
+$(document).on("click", "#pretrazi", function(event){
+    event.preventDefault();
+    $('#nazivi tbody').empty();
     let naziv = $('#naziv').val();
     let tip = $('#tip').val();
     let opis = $('#opis').val();

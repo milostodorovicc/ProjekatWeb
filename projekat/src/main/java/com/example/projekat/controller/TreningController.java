@@ -72,4 +72,31 @@ public class TreningController {
     }
 
 
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = "/{id}")
+    public ResponseEntity<List<TreningDTO>> sortiraj(@PathVariable("id") Long id) {
+
+          List<Termin> terminlist = this.korisnikService.sortiraj( id);
+
+
+        List<TreningDTO> treningDTOS = new ArrayList<>();
+
+        for (Termin termin : terminlist) {
+
+
+            TreningDTO treningDTO = new TreningDTO(termin.getDatum(), termin.getCena(),
+                    termin.getBrojprijavljenihclanova(),termin.getFitnesscentar().getNaziv(), termin.getSala().getOznaka(),termin.getTrener().getIme(),termin.getTrener().getPrezime(),
+                    termin.getTrening().getNaziv(),termin.getTrening().getOpis(),termin.getTrening().getTip(),termin.getTrening().getTrajanje());
+            treningDTOS.add(treningDTO);
+        }
+
+
+        return new ResponseEntity<>(treningDTOS, HttpStatus.OK);
+    }
+
+
+
+
+
+
+
 }

@@ -115,5 +115,29 @@ public class KorisnikServiceImpl implements KorisnikService {
         return trening1;
     }
 
+   public List<Termin> sortiraj(Long id){
 
-}
+       int a =(int) (long) id;
+       switch( a) {
+           case 1:
+               List<Termin> termini = this.terminRepository.findByOrderByCenaAsc();
+           return termini;
+
+           case 2:
+               List<Termin> termini1 = this.terminRepository.findByOrderByCenaDesc();
+            return termini1;
+
+           case 3:
+               List<Termin> termini2 = this.terminRepository.findByOrderByDatumAsc();
+               return termini2;
+
+
+           case 4:
+               List<Termin> termini3 = this.terminRepository.findByOrderByDatumDesc();
+               return termini3;
+
+           default:
+               return null;
+
+   }
+}}
