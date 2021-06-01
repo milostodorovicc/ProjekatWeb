@@ -29,7 +29,7 @@ public interface KorisnikService {
 
    List<Termin> sortiraj(Long id);
 
-
+   Fitnesscentar create(Fitnesscentar fitnescentar) throws Exception;
 
 
 

@@ -19,15 +19,17 @@ public class KorisnikServiceImpl implements KorisnikService {
     private final AdministratorRepository administratorRepository;
     private final TerminRepository terminRepository;
     private final TreningRepository treningRepository;
+    private final FitnescentarRepository fitnescentarRepository;
 
 
     @Autowired
-    public KorisnikServiceImpl(ClanfitnescentraRepository clanfitnescentraRepository, TrenerRepository trenerRepository, AdministratorRepository administratorRepository, TerminRepository terminRepository, TreningRepository treningRepository) {
+    public KorisnikServiceImpl(ClanfitnescentraRepository clanfitnescentraRepository, TrenerRepository trenerRepository, AdministratorRepository administratorRepository, TerminRepository terminRepository, TreningRepository treningRepository, FitnescentarRepository fitnescentarRepository) {
         this.clanfitnescentraRepository = clanfitnescentraRepository;
         this.trenerRepository = trenerRepository;
         this.administratorRepository = administratorRepository;
         this.terminRepository = terminRepository;
         this.treningRepository = treningRepository;
+        this.fitnescentarRepository = fitnescentarRepository;
     }
 
     @Override
@@ -40,14 +42,13 @@ public class KorisnikServiceImpl implements KorisnikService {
     }
 
 
-    public Trener create(Trener trener) throws Exception{
-        if(trener.getId()!= null){
+    public Trener create(Trener trener) throws Exception {
+        if (trener.getId() != null) {
             throw new Exception("ID must be null!");
         }
         Trener novitrener = this.trenerRepository.save(trener);
         return novitrener;
     }
-
 
 
     @Override
@@ -57,7 +58,6 @@ public class KorisnikServiceImpl implements KorisnikService {
     }
 
 
-
     @Override
     public Trener findOne(Long id) {
         Trener trener = this.trenerRepository.getOne(id);
@@ -65,35 +65,35 @@ public class KorisnikServiceImpl implements KorisnikService {
     }
 
     @Override
-    public Trener findByKorisnickoimeAndLozinka( String korisnickoime, String lozinka){
+    public Trener findByKorisnickoimeAndLozinka(String korisnickoime, String lozinka) {
         Trener trener = this.trenerRepository.findByKorisnickoimeAndLozinka(korisnickoime, lozinka);
         return trener;
     }
 
     @Override
-    public Clanfitnescentra findByKorisnickoimeAndLozinka1(String korisnickoime, String lozinka){
+    public Clanfitnescentra findByKorisnickoimeAndLozinka1(String korisnickoime, String lozinka) {
         Clanfitnescentra clanfitnescentra = this.clanfitnescentraRepository.findByKorisnickoimeAndLozinka(korisnickoime, lozinka);
-         return clanfitnescentra;
+        return clanfitnescentra;
     }
 
     @Override
-    public Administrator findByKorisnickoimeAndLozinka2(String korisnickoime, String lozinka){
+    public Administrator findByKorisnickoimeAndLozinka2(String korisnickoime, String lozinka) {
         Administrator administrator = this.administratorRepository.findByKorisnickoimeAndLozinka(korisnickoime, lozinka);
         return administrator;
     }
 
-     @Override
+    @Override
     public Trener update(Trener trener) {
-         Trener novitrener = this.trenerRepository.getOne(trener.getId());
+        Trener novitrener = this.trenerRepository.getOne(trener.getId());
 
-         novitrener.setAktivan(true);
-
-
-         Trener novitrener1 = this.trenerRepository.save(novitrener);
-         return novitrener1;
+        novitrener.setAktivan(true);
 
 
-     }
+        Trener novitrener1 = this.trenerRepository.save(novitrener);
+        return novitrener1;
+
+
+    }
 
 
     public List<Termin> findTermini() {
@@ -105,39 +105,52 @@ public class KorisnikServiceImpl implements KorisnikService {
 
     public List<Termin> findTermini1(String naziv, String opis, String tip, LocalDateTime vremeTreninga, Double cena) {
 
-        List<Termin> termini = this.terminRepository.findByTreningNazivContainsAndTreningOpisContainsAndTreningTipContainsAndDatumLessThanEqualAndCenaLessThanEqual( naziv, opis,  tip, vremeTreninga, cena);
+        List<Termin> termini = this.terminRepository.findByTreningNazivContainsAndTreningOpisContainsAndTreningTipContainsAndDatumLessThanEqualAndCenaLessThanEqual(naziv, opis, tip, vremeTreninga, cena);
         return termini;
     }
 
 
-    public Trening findTreningByNaziv(String naziv){
+    public Trening findTreningByNaziv(String naziv) {
         Trening trening1 = this.treningRepository.findByNaziv(naziv);
         return trening1;
     }
 
-   public List<Termin> sortiraj(Long id){
+    public List<Termin> sortiraj(Long id) {
 
-       int a =(int) (long) id;
-       switch( a) {
-           case 1:
-               List<Termin> termini = this.terminRepository.findByOrderByCenaAsc();
-           return termini;
+        int a = (int) (long) id;
+        switch (a) {
+            case 1:
+                List<Termin> termini = this.terminRepository.findByOrderByCenaAsc();
+                return termini;
 
-           case 2:
-               List<Termin> termini1 = this.terminRepository.findByOrderByCenaDesc();
-            return termini1;
+            case 2:
+                List<Termin> termini1 = this.terminRepository.findByOrderByCenaDesc();
+                return termini1;
 
-           case 3:
-               List<Termin> termini2 = this.terminRepository.findByOrderByDatumAsc();
-               return termini2;
+            case 3:
+                List<Termin> termini2 = this.terminRepository.findByOrderByDatumAsc();
+                return termini2;
 
 
-           case 4:
-               List<Termin> termini3 = this.terminRepository.findByOrderByDatumDesc();
-               return termini3;
+            case 4:
+                List<Termin> termini3 = this.terminRepository.findByOrderByDatumDesc();
+                return termini3;
 
-           default:
-               return null;
+            default:
+                return null;
 
-   }
-}}
+        }
+    }
+
+
+
+
+
+       public Fitnesscentar create(Fitnesscentar fitnescentar) throws Exception{
+           if(fitnescentar.getId()!= null){
+               throw new Exception("ID must be null!");
+           }
+           Fitnesscentar novifitnescentar = this.fitnescentarRepository.save(fitnescentar);
+           return novifitnescentar;
+       }
+}
