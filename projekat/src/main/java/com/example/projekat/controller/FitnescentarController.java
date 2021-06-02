@@ -26,9 +26,9 @@ public class FitnescentarController {
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Fitnesscentar> dodajfitnescentar(@RequestBody Fitnesscentar fitnescentar) throws Exception {
+    public ResponseEntity<Fitnesscentar> dodajfitnescentar(@RequestBody Fitnesscentar fitnescentar,@RequestParam(value = "uloga")  String uloga) throws Exception {
 
-        Fitnesscentar novifitnescentar = korisnikService.create(fitnescentar);
+        Fitnesscentar novifitnescentar = korisnikService.create(fitnescentar, uloga);
 
 
         return new ResponseEntity<>(novifitnescentar, HttpStatus.CREATED);

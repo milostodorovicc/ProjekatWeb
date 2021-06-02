@@ -7,6 +7,8 @@ import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.*;
+import java.awt.*;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -34,25 +36,46 @@ public class KorisnikServiceImpl implements KorisnikService {
 
     @Override
     public Clanfitnescentra create(Clanfitnescentra clanfitnescentra) throws Exception {
-        if (clanfitnescentra.getId() != null) {
-            throw new Exception("ID must be null!");
+
+        if(clanfitnescentraRepository.existsClanfitnescentraByKorisnickoimeOrLozinkaOrEmail(clanfitnescentra.getKorisnickoime(), clanfitnescentra.getLozinka(),clanfitnescentra.getEmail())) {
+            throw new Exception("Korisnik sa takvim korisnickim imenom, lozinkom ili email-om vec postoji!");
         }
+        if(trenerRepository.existsTrenerByKorisnickoimeOrLozinkaOrEmail(clanfitnescentra.getKorisnickoime(), clanfitnescentra.getLozinka(),clanfitnescentra.getEmail())) {
+            throw new Exception("Korisnik sa takvim korisnickim imenom, lozinkom ili email-om vec postoji!");
+        }
+        if(administratorRepository.existsAdministratorByKorisnickoimeOrLozinkaOrEmail(clanfitnescentra.getKorisnickoime(), clanfitnescentra.getLozinka(),clanfitnescentra.getEmail())) {
+            throw new Exception("Korisnik sa takvim korisnickim imenom, lozinkom ili email-om vec postoji!");
+        }
+//        if (clanfitnescentra.getId() != null) {
+//            throw new Exception("ID must be null!");
+//        }
         Clanfitnescentra noviclanfitnescentra = this.clanfitnescentraRepository.save(clanfitnescentra);
         return noviclanfitnescentra;
     }
 
 
     public Trener create(Trener trener) throws Exception {
-        if (trener.getId() != null) {
-            throw new Exception("ID must be null!");
+        if(trenerRepository.existsTrenerByKorisnickoimeOrLozinkaOrEmail(trener.getKorisnickoime(), trener.getLozinka(),trener.getEmail())) {
+            throw new Exception("Korisnik sa takvim korisnickim imenom, lozinkom ili email-om vec postoji!");
         }
+        if(clanfitnescentraRepository.existsClanfitnescentraByKorisnickoimeOrLozinkaOrEmail(trener.getKorisnickoime(), trener.getLozinka(),trener.getEmail())) {
+            throw new Exception("Korisnik sa takvim korisnickim imenom, lozinkom ili email-om vec postoji!");
+        }
+        if(administratorRepository.existsAdministratorByKorisnickoimeOrLozinkaOrEmail(trener.getKorisnickoime(), trener.getLozinka(),trener.getEmail())) {
+            throw new Exception("Korisnik sa takvim korisnickim imenom, lozinkom ili email-om vec postoji!");
+        }
+
         Trener novitrener = this.trenerRepository.save(trener);
         return novitrener;
     }
 
 
     @Override
-    public List<Trener> findAll() {
+    public List<Trener> findAll(String uloga) throws Exception {
+        if(!uloga.equals("ADMINISTRATOR")){
+            throw new Exception("Nije Vam dozvoljen pristup podacima!");
+        }
+
         List<Trener> treneri = this.trenerRepository.findByAktivan(false);
         return treneri;
     }
@@ -83,7 +106,10 @@ public class KorisnikServiceImpl implements KorisnikService {
     }
 
     @Override
-    public Trener update(Trener trener) {
+    public Trener update(Trener trener, String uloga) throws Exception {
+        if(!uloga.equals("ADMINISTRATOR")){
+            throw new Exception("Nije vam dozvoljen pristup podacima!");
+        }
         Trener novitrener = this.trenerRepository.getOne(trener.getId());
 
         novitrener.setAktivan(true);
@@ -146,9 +172,12 @@ public class KorisnikServiceImpl implements KorisnikService {
 
 
 
-       public Fitnesscentar create(Fitnesscentar fitnescentar) throws Exception{
+       public Fitnesscentar create(Fitnesscentar fitnescentar, String uloga) throws Exception{
            if(fitnescentar.getId()!= null){
                throw new Exception("ID must be null!");
+           }
+           if(!uloga.equals("ADMINISTRATOR")){
+               throw new Exception("Nemate pristup ovim podacima!");
            }
            Fitnesscentar novifitnescentar = this.fitnescentarRepository.save(fitnescentar);
            return novifitnescentar;

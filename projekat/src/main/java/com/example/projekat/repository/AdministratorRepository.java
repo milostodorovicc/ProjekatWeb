@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface AdministratorRepository extends JpaRepository<Administrator, Long> {
 
     Administrator findByKorisnickoimeAndLozinka(String korisnickoime, String lozinka);
+    boolean existsAdministratorByKorisnickoimeOrLozinkaOrEmail(String korisnickoime, String lozinka, String email);
 }

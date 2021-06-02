@@ -23,14 +23,18 @@ $(document).on("submit", "form", function (event) {
             success: function (res) {
                 console.log(res);
                 if(res.uloga === "TRENER"){
+
                     if(res.aktivan){
+                        localStorage.setItem("uloga", "TRENER");
                         window.location.href = "trener.html"
                     }else{
                         alert("Administrator vas jos nije aktivirao!")
                     }
                 }else if(res.uloga === "ADMINISTRATOR"){
+                    localStorage.setItem("uloga", "ADMINISTRATOR");
                     window.location.href = "administrator.html"
                 }else{
+                    localStorage.setItem("uloga", "CLANFITNESCENTRA");
                     window.location.href = "clanfitnescentra.html"
                 }
 

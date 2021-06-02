@@ -11,7 +11,7 @@ public interface KorisnikService {
 
     Trener create(Trener trener) throws Exception;
 
-    List<Trener> findAll();
+    List<Trener> findAll(String uloga) throws Exception ;
 
     Trener findOne(Long id);
 
@@ -21,7 +21,7 @@ public interface KorisnikService {
 
    Administrator findByKorisnickoimeAndLozinka2(String korisnickoime, String lozinka);
 
-   Trener update(Trener trener) ;
+   Trener update(Trener trener, String uloga) throws Exception ;
 
    List<Termin> findTermini();
    Trening findTreningByNaziv(String naziv);
@@ -29,7 +29,7 @@ public interface KorisnikService {
 
    List<Termin> sortiraj(Long id);
 
-   Fitnesscentar create(Fitnesscentar fitnescentar) throws Exception;
+   Fitnesscentar create(Fitnesscentar fitnescentar, String uloga) throws Exception;
 
 
 

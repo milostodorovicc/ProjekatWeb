@@ -9,5 +9,6 @@ public interface TrenerRepository extends JpaRepository<Trener, Long> {
 
     List<Trener> findByAktivan(boolean aktivan);
     Trener findByKorisnickoimeAndLozinka(String korisnickoime, String lozinka);
+    boolean existsTrenerByKorisnickoimeOrLozinkaOrEmail(String korisnickoime, String lozinka, String email);
 
 }

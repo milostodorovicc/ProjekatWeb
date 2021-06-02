@@ -51,9 +51,9 @@ public class KorisnikController {
 
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Trener>> getTreneri() {
+    public ResponseEntity<List<Trener>> getTreneri(@RequestParam(value = "uloga" ) String uloga) throws Exception {
 
-        List<Trener> trenerList = this.korisnikService.findAll();
+        List<Trener> trenerList = this.korisnikService.findAll(uloga);
 
 
         return new ResponseEntity<>(trenerList, HttpStatus.OK);
@@ -62,10 +62,11 @@ public class KorisnikController {
 
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Trener> getEmployee(@PathVariable("id") Long id) {
+    public ResponseEntity<Trener> getEmployee(@PathVariable("id") Long id,@RequestParam(value = "uloga" ) String uloga) throws Exception{
+
         Trener trener = new Trener();
         trener.setId(id);
-         Trener trener1 =   korisnikService.update(trener);
+         Trener trener1 =   korisnikService.update(trener, uloga);
 
 
         return new ResponseEntity<>(trener1, HttpStatus.OK);
