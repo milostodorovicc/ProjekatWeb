@@ -75,31 +75,17 @@ public class KorisnikController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE, value= "/login")
-    public ResponseEntity<LoginDTO> potvrdilogin(@RequestBody Trener trener)  {
-        LoginDTO loginDTO = new LoginDTO();
-       Trener trener1 =  this.korisnikService.findByKorisnickoimeAndLozinka(trener.getKorisnickoime(),trener.getLozinka());
-       if(trener1!=null){
-
-           loginDTO.setId(trener1.getId());
-           loginDTO.setUloga(trener1.getUloga());
-           loginDTO.setAktivan(trener1.isAktivan());
-
-       }
-
-       Clanfitnescentra clanfitnescentra1 = this.korisnikService.findByKorisnickoimeAndLozinka1(trener.getKorisnickoime(),trener.getLozinka());
-       if(clanfitnescentra1!=null){
-           loginDTO.setId(clanfitnescentra1.getId());
-           loginDTO.setUloga(clanfitnescentra1.getUloga());
-       }
-
-       Administrator administrator1 = this.korisnikService.findByKorisnickoimeAndLozinka2(trener.getKorisnickoime(), trener.getLozinka());
-       if(administrator1!=null){
-           loginDTO.setId(administrator1.getId());
-           loginDTO.setUloga(administrator1.getUloga());
-       }
+    public ResponseEntity<LoginDTO> potvrdilogin(@RequestBody Trener trener) throws Exception  {
 
 
-        return new ResponseEntity<>(loginDTO, HttpStatus.CREATED);
+        LoginDTO loginDTO1 = new LoginDTO();
+        loginDTO1 = korisnikService.proveri(trener.getKorisnickoime(),trener.getLozinka());
+
+
+        return new ResponseEntity<>(loginDTO1, HttpStatus.CREATED);
+
+
+
     }
 
 

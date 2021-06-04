@@ -1,0 +1,107 @@
+*{
+
+    font-family: sans-serif;
+
+}
+body{
+
+    background: url('Web-Page-Background-Color.jpg') no-repeat ;
+    background-size: cover;
+
+}
+
+
+.pretraga{
+    width:250px;
+
+    top:30%;
+    left:44%;
+    transform:translate(-40%,-40%);
+    position:absolute;
+    text-align: center;
+}
+
+.pretraga h1{
+    font-size:28px;
+    text-align:center;
+    text-transform:uppercase;
+    margin:40px 0;
+}
+
+
+.pretraga label  tip{
+
+    font-size:20px;
+    margin:10px 0;
+
+}
+
+#pretragaForma{
+    width:290px;
+}
+
+
+
+#pretragaForma input{
+
+    font-size:10px;
+    width:50%;
+    padding:10px 5px;
+    border: 0;
+    outline: none;
+    border-radius:5px;
+
+}
+
+
+
+#pretragaForma button{
+    font-size: 10px;
+    font-weight: bold;
+    margin:20px 0;
+    padding: 10px 15px;
+    width:50%;
+    border-radius:5px;
+    border:0;
+    background-color:steelblue;
+    position:relative;
+    left:30px;
+}
+
+
+table{
+
+    font-family: sans-serif;
+    position:relative;
+
+    right:180px;
+}
+table tr{
+    line-height: 1em;
+}
+
+
+
+
+
+
+
+
+thead{
+    background:cadetblue;
+}
+
+
+
+tbody>tr:nth-child(2n){
+    background:silver;
+}
+
+tbody>tr:nth-child(2n+1){
+    background: white;
+}
+
+
+
+
+

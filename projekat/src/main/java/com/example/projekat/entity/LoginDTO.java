@@ -5,6 +5,8 @@ public class LoginDTO {
     Long id;
     Uloga uloga;
     boolean aktivan;
+    String korisnickoime;
+    String lozinka;
 
     public Long getId() {
         return id;
@@ -29,5 +31,22 @@ public class LoginDTO {
 
     public void setAktivan(boolean aktivan) {
         this.aktivan = aktivan;
+    }
+
+
+    public String getKorisnickoime() {
+        return korisnickoime;
+    }
+
+    public void setKorisnickoime(String korisnickoime) {
+        this.korisnickoime = korisnickoime;
+    }
+
+    public String getLozinka() {
+        return lozinka;
+    }
+
+    public void setLozinka(String lozinka) {
+        this.lozinka = lozinka;
     }
 }

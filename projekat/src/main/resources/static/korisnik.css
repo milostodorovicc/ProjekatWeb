@@ -6,15 +6,16 @@
 }
 body{
 
-    background: url('teretana.jpg') no-repeat ;
+    background: url('blueback.jpg') no-repeat ;
     background-size: cover;
 
 }
-.pocetna button{
+
+.korisnik button{
     font-size: 25px;
     position:relative;
     top:200px;
     left:650px;
-    background-color:cornflowerblue;
+    background-color:darkseagreen;
 
 }

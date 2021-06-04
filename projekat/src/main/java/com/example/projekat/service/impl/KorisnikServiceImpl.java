@@ -46,9 +46,7 @@ public class KorisnikServiceImpl implements KorisnikService {
         if(administratorRepository.existsAdministratorByKorisnickoimeOrLozinkaOrEmail(clanfitnescentra.getKorisnickoime(), clanfitnescentra.getLozinka(),clanfitnescentra.getEmail())) {
             throw new Exception("Korisnik sa takvim korisnickim imenom, lozinkom ili email-om vec postoji!");
         }
-//        if (clanfitnescentra.getId() != null) {
-//            throw new Exception("ID must be null!");
-//        }
+
         Clanfitnescentra noviclanfitnescentra = this.clanfitnescentraRepository.save(clanfitnescentra);
         return noviclanfitnescentra;
     }
@@ -87,23 +85,7 @@ public class KorisnikServiceImpl implements KorisnikService {
         return trener;
     }
 
-    @Override
-    public Trener findByKorisnickoimeAndLozinka(String korisnickoime, String lozinka) {
-        Trener trener = this.trenerRepository.findByKorisnickoimeAndLozinka(korisnickoime, lozinka);
-        return trener;
-    }
 
-    @Override
-    public Clanfitnescentra findByKorisnickoimeAndLozinka1(String korisnickoime, String lozinka) {
-        Clanfitnescentra clanfitnescentra = this.clanfitnescentraRepository.findByKorisnickoimeAndLozinka(korisnickoime, lozinka);
-        return clanfitnescentra;
-    }
-
-    @Override
-    public Administrator findByKorisnickoimeAndLozinka2(String korisnickoime, String lozinka) {
-        Administrator administrator = this.administratorRepository.findByKorisnickoimeAndLozinka(korisnickoime, lozinka);
-        return administrator;
-    }
 
     @Override
     public Trener update(Trener trener, String uloga) throws Exception {
@@ -182,4 +164,35 @@ public class KorisnikServiceImpl implements KorisnikService {
            Fitnesscentar novifitnescentar = this.fitnescentarRepository.save(fitnescentar);
            return novifitnescentar;
        }
+
+
+
+
+    public LoginDTO proveri(String korisnickoime, String lozinka) throws Exception{
+        LoginDTO loginDTO2 = new LoginDTO();
+        Trener trener = trenerRepository.findByKorisnickoimeAndLozinka(korisnickoime, lozinka);
+        if(trener!= null){
+            loginDTO2.setAktivan(trener.isAktivan());
+            loginDTO2.setUloga(trener.getUloga());
+            loginDTO2.setKorisnickoime(trener.getKorisnickoime());
+            loginDTO2.setLozinka(trener.getLozinka());
+        }
+        Clanfitnescentra clanfitnescentra = clanfitnescentraRepository.findByKorisnickoimeAndLozinka(korisnickoime, lozinka);
+        if(clanfitnescentra!= null){
+            loginDTO2.setUloga(clanfitnescentra.getUloga());
+            loginDTO2.setKorisnickoime(clanfitnescentra.getKorisnickoime());
+            loginDTO2.setLozinka(clanfitnescentra.getLozinka());
+        }
+        Administrator administrator = administratorRepository.findByKorisnickoimeAndLozinka(korisnickoime, lozinka);
+        if(administrator!=null){
+            loginDTO2.setUloga(administrator.getUloga());
+            loginDTO2.setKorisnickoime(administrator.getKorisnickoime());
+            loginDTO2.setLozinka(administrator.getLozinka());
+        }
+        if(loginDTO2.getKorisnickoime()==null & loginDTO2.getLozinka()==null){
+            throw new Exception("Niste uneli tacno korisnicko ime ili lozinku!");
+        }
+        return loginDTO2;
+
+    }
 }

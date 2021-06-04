@@ -15,11 +15,13 @@ public interface KorisnikService {
 
     Trener findOne(Long id);
 
-    Trener findByKorisnickoimeAndLozinka( String korisnickoime, String lozinka);
 
-   Clanfitnescentra findByKorisnickoimeAndLozinka1(String korisnickoime, String lozinka);
+    LoginDTO proveri(String korisnickoime, String lozinka) throws Exception;
 
-   Administrator findByKorisnickoimeAndLozinka2(String korisnickoime, String lozinka);
+
+
+
+
 
    Trener update(Trener trener, String uloga) throws Exception ;
 

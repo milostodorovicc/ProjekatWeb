@@ -1,0 +1,69 @@
+#sort{
+    position:relative;
+    left:450px;
+
+}
+#sort button{
+    width:300px;
+    height:80px;
+    background-color:lightblue;
+    font-size:14px;
+
+
+
+
+  }
+
+
+
+table{
+    width: 70%;
+    margin: 0 auto;
+    font-family: Georgia, serif;
+    position:absolute;
+    top:30%;
+    left:15%;
+}
+table tr{
+    line-height: 3em;
+}
+
+
+body{
+
+    background:url('Web-Page-Background-Color.jpg') no-repeat;
+    background-size:cover;
+
+}
+
+.akt-tabela h1{
+    left:40%;
+    position:absolute;
+
+}
+
+
+
+thead{
+    background:steelblue;
+}
+
+
+
+tbody>tr:nth-child(2n){
+    background:silver;
+}
+
+tbody>tr:nth-child(2n+1){
+    background: white;
+}
+
+
+
+
+
+
+
+
+
+
