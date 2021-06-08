@@ -40,7 +40,7 @@ $(document).on("submit", "form", function (event) {
 
             },
             error: function () {
-                alert("Greška!");
+                alert("Niste uneli dobro korisnicko ime ili lozinku!");
             }
 
         });
