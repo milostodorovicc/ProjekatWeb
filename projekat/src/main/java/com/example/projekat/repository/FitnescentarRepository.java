@@ -4,6 +4,7 @@ import com.example.projekat.entity.Fitnesscentar;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface FitnescentarRepository extends JpaRepository<Fitnesscentar, Long> {
+    Fitnesscentar findByNaziv(String fitnesscentar);
 
 
 }

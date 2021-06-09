@@ -51,8 +51,8 @@ public class KorisnikServiceImpl implements KorisnikService {
         return noviclanfitnescentra;
     }
 
-
-    public Trener create(Trener trener) throws Exception {
+    @Override
+    public Trener create(Trener trener, String fitnesscentar) throws Exception {
         if(trenerRepository.existsTrenerByKorisnickoimeOrLozinkaOrEmail(trener.getKorisnickoime(), trener.getLozinka(),trener.getEmail())) {
             throw new Exception("Korisnik sa takvim korisnickim imenom, lozinkom ili email-om vec postoji!");
         }
@@ -63,6 +63,8 @@ public class KorisnikServiceImpl implements KorisnikService {
             throw new Exception("Korisnik sa takvim korisnickim imenom, lozinkom ili email-om vec postoji!");
         }
 
+        Fitnesscentar fitnesscentar1 = this.fitnescentarRepository.findByNaziv(fitnesscentar);
+        trener.setFitnesscentar(fitnesscentar1);
         Trener novitrener = this.trenerRepository.save(trener);
         return novitrener;
     }
@@ -103,26 +105,26 @@ public class KorisnikServiceImpl implements KorisnikService {
 
     }
 
-
+    @Override
     public List<Termin> findTermini() {
         LocalDateTime datum = LocalDateTime.now();
         List<Termin> termini = this.terminRepository.findByDatumAfter(datum);
         return termini;
     }
 
-
+    @Override
     public List<Termin> findTermini1(String naziv, String opis, String tip, LocalDateTime vremeTreninga, Double cena) {
 
         List<Termin> termini = this.terminRepository.findByTreningNazivContainsAndTreningOpisContainsAndTreningTipContainsAndDatumLessThanEqualAndCenaLessThanEqual(naziv, opis, tip, vremeTreninga, cena);
         return termini;
     }
 
-
+    @Override
     public Trening findTreningByNaziv(String naziv) {
         Trening trening1 = this.treningRepository.findByNaziv(naziv);
         return trening1;
     }
-
+    @Override
     public List<Termin> sortiraj(Long id) {
 
         int a = (int) (long) id;
@@ -153,7 +155,7 @@ public class KorisnikServiceImpl implements KorisnikService {
 
 
 
-
+       @Override
        public Fitnesscentar create(Fitnesscentar fitnescentar, String uloga) throws Exception{
            if(fitnescentar.getId()!= null){
                throw new Exception("ID must be null!");
@@ -167,7 +169,7 @@ public class KorisnikServiceImpl implements KorisnikService {
 
 
 
-
+    @Override
     public LoginDTO proveri(String korisnickoime, String lozinka) throws Exception{
         LoginDTO loginDTO2 = new LoginDTO();
         Trener trener = trenerRepository.findByKorisnickoimeAndLozinka(korisnickoime, lozinka);
@@ -193,6 +195,19 @@ public class KorisnikServiceImpl implements KorisnikService {
             throw new Exception("Niste uneli tacno korisnicko ime ili lozinku!");
         }
         return loginDTO2;
+
+    }
+
+
+
+    @Override
+    public List<Fitnesscentar> findFitnescentar(){
+
+
+        List<Fitnesscentar> svifitnescentri = fitnescentarRepository.findAll();
+        return svifitnescentri;
+
+
 
     }
 }

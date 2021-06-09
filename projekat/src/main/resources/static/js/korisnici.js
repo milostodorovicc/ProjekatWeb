@@ -2,7 +2,7 @@
 $(document).on("submit", "#form1", function (event) {
     event.preventDefault();
 
-     if(document.getElementById("uloga").checked){
+     if(document.getElementById("uloga2").checked){
 
     var korisnickoime = $("#korisnickoime").val();
     var lozinka = $("#lozinka").val();
@@ -12,6 +12,7 @@ $(document).on("submit", "#form1", function (event) {
     var email = $("#email").val();
     var datumrodjenja = $("#datumrodjenja").val();
     var uloga = "CLANFITNESCENTRA";
+
 
 
     var noviclanfitnescentra = {
@@ -51,7 +52,7 @@ $(document).on("submit", "#form1", function (event) {
          var email = $("#email").val();
          var datumrodjenja = $("#datumrodjenja").val();
          var uloga = "TRENER";
-
+          var fitnesscentar = $("input[name=fitnescentar]:checked").val();
 
 
 
@@ -64,14 +65,16 @@ $(document).on("submit", "#form1", function (event) {
              email,
              datumrodjenja,
              uloga,
+              fitnesscentar
 
          }
          console.log(novitrener);
 
-
+          let url = new URL('http://localhost:8011/api/korisnici/trener' );
+          url.searchParams.append('fitnesscentar', fitnesscentar);
          $.ajax({
              type: "POST",
-             url: "http://localhost:8011/api/korisnici/trener",
+             url: url,
              dataType: "json",
              contentType: "application/json",
              data: JSON.stringify(novitrener),
@@ -91,52 +94,35 @@ $(document).on("submit", "#form1", function (event) {
 
 
 
-// $(document).ready(function () {
-//     $.ajax({
-//         type: "GET",
-//         url: "http://localhost:8011/api/korisnici",
-//         dataType: "json",
-//         success: function (res) {
-//             console.log("SUCCESS:\n", res);
-//             for (i = 0; i < res.length; i++) {
-//                 let row = "<tr>";
-//                 row += "<td>" + res[i].ime + "</td>";
-//                 row += "<td>" + res[i].prezime + "</td>";
-//                 row += "<td>" + res[i].korisnickoime + "</td>";
-//
-//                 let btn = "<button class='aktiviraj' data-id=" + res[i].id + ">Aktiviraj</button>";
-//                 row += "<td>" +  btn + "</td>"
-//                 row += "</tr>";
-//                 $('#aktivacijatrenera1').append(row);
-//             }
-//         },
-//         error: function (res) {
-//             console.log("ERROR:\n", res);
-//         }
-//     });
-// });
-//
-// $(document).on('click', '.aktiviraj', function (){
-//
-//
-//   let trenerid = this.dataset.id;
-//
-//     $.ajax({
-//         type: "GET",
-//         url: "http://localhost:8011/api/korisnici/" + trenerid,
-//         dataType: "json",
-//         success: function (res) {
-//             console.log("SUCCESS:\n", res);
-//             alert("Trener je postao aktivan");
-//         },
-//         error: function (res) {
-//             console.log("ERROR:\n", res);
-//             alert("Nije uspela aktivacija trenera");
-//         }
-//     });
-// });
+$(document).on('click', '#uloga1', function () {
+    $('#fitnescentar').empty();
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8011/api/fitnescentar",
+        dataType: "json",
+        success: function (res) {
+            console.log("SUCCESS:\n", res);
+            let fieldset = "Fitnes centar u kojem radite:<br/>"
+            for (i = 0; i < res.length; i++) {
+
+
+                 fieldset +=  "<label for=\"fitnescentar "+ i +" \">" + res[i].naziv + "</label>\n" +
+                    "    <input id=\"fitnescentar "+ i +"\" type=\"radio\" name=\"fitnescentar\"  value="+ res[i].naziv +"  />\n"
+
+
+            }
+            $('#fitnescentar').append(fieldset);
+        },
+        error: function (res) {
+            console.log("ERROR:\n", res);
+        }
+    });
+});
 
 
 
 
+$(document).on('click', '#uloga2', function () {
+    $('#fitnescentar').empty();
+})
 

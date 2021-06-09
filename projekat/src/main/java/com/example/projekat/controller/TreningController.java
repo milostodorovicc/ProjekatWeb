@@ -50,7 +50,7 @@ public class TreningController {
                                                         @RequestParam(value = "tip", required = false, defaultValue = "") String tip,
                                                         @RequestParam(value = "opis", required = false, defaultValue = "") String opis,
                                                         @RequestParam(value = "cena", required = false, defaultValue = "50000") double cena,
-                                                        @RequestParam(value = "vreme", required = false, defaultValue = "2021-06-27T13:00:00") String vreme) {
+                                                        @RequestParam(value = "vreme", required = false, defaultValue = "2021-08-27T13:00:00") String vreme) {
 
         LocalDateTime vremeTreninga = LocalDateTime.parse(vreme);
 

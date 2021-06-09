@@ -9,7 +9,7 @@ public interface KorisnikService {
 
     Clanfitnescentra create(Clanfitnescentra clanfitnescentra) throws Exception;
 
-    Trener create(Trener trener) throws Exception;
+    Trener create(Trener trener, String fitnesscentar ) throws Exception;
 
     List<Trener> findAll(String uloga) throws Exception ;
 
@@ -32,6 +32,8 @@ public interface KorisnikService {
    List<Termin> sortiraj(Long id);
 
    Fitnesscentar create(Fitnesscentar fitnescentar, String uloga) throws Exception;
+
+   List<Fitnesscentar> findFitnescentar();
 
 
 

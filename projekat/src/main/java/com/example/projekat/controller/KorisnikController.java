@@ -40,9 +40,9 @@ public class KorisnikController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE, value ="/trener")
-    public ResponseEntity<Trener> createEmployee(@RequestBody Trener trener) throws Exception {
+    public ResponseEntity<Trener> createEmployee(@RequestBody Trener trener,@RequestParam(value = "fitnesscentar") String fitnesscetar ) throws Exception {
 
-        Trener novitrener = korisnikService.create(trener);
+        Trener novitrener = korisnikService.create(trener,fitnesscetar);
 
 
         return new ResponseEntity<>(novitrener, HttpStatus.CREATED);

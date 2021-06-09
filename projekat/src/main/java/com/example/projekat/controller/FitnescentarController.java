@@ -9,6 +9,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/api/fitnescentar")
 public class FitnescentarController {
@@ -35,6 +37,16 @@ public class FitnescentarController {
     }
 
 
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Fitnesscentar>> nadjifitnescentar(){
+
+        List<Fitnesscentar> svifitnescentri  = this.korisnikService.findFitnescentar();
+
+
+
+        return new ResponseEntity<>(svifitnescentri, HttpStatus.CREATED);
+
+    }
 
 
 
