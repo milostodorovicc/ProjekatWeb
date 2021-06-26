@@ -35,6 +35,8 @@ public interface KorisnikService {
 
    List<Fitnesscentar> findFitnescentar();
 
+   Termin prijavitermin( Long termin,Long  korisnik);
+
 
 
 }

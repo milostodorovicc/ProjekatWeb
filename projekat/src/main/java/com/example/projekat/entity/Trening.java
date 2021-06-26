@@ -1,5 +1,8 @@
 package com.example.projekat.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.web.bind.annotation.GetMapping;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -19,7 +22,7 @@ public class Trening implements Serializable {
 	@Column
 	private Double trajanje;
 
-	
+	@JsonIgnore
 	@OneToMany(mappedBy ="trening", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set <Termin> termini = new HashSet<>();
 

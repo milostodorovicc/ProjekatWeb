@@ -37,7 +37,7 @@ public class TreningController {
 
             TreningDTO treningDTO = new TreningDTO(termin.getDatum(), termin.getCena(),
                     termin.getBrojprijavljenihclanova(),termin.getFitnesscentar().getNaziv(), termin.getSala().getOznaka(),termin.getTrener().getIme(),termin.getTrener().getPrezime(),
-            termin.getTrening().getNaziv(),termin.getTrening().getOpis(),termin.getTrening().getTip(),termin.getTrening().getTrajanje());
+            termin.getTrening().getNaziv(),termin.getTrening().getOpis(),termin.getTrening().getTip(),termin.getTrening().getTrajanje(), termin.getId());
             treningDTOS.add(treningDTO);
         }
 
@@ -62,7 +62,7 @@ public class TreningController {
 
           TreningDTO treningDTO = new TreningDTO(termin.getDatum(), termin.getCena(),
                   termin.getBrojprijavljenihclanova(),termin.getFitnesscentar().getNaziv(), termin.getSala().getOznaka(),termin.getTrener().getIme(),termin.getTrener().getPrezime(),
-                  termin.getTrening().getNaziv(),termin.getTrening().getOpis(),termin.getTrening().getTip(),termin.getTrening().getTrajanje());
+                  termin.getTrening().getNaziv(),termin.getTrening().getOpis(),termin.getTrening().getTip(),termin.getTrening().getTrajanje(), termin.getId());
           treningDTOS1.add(treningDTO);
        }
 
@@ -85,7 +85,7 @@ public class TreningController {
 
             TreningDTO treningDTO = new TreningDTO(termin.getDatum(), termin.getCena(),
                     termin.getBrojprijavljenihclanova(),termin.getFitnesscentar().getNaziv(), termin.getSala().getOznaka(),termin.getTrener().getIme(),termin.getTrener().getPrezime(),
-                    termin.getTrening().getNaziv(),termin.getTrening().getOpis(),termin.getTrening().getTip(),termin.getTrening().getTrajanje());
+                    termin.getTrening().getNaziv(),termin.getTrening().getOpis(),termin.getTrening().getTip(),termin.getTrening().getTrajanje(), termin.getId());
             treningDTOS.add(treningDTO);
         }
 

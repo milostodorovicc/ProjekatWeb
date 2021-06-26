@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.*;
 import java.util.List;
 
 @Service
@@ -174,6 +174,7 @@ public class KorisnikServiceImpl implements KorisnikService {
         LoginDTO loginDTO2 = new LoginDTO();
         Trener trener = trenerRepository.findByKorisnickoimeAndLozinka(korisnickoime, lozinka);
         if(trener!= null){
+            loginDTO2.setId(trener.getId());
             loginDTO2.setAktivan(trener.isAktivan());
             loginDTO2.setUloga(trener.getUloga());
             loginDTO2.setKorisnickoime(trener.getKorisnickoime());
@@ -181,12 +182,14 @@ public class KorisnikServiceImpl implements KorisnikService {
         }
         Clanfitnescentra clanfitnescentra = clanfitnescentraRepository.findByKorisnickoimeAndLozinka(korisnickoime, lozinka);
         if(clanfitnescentra!= null){
+            loginDTO2.setId(clanfitnescentra.getId());
             loginDTO2.setUloga(clanfitnescentra.getUloga());
             loginDTO2.setKorisnickoime(clanfitnescentra.getKorisnickoime());
             loginDTO2.setLozinka(clanfitnescentra.getLozinka());
         }
         Administrator administrator = administratorRepository.findByKorisnickoimeAndLozinka(korisnickoime, lozinka);
         if(administrator!=null){
+            loginDTO2.setId(administrator.getId());
             loginDTO2.setUloga(administrator.getUloga());
             loginDTO2.setKorisnickoime(administrator.getKorisnickoime());
             loginDTO2.setLozinka(administrator.getLozinka());
@@ -210,4 +213,24 @@ public class KorisnikServiceImpl implements KorisnikService {
 
 
     }
+
+
+    @Override
+    public Termin prijavitermin(Long termin, Long korisnik){
+
+         Termin termin2 = terminRepository.getOne(termin);
+      Clanfitnescentra clanfitnescentra2 =  this.clanfitnescentraRepository.findAll( korisnik);
+
+       termin2.setClan1((Set<Clanfitnescentra>) clanfitnescentra2);
+
+
+
+
+
+        return termin2;
+    }
+
+
+
+
 }

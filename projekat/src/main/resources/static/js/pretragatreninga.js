@@ -61,13 +61,14 @@ $(document).on("click", "#pretrazi", function(event){
                 row += "<td>" + res[i].cena + "</td>";
                 row += "<td>" + res[i].brojprijavljenihclanova + "</td>"
                 row += "<td>" + res[i].nazivfitnescentra + "</td>";
-                row += "<td>" + res[i].oznaka + "</td>";
+                row += "<td id = "+ i +">" + res[i].oznaka + "</td>";
                 row += "<td>" + res[i].ime + "</td>";
                 row += "<td>" + res[i].prezime + "</td>";
                 row += "<td>" + res[i].nazivtreninga + "</td>";
                 row += "<td>" + res[i].opis + "</td>";
                 row += "<td>" + res[i].tip + "</td>";
                 row += "<td>" + res[i].trajanje + "</td>";
+                row += "<td>" +  "    <input id="+  i +" type=\"radio\" name=\"brprijavljenih\"  value="+ res[i].id +"  />" + "</td>";
                 row += "</tr>";
                 $('#nazivi').append(row);
             }
@@ -78,3 +79,36 @@ $(document).on("click", "#pretrazi", function(event){
     });
 });
 
+$(document).on("click", '.terminprijava', function(event){
+
+
+    var termin = $("input[name=brprijavljenih]:checked").val();
+    var korisnik = localStorage.getItem("id");
+
+    let url = new URL('http://localhost:8011/api/korisnici/prijavljeni');
+
+
+        url.searchParams.append('termin', termin);
+        url.searchParams.append('korisnik', localStorage.getItem("id"));
+
+
+     console.log(termin);
+
+
+    $.ajax({
+        type: "POST",
+        url: url,
+        dataType: "json",
+
+        success: function (res) {
+
+            alert("eeee");
+        },
+        error: function () {
+            alert("Greška!");
+        }
+
+    });
+
+
+});

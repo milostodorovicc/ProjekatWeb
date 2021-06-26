@@ -90,6 +90,25 @@ public class KorisnikController {
 
 
 
+            @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, value= "/prijavljeni")
+    public ResponseEntity<TreningDTO> prijavljenitermini(@RequestParam(value = "termin") Long termin,@RequestParam(value = "korisnik") Long korisnik)   {
+
+
+
+      Termin termin1 = new Termin();
+       termin1 = korisnikService.prijavitermin(termin, korisnik);
+
+                TreningDTO treningDTO = new TreningDTO(termin1.getDatum(), termin1.getCena(),
+                        termin1.getBrojprijavljenihclanova(),termin1.getFitnesscentar().getNaziv(), termin1.getSala().getOznaka(),termin1.getTrener().getIme(),termin1.getTrener().getPrezime(),
+                        termin1.getTrening().getNaziv(),termin1.getTrening().getOpis(),termin1.getTrening().getTip(),termin1.getTrening().getTrajanje(), termin1.getId());
+
+
+        return new ResponseEntity<>(treningDTO, HttpStatus.CREATED);
+
+
+
+    }
+
 
 
 }

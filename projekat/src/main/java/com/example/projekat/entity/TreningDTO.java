@@ -16,9 +16,10 @@ public class TreningDTO {
    private String opis;
    private String tip;
    private Double trajanje;
+   private Long id;
 
 
-    public TreningDTO(LocalDateTime datum, double cena, int brojprijavljenihclanova, String nazivfitnescentra, int oznaka, String ime, String prezime, String nazivtreninga, String opis, String tip, Double trajanje) {
+    public TreningDTO(LocalDateTime datum, double cena, int brojprijavljenihclanova, String nazivfitnescentra, int oznaka, String ime, String prezime, String nazivtreninga, String opis, String tip, Double trajanje, Long id) {
         this.datum = datum;
         this.cena = cena;
         this.brojprijavljenihclanova = brojprijavljenihclanova;
@@ -30,11 +31,11 @@ public class TreningDTO {
         this.opis = opis;
         this.tip = tip;
         this.trajanje = trajanje;
+        this.id = id;
     }
 
 
-    public TreningDTO() {
-    }
+
 
 
 
@@ -125,5 +126,13 @@ public class TreningDTO {
 
     public void setTrajanje(Double trajanje) {
         this.trajanje = trajanje;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

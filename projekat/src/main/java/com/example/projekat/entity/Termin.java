@@ -1,5 +1,8 @@
 package com.example.projekat.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.web.bind.annotation.GetMapping;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -90,6 +93,7 @@ public class Termin implements Serializable {
 
     @ManyToMany(mappedBy = "termin")
     private Set<Clanfitnescentra> clan = new HashSet<>();
+
 
     @ManyToMany(mappedBy = "termin1")
     private Set<Clanfitnescentra> clan1 = new HashSet<>();

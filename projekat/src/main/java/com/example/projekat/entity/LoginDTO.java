@@ -1,12 +1,11 @@
 package com.example.projekat.entity;
 
 public class LoginDTO {
-
-    Long id;
-    Uloga uloga;
-    boolean aktivan;
-    String korisnickoime;
-    String lozinka;
+    private Long id;
+    private Uloga uloga;
+    private boolean aktivan;
+    private String korisnickoime;
+    private String lozinka;
 
     public Long getId() {
         return id;
