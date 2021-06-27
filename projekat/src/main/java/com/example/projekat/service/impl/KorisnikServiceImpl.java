@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.swing.*;
 import java.awt.*;
+import java.lang.reflect.Field;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.List;
@@ -22,6 +23,7 @@ public class KorisnikServiceImpl implements KorisnikService {
     private final TerminRepository terminRepository;
     private final TreningRepository treningRepository;
     private final FitnescentarRepository fitnescentarRepository;
+
 
 
     @Autowired
@@ -216,21 +218,48 @@ public class KorisnikServiceImpl implements KorisnikService {
 
 
     @Override
-    public Termin prijavitermin(Long termin, Long korisnik){
+    public Termin prijavitermin(Long termin, Long korisnik, String uloga) throws Exception{
+        if (!uloga.equals( "CLANFITNESCENTRA")) {
+            throw new Exception("Nemate pristup ovim podacima!");
+        }
 
-         Termin termin2 = terminRepository.getOne(termin);
-      Clanfitnescentra clanfitnescentra2 =  this.clanfitnescentraRepository.findAll( korisnik);
+        Termin termin3 = new Termin();
+        Clanfitnescentra clanfitnescentra3 = new Clanfitnescentra();
 
-       termin2.setClan1((Set<Clanfitnescentra>) clanfitnescentra2);
-
-
-
+        Termin termin2 = this.terminRepository.getOne(termin);
+      Clanfitnescentra clanfitnescentra2 =  this.clanfitnescentraRepository.getOne( korisnik);
 
 
-        return termin2;
+        if(termin2.getBrojprijavljenihclanova()<termin2.getSala().getKapacitet()) {
+
+            termin2.addnewclan1(clanfitnescentra2);
+            clanfitnescentra2.addnewtermin(termin2);
+
+            this.terminRepository.save(termin2);
+            this.clanfitnescentraRepository.save(clanfitnescentra2);
+
+
+            return termin2;
+        }
+        else{
+            return null;
+        }
+
     }
+  @Override
+  public  Set<Termin> prijavljenitermini1(Long korisnik, String uloga) throws Exception{
+      if (!uloga.equals( "CLANFITNESCENTRA")) {
+          throw new Exception("Nemate pristup ovim podacima!");
+      }
+
+        Clanfitnescentra clan = this.clanfitnescentraRepository.getOne(korisnik);
+       Set<Termin> termini =  clan.getTermin1();
+
+       return termini;
 
 
+
+    }
 
 
 }

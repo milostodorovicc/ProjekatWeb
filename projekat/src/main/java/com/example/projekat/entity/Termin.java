@@ -115,6 +115,8 @@ public class Termin implements Serializable {
         this.clan1 = clan1;
     }
 
+    public void addnewclan1(Clanfitnescentra clanfitnescentra){this.clan1.add(clanfitnescentra);}
+
     @OneToMany(mappedBy ="termin", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set <Ocenjentrening>  ocenjentrening =  new HashSet<>();
 

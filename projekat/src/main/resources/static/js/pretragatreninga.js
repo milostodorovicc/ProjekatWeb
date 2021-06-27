@@ -1,4 +1,9 @@
-
+$(document).ready(function () {
+    if(localStorage.getItem("uloga")!= "CLANFITNESCENTRA"){
+        document.getElementById("listatermina").style.visibility="hidden";
+        document.getElementById("terminprijava1").style.visibility="hidden";
+    }
+});
 
 $(document).on("click", "#pretrazikriterijum", function () {
 
@@ -68,7 +73,9 @@ $(document).on("click", "#pretrazi", function(event){
                 row += "<td>" + res[i].opis + "</td>";
                 row += "<td>" + res[i].tip + "</td>";
                 row += "<td>" + res[i].trajanje + "</td>";
-                row += "<td>" +  "    <input id="+  i +" type=\"radio\" name=\"brprijavljenih\"  value="+ res[i].id +"  />" + "</td>";
+                if(localStorage.getItem("uloga") === "CLANFITNESCENTRA") {
+                    row += "<td>" + "    <input id=" + i + " type=\"radio\" name=\"brprijavljenih\"  value=" + res[i].id + "  />" + "</td>";
+                }
                 row += "</tr>";
                 $('#nazivi').append(row);
             }
@@ -78,16 +85,16 @@ $(document).on("click", "#pretrazi", function(event){
         }
     });
 });
-
+if(localStorage.getItem("uloga") === "CLANFITNESCENTRA"){
 $(document).on("click", '.terminprijava', function(event){
 
-
+    var uloga = localStorage.getItem("uloga");
     var termin = $("input[name=brprijavljenih]:checked").val();
     var korisnik = localStorage.getItem("id");
 
     let url = new URL('http://localhost:8011/api/korisnici/prijavljeni');
 
-
+        url.searchParams.append('uloga', uloga);
         url.searchParams.append('termin', termin);
         url.searchParams.append('korisnik', localStorage.getItem("id"));
 
@@ -102,13 +109,26 @@ $(document).on("click", '.terminprijava', function(event){
 
         success: function (res) {
 
-            alert("eeee");
+            alert("Uspesno ste se prijavili za odabrani termin!");
         },
         error: function () {
-            alert("Greška!");
+            alert("Vec je popunjena sala za odabrani termin!");
         }
 
     });
 
 
-});
+});}
+
+
+
+if(localStorage.getItem("uloga") === "CLANFITNESCENTRA"){
+$(document).on("click", "#listatermina", function(event){
+    window.location.href ="termini.html";
+    event.preventDefault();
+
+
+
+
+
+});}

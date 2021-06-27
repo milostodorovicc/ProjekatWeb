@@ -105,6 +105,7 @@ public class Clanfitnescentra implements Serializable    {
 	@JoinTable(name = "rezervisantrening",
 			joinColumns = @JoinColumn(name = "clan_id", referencedColumnName = "id"),
 			inverseJoinColumns = @JoinColumn(name = "termin_id", referencedColumnName = "id"))
+
 	private Set<Termin> termin1 = new HashSet<>();
 
 
@@ -115,6 +116,9 @@ public class Clanfitnescentra implements Serializable    {
 	public void setTermin(Set<Termin> termin) {
 		this.termin = termin;
 	}
+
+	public void addnewtermin(Termin termin){this.termin1.add(termin);}
+
 
 	public Set<Termin> getTermin1() {
 		return termin1;

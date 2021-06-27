@@ -4,6 +4,7 @@ import com.example.projekat.entity.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 public interface KorisnikService {
 
@@ -35,7 +36,9 @@ public interface KorisnikService {
 
    List<Fitnesscentar> findFitnescentar();
 
-   Termin prijavitermin( Long termin,Long  korisnik);
+   Termin prijavitermin( Long termin,Long  korisnik, String uloga) throws Exception;
+
+   Set<Termin> prijavljenitermini1(Long korisnik, String uloga) throws Exception;
 
 
 
