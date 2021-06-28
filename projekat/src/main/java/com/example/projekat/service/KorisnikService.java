@@ -40,6 +40,8 @@ public interface KorisnikService {
 
    Set<Termin> prijavljenitermini1(Long korisnik, String uloga) throws Exception;
 
+    Set<Termin> otkazitermin(Long korisnik, String uloga, Long termin) throws Exception;
+
 
 
 }

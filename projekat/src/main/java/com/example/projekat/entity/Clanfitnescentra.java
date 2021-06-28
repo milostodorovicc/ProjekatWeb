@@ -118,6 +118,7 @@ public class Clanfitnescentra implements Serializable    {
 	}
 
 	public void addnewtermin(Termin termin){this.termin1.add(termin);}
+	public void removetermin(Termin termin){this.termin1.remove(termin);}
 
 
 	public Set<Termin> getTermin1() {

@@ -262,4 +262,32 @@ public class KorisnikServiceImpl implements KorisnikService {
     }
 
 
+
+
+    public  Set<Termin> otkazitermin(Long korisnik, String uloga, Long termin) throws Exception{
+
+        if(!uloga.equals("CLANFITNESCENTRA")){
+            throw new Exception("Nemate pristup ovim podacima!");
+        }
+
+        Clanfitnescentra clan = this.clanfitnescentraRepository.getOne(korisnik);
+        Termin termin1 = this.terminRepository.getOne(termin);
+
+        clan.removetermin(termin1);
+        termin1.removeclan1(clan);
+
+        this.terminRepository.save(termin1);
+        this.clanfitnescentraRepository.save(clan);
+        Set<Termin> termini =  clan.getTermin1();
+
+
+        return termini;
+
+
+
+
+
+    }
+
+
 }

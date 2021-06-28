@@ -136,4 +136,31 @@ public class KorisnikController {
         return new ResponseEntity<>(treningDTOS1, HttpStatus.OK);
     }
 
+
+    @GetMapping(value = "/otkazitermin", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Set<TreningDTO>> listatermina(@RequestParam(value = "korisnik" ) Long korisnik,@RequestParam(value = "uloga") String uloga, @RequestParam(value = "termin") Long termin) throws Exception{
+
+
+        Set<Termin> listatermina1 = this.korisnikService.otkazitermin(korisnik, uloga, termin);
+        Set<TreningDTO> treningDTOS1 = new HashSet<>();
+
+        for (Termin termin1 : listatermina1) {
+
+
+            TreningDTO treningDTO = new TreningDTO(termin1.getDatum(), termin1.getCena(),
+                    termin1.getBrojprijavljenihclanova(),termin1.getFitnesscentar().getNaziv(), termin1.getSala().getOznaka(),termin1.getTrener().getIme(),termin1.getTrener().getPrezime(),
+                    termin1.getTrening().getNaziv(),termin1.getTrening().getOpis(),termin1.getTrening().getTip(),termin1.getTrening().getTrajanje(), termin1.getId());
+            treningDTOS1.add(treningDTO);
+        }
+
+        return new ResponseEntity<>(treningDTOS1, HttpStatus.OK);
+    }
+
+
+
+
+
+
+
+
 }
