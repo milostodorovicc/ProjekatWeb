@@ -132,3 +132,19 @@ $(document).on("click", "#listatermina", function(event){
 
 
 });}
+
+
+
+$(document).on("click", "#odradjenitreninzi", function(event){
+    event.preventDefault();
+
+    window.location.href = "odradjenitreninzi.html";
+
+
+
+
+
+
+
+
+});

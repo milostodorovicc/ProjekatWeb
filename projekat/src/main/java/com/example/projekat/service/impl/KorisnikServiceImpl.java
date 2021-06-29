@@ -117,7 +117,7 @@ public class KorisnikServiceImpl implements KorisnikService {
     @Override
     public List<Termin> findTermini1(String naziv, String opis, String tip, LocalDateTime vremeTreninga, Double cena) {
 
-        List<Termin> termini = this.terminRepository.findByTreningNazivContainsAndTreningOpisContainsAndTreningTipContainsAndDatumLessThanEqualAndCenaLessThanEqual(naziv, opis, tip, vremeTreninga, cena);
+        List<Termin> termini = this.terminRepository.findByTreningNazivContainsAndTreningOpisContainsAndTreningTipContainsAndDatumGreaterThanEqualAndCenaLessThanEqual(naziv, opis, tip, vremeTreninga, cena);
         return termini;
     }
 
@@ -263,7 +263,7 @@ public class KorisnikServiceImpl implements KorisnikService {
 
 
 
-
+    @Override
     public  Set<Termin> otkazitermin(Long korisnik, String uloga, Long termin) throws Exception{
 
         if(!uloga.equals("CLANFITNESCENTRA")){
@@ -284,10 +284,45 @@ public class KorisnikServiceImpl implements KorisnikService {
         return termini;
 
 
+    }
+
+
+
+
+    @Override
+    public  Set<Termin> odradjenitreninzi(Long korisnik, String uloga) throws Exception{
+        if(!uloga.equals("CLANFITNESCENTRA")){
+            throw new Exception("Nemate pristup ovim podacima!");
+        }
+
+
+       Clanfitnescentra clan = this.clanfitnescentraRepository.getOne(korisnik);
+        Set<Termin> odradjeni = clan.getTermin();
+
+        return odradjeni;
 
 
 
     }
+
+
+   @Override
+   public Clanfitnescentra nadjiclana(Long korisnik, String uloga) throws Exception{
+        if(!uloga.equals("CLANFITNESCENTRA")){
+            throw new Exception("Nemate pristup ovim podacima!");
+        }
+
+        Clanfitnescentra clan = this.clanfitnescentraRepository.getOne(korisnik);
+
+        return clan;
+
+
+
+    }
+
+
+
+
 
 
 }

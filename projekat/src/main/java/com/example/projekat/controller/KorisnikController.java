@@ -138,7 +138,7 @@ public class KorisnikController {
 
 
     @GetMapping(value = "/otkazitermin", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Set<TreningDTO>> listatermina(@RequestParam(value = "korisnik" ) Long korisnik,@RequestParam(value = "uloga") String uloga, @RequestParam(value = "termin") Long termin) throws Exception{
+    public ResponseEntity<Set<TreningDTO>> otkazitermin(@RequestParam(value = "korisnik" ) Long korisnik,@RequestParam(value = "uloga") String uloga, @RequestParam(value = "termin") Long termin) throws Exception{
 
 
         Set<Termin> listatermina1 = this.korisnikService.otkazitermin(korisnik, uloga, termin);
@@ -158,9 +158,38 @@ public class KorisnikController {
 
 
 
+    @GetMapping(value = "/odradjeni", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Set<TreningDTO>> odradjenitreninzi(@RequestParam(value = "korisnik" ) Long korisnik,@RequestParam(value = "uloga") String uloga) throws Exception{
+
+
+        Set<Termin> listatermina1 = this.korisnikService.odradjenitreninzi(korisnik, uloga);
+        Set<TreningDTO> treningDTOS1 = new HashSet<>();
+
+        for (Termin termin1 : listatermina1) {
+
+
+            TreningDTO treningDTO = new TreningDTO(termin1.getDatum(), termin1.getCena(),
+                    termin1.getBrojprijavljenihclanova(),termin1.getFitnesscentar().getNaziv(), termin1.getSala().getOznaka(),termin1.getTrener().getIme(),termin1.getTrener().getPrezime(),
+                    termin1.getTrening().getNaziv(),termin1.getTrening().getOpis(),termin1.getTrening().getTip(),termin1.getTrening().getTrajanje(), termin1.getId());
+            treningDTOS1.add(treningDTO);
+        }
+
+        return new ResponseEntity<>(treningDTOS1, HttpStatus.OK);
+    }
+
+
+    @GetMapping(value = "/profil", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ClanDTO> nadjiclana(@RequestParam(value = "korisnik" ) Long korisnik,@RequestParam(value = "uloga") String uloga) throws Exception{
 
 
 
+
+        Clanfitnescentra clan = this.korisnikService.nadjiclana(korisnik, uloga);
+
+        ClanDTO clanDTO = new ClanDTO(clan.getKorisnickoime(),clan.getLozinka(), clan.getIme(), clan.getPrezime(),clan.getTelefon(), clan.getEmail(), clan.getDatumrodjenja());
+
+        return new ResponseEntity<>(clanDTO, HttpStatus.OK);
+    }
 
 
 }

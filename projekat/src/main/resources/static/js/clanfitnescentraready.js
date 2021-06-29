@@ -15,3 +15,21 @@ else {
         window.location.href = "login.html"
     }
 }
+
+$(document).on("click","#profil", function(event){
+    event.preventDefault();
+
+    window.location.href = "profil.html";
+
+
+
+
+
+});
+
+
+
+
+
+
+

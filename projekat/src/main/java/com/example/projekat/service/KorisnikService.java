@@ -42,6 +42,8 @@ public interface KorisnikService {
 
     Set<Termin> otkazitermin(Long korisnik, String uloga, Long termin) throws Exception;
 
+    Set<Termin> odradjenitreninzi(Long korisnik, String uloga) throws Exception;
 
+    Clanfitnescentra nadjiclana( Long korisnik,String uloga) throws Exception;
 
 }

@@ -28,11 +28,11 @@ INSERT INTO TRENER(korisnickoime, lozinka, ime, prezime, telefon, email, datumro
 
 INSERT INTO TERMIN(datum, cena, brojprijavljenihclanova, trening_id, sala_id, trener_id, fitnesscentar_id) VALUES('2021-06-25T21:40:00', '350', '2', 2, 1,1,1 );
 INSERT INTO TERMIN(datum, cena, brojprijavljenihclanova, trening_id, sala_id, trener_id, fitnesscentar_id) VALUES('2021-07-25T22:40:00', '500', '5', 1, 3,2,1 );
-INSERT INTO TERMIN(datum, cena, brojprijavljenihclanova, trening_id, sala_id, trener_id, fitnesscentar_id) VALUES('2021-06-25T11:30:00', '350', '2', 2, 5,3,2 );
+INSERT INTO TERMIN(datum, cena, brojprijavljenihclanova, trening_id, sala_id, trener_id, fitnesscentar_id) VALUES('2021-07-24T11:30:00', '350', '2', 2, 5,3,2 );
 INSERT INTO TERMIN(datum, cena, brojprijavljenihclanova, trening_id, sala_id, trener_id, fitnesscentar_id) VALUES('2021-07-26T11:40:00', '350', '2', 3, 5,4,2 );
 INSERT INTO ODRADJENTRENING(clan_id, termin_id) VALUES(1,1);
-INSERT INTO ODRADJENTRENING(clan_id, termin_id) VALUES(2,3);
-INSERT INTO ODRADJENTRENING(clan_id, termin_id) VALUES(3,2);
+INSERT INTO ODRADJENTRENING(clan_id, termin_id) VALUES(2,1);
+INSERT INTO ODRADJENTRENING(clan_id, termin_id) VALUES(3,1);
 INSERT INTO REZERVISANTRENING(clan_id, termin_id) VALUES(1,2);
 INSERT INTO REZERVISANTRENING(clan_id, termin_id) VALUES(2,1);
 INSERT INTO OCENJENTRENING(termin_id, ocena, clan_id) VALUES(1,'9',1);
