@@ -83,10 +83,13 @@ public class Fitnesscentar implements Serializable {
     @JsonIgnore
 	@OneToMany(mappedBy ="fitnesscentar", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set <Trener>  trener =  new HashSet<>();
-    @JsonIgnore
+
+	@JsonIgnore
 	@OneToMany(mappedBy ="fitnesscentar", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set <Sala>  sala =  new HashSet<>();
-    @JsonIgnore
+
+
+	@JsonIgnore
 	@OneToMany(mappedBy ="fitnesscentar", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set <Termin>  termin =  new HashSet<>();
 

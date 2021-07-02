@@ -1,41 +1,22 @@
 package com.example.projekat.entity;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
-public class TreningDTO {
+public class OcenjentreningDTO {
 
     private LocalDateTime datum;
     private double cena;
     private int brojprijavljenihclanova;
-   private String nazivfitnescentra;
-   private int oznaka;
-   private String ime;
-   private String prezime;
-   private String nazivtreninga;
-   private String opis;
-   private String tip;
-   private Double trajanje;
-   private Long id;
-
-
-
-    public TreningDTO(LocalDateTime datum, double cena, int brojprijavljenihclanova, String nazivfitnescentra, int oznaka, String ime, String prezime, String nazivtreninga, String opis, String tip, Double trajanje, Long id) {
-        this.datum = datum;
-        this.cena = cena;
-        this.brojprijavljenihclanova = brojprijavljenihclanova;
-        this.nazivfitnescentra = nazivfitnescentra;
-        this.oznaka = oznaka;
-        this.ime = ime;
-        this.prezime = prezime;
-        this.nazivtreninga = nazivtreninga;
-        this.opis = opis;
-        this.tip = tip;
-        this.trajanje = trajanje;
-        this.id = id;
-
-    }
-
+    private String nazivfitnescentra;
+    private int oznaka;
+    private String ime;
+    private String prezime;
+    private String nazivtreninga;
+    private String opis;
+    private String tip;
+    private Double trajanje;
+    private Long id;
+    private Double ocena;
 
 
     public LocalDateTime getDatum() {
@@ -132,5 +113,34 @@ public class TreningDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Double getOcena() {
+        return ocena;
+    }
+
+    public void setOcena(Double ocena) {
+        this.ocena = ocena;
+    }
+
+
+    public OcenjentreningDTO(LocalDateTime datum, double cena, int brojprijavljenihclanova, String nazivfitnescentra, int oznaka, String ime, String prezime, String nazivtreninga, String opis, String tip, Double trajanje, Long id, Double ocena) {
+        this.datum = datum;
+        this.cena = cena;
+        this.brojprijavljenihclanova = brojprijavljenihclanova;
+        this.nazivfitnescentra = nazivfitnescentra;
+        this.oznaka = oznaka;
+        this.ime = ime;
+        this.prezime = prezime;
+        this.nazivtreninga = nazivtreninga;
+        this.opis = opis;
+        this.tip = tip;
+        this.trajanje = trajanje;
+        this.id = id;
+        this.ocena = ocena;
+    }
+
+
+    public OcenjentreningDTO() {
     }
 }

@@ -1,5 +1,6 @@
 package com.example.projekat.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class ClanDTO {
@@ -10,10 +11,10 @@ public class ClanDTO {
     private String prezime;
     private int telefon;
     private String email;
-    private Date datumrodjenja;
+    private LocalDate datumrodjenja;
 
 
-    public ClanDTO(String korisnickoime, String lozinka, String ime, String prezime, int telefon, String email, Date datumrodjenja) {
+    public ClanDTO(String korisnickoime, String lozinka, String ime, String prezime, int telefon, String email, LocalDate datumrodjenja) {
         this.korisnickoime = korisnickoime;
         this.lozinka = lozinka;
         this.ime = ime;
@@ -72,11 +73,11 @@ public class ClanDTO {
         this.email = email;
     }
 
-    public Date getDatumrodjenja() {
+    public LocalDate getDatumrodjenja() {
         return datumrodjenja;
     }
 
-    public void setDatumrodjenja(Date datumrodjenja) {
+    public void setDatumrodjenja(LocalDate datumrodjenja) {
         this.datumrodjenja = datumrodjenja;
     }
 }

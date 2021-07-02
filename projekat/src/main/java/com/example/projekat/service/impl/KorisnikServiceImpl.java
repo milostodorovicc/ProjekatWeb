@@ -1,4 +1,5 @@
 package com.example.projekat.service.impl;
+import java.util.ArrayList;
 
 import com.example.projekat.entity.*;
 import com.example.projekat.repository.*;
@@ -14,6 +15,9 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.List;
 
+import static com.example.projekat.entity.Uloga.CLANFITNESCENTRA;
+import static java.sql.Types.NULL;
+
 @Service
 public class KorisnikServiceImpl implements KorisnikService {
 
@@ -23,17 +27,19 @@ public class KorisnikServiceImpl implements KorisnikService {
     private final TerminRepository terminRepository;
     private final TreningRepository treningRepository;
     private final FitnescentarRepository fitnescentarRepository;
+    private final OcenjentreningRepository ocenjentreningRepository;
 
 
 
     @Autowired
-    public KorisnikServiceImpl(ClanfitnescentraRepository clanfitnescentraRepository, TrenerRepository trenerRepository, AdministratorRepository administratorRepository, TerminRepository terminRepository, TreningRepository treningRepository, FitnescentarRepository fitnescentarRepository) {
+    public KorisnikServiceImpl(ClanfitnescentraRepository clanfitnescentraRepository, TrenerRepository trenerRepository, AdministratorRepository administratorRepository, TerminRepository terminRepository, TreningRepository treningRepository, FitnescentarRepository fitnescentarRepository, OcenjentreningRepository ocenjentreningRepository) {
         this.clanfitnescentraRepository = clanfitnescentraRepository;
         this.trenerRepository = trenerRepository;
         this.administratorRepository = administratorRepository;
         this.terminRepository = terminRepository;
         this.treningRepository = treningRepository;
         this.fitnescentarRepository = fitnescentarRepository;
+        this.ocenjentreningRepository = ocenjentreningRepository;
     }
 
     @Override
@@ -234,6 +240,9 @@ public class KorisnikServiceImpl implements KorisnikService {
 
             termin2.addnewclan1(clanfitnescentra2);
             clanfitnescentra2.addnewtermin(termin2);
+             int a = termin2.getBrojprijavljenihclanova();
+             a++;
+             termin2.setBrojprijavljenihclanova(a);
 
             this.terminRepository.save(termin2);
             this.clanfitnescentraRepository.save(clanfitnescentra2);
@@ -319,6 +328,193 @@ public class KorisnikServiceImpl implements KorisnikService {
 
 
     }
+
+   @Override
+    public Clanfitnescentra izmeniclana(Clanfitnescentra clanfitnescentra) throws Exception{
+       Uloga uloga = clanfitnescentra.getUloga();
+        if(!(uloga.equals(CLANFITNESCENTRA))){
+            throw new Exception("Nemate pristup ovim podacima!");
+        }
+
+        Clanfitnescentra clan = this.clanfitnescentraRepository.findByEmail(clanfitnescentra.getEmail());
+
+        clan.setIme(clanfitnescentra.getIme());
+        clan.setPrezime(clanfitnescentra.getPrezime());
+        clan.setKorisnickoime(clanfitnescentra.getKorisnickoime());
+        clan.setLozinka(clanfitnescentra.getLozinka());
+        clan.setEmail(clanfitnescentra.getEmail());
+        clan.setDatumrodjenja(clanfitnescentra.getDatumrodjenja());
+        clan.setTelefon(clanfitnescentra.getTelefon());
+
+        Clanfitnescentra clan1 = this.clanfitnescentraRepository.save(clan);
+        return clan1;
+
+   }
+
+
+   @Override
+  public List<Termin> ocenjenitermini(Long korisnik, String uloga) throws Exception{
+
+
+
+       if(!uloga.equals("CLANFITNESCENTRA")){
+           throw new Exception("Nemate pristup ovim podacima!");
+       }
+
+
+
+       Clanfitnescentra clan = this.clanfitnescentraRepository.getOne(korisnik);
+
+       List <Ocenjentrening> ocenjentrening1 = this.ocenjentreningRepository.findByClan(  clan);
+
+       List<Termin> ocenjeni = new ArrayList<>();
+
+
+        for(Ocenjentrening ocenjentrening : ocenjentrening1){
+
+            if(ocenjentrening.getOcena()!=null){
+
+            Termin termin = ocenjentrening.getTermin();
+
+            ocenjeni.add(termin);}
+
+
+        }
+
+
+
+        return ocenjeni;
+
+  }
+
+  @Override
+ public Ocenjentrening ocenjen(Termin termin1, Long korisnik){
+
+        Clanfitnescentra clan = this.clanfitnescentraRepository.getOne(korisnik);
+
+        Ocenjentrening ocenjentrening1 = this.ocenjentreningRepository.findByTerminAndClan(termin1, clan);
+
+       return ocenjentrening1;
+  }
+
+
+
+
+    @Override
+    public List<Termin> neocenjenitermini(Long korisnik, String uloga) throws Exception{
+
+
+
+        if(!uloga.equals("CLANFITNESCENTRA")){
+            throw new Exception("Nemate pristup ovim podacima!");
+        }
+
+
+
+        Clanfitnescentra clan = this.clanfitnescentraRepository.getOne(korisnik);
+
+        List <Ocenjentrening> ocenjentrening1 = this.ocenjentreningRepository.findByClan(  clan);
+
+        List<Termin> ocenjeni = new ArrayList<>();
+
+
+        for(Ocenjentrening ocenjentrening : ocenjentrening1){
+
+            if(ocenjentrening.getOcena()==null){
+
+                Termin termin = ocenjentrening.getTermin();
+
+                ocenjeni.add(termin);}
+
+
+        }
+
+
+
+        return ocenjeni;
+
+    }
+
+
+    @Override
+    public Ocenjentrening ocenitrening(String uloga, Long korisnik, Long termin, Double ocena) throws Exception{
+        if(!uloga.equals("CLANFITNESCENTRA")){
+            throw new Exception("Nemate pristup ovim podacima!");
+        }
+        Termin termin1 = this.terminRepository.getOne(termin);
+
+        double prosecna = termin1.getTrener().getProsecnaocena();
+//        if(ocena!=null){
+            double n = termin1.getTrener().getN() + 1;
+            termin1.getTrener().setN(n);
+            double prosecna1;
+            prosecna1 = (prosecna + ocena)/termin1.getTrener().getN();
+            Trener trener = termin1.getTrener();
+            trener.setProsecnaocena(prosecna1);
+            this.trenerRepository.save(trener);
+//        }
+
+
+
+
+
+
+
+        Clanfitnescentra clan = this.clanfitnescentraRepository.getOne(korisnik);
+
+        Ocenjentrening ocenjentrening = this.ocenjentreningRepository.findByTerminAndClan(termin1, clan);
+        ocenjentrening.setOcena(ocena);
+
+        Ocenjentrening ocenjentrening1 = this.ocenjentreningRepository.save(ocenjentrening);
+
+        return ocenjentrening1;
+
+
+
+
+
+    }
+
+
+    @Override
+    public  Termin odabirtermina(String uloga, Long termin) throws Exception{
+        if(!uloga.equals("CLANFITNESCENTRA")){
+            throw new Exception("Nemate pristup ovim podacima!");
+
+        }
+
+        Termin termin1 = this.terminRepository.getOne(termin);
+        return termin1;
+
+
+
+
+
+    }
+
+    @Override
+   public List<Fitnesscentar> svifitnescentri(String uloga) throws Exception{
+        if(!uloga.equals("ADMINISTRATOR")){
+            throw new Exception ("Nemate pristup ovim podacima!");
+
+        }
+        List<Fitnesscentar> svifitnescentri1 = this.fitnescentarRepository.findAll();
+        return svifitnescentri1;
+
+
+
+   }
+
+   @Override
+   public Fitnesscentar nadjifitnescentar(Long fitnescentar, String uloga) throws Exception{
+        if(!uloga.equals("ADMINISTRATOR")){
+            throw new Exception("Nemate pristup ovim podacima");
+        }
+
+        Fitnesscentar fitnescentar1 = this.fitnescentarRepository.getOne(fitnescentar);
+        return fitnescentar1;
+   }
+
 
 
 

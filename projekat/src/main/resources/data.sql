@@ -20,21 +20,38 @@ INSERT INTO SALA(kapacitet, oznaka, fitnesscentar_id) VALUES('60','320',1);
 INSERT INTO SALA(kapacitet, oznaka, fitnesscentar_id) VALUES('80','330',1);
 INSERT INTO SALA(kapacitet, oznaka, fitnesscentar_id) VALUES('100','340',2);
 
-INSERT INTO TRENER(korisnickoime, lozinka, ime, prezime, telefon, email, datumrodjenja, uloga, prosecnaocena, fitnesscentar_id, aktivan) VALUES ('alex', 'ferguson','Alex','Ferguson','063467','aaaa@gmail.com','1945-03-1','TRENER','8.5',1, false);
-INSERT INTO TRENER(korisnickoime, lozinka, ime, prezime, telefon, email, datumrodjenja, uloga, prosecnaocena, fitnesscentar_id, aktivan) VALUES ('jurgeen', 'klop','Jurgen','Klop','061987','jjjj@gmail.com','1965-07-1','TRENER','6.2',1, false);
-INSERT INTO TRENER(korisnickoime, lozinka, ime, prezime, telefon, email, datumrodjenja, uloga, prosecnaocena,fitnesscentar_id, aktivan) VALUES ('pep', 'guardiola','Pep','Guardiola','065467','pep@gmail.com','1970-03-1','TRENER','7.5',2, true);
-INSERT INTO TRENER(korisnickoime, lozinka, ime, prezime, telefon, email, datumrodjenja, uloga, prosecnaocena,fitnesscentar_id, aktivan) VALUES ('marian', 'vajda','Marian','Vajda','063456','marianvjd@gmail.com','1965-03-1','TRENER','8.5',2, false);
+INSERT INTO TRENER(korisnickoime, lozinka, ime, prezime, telefon, email, datumrodjenja, uloga, prosecnaocena, fitnesscentar_id, aktivan, n) VALUES ('alex', 'ferguson','Alex','Ferguson','063467','aaaa@gmail.com','1945-03-1','TRENER','8.0',1, false,1);
+INSERT INTO TRENER(korisnickoime, lozinka, ime, prezime, telefon, email, datumrodjenja, uloga, prosecnaocena, fitnesscentar_id, aktivan, n) VALUES ('jurgeen', 'klop','Jurgen','Klop','061987','jjjj@gmail.com','1965-07-1','TRENER','8.0',1, false,1);
+INSERT INTO TRENER(korisnickoime, lozinka, ime, prezime, telefon, email, datumrodjenja, uloga, prosecnaocena,fitnesscentar_id, aktivan, n) VALUES ('pep', 'guardiola','Pep','Guardiola','065467','pep@gmail.com','1970-03-1','TRENER','5.0',2, true,1);
+INSERT INTO TRENER(korisnickoime, lozinka, ime, prezime, telefon, email, datumrodjenja, uloga, prosecnaocena,fitnesscentar_id, aktivan, n) VALUES ('marian', 'vajda','Marian','Vajda','063456','marianvjd@gmail.com','1965-03-1','TRENER','6.0',2, false,1);
 
 
 INSERT INTO TERMIN(datum, cena, brojprijavljenihclanova, trening_id, sala_id, trener_id, fitnesscentar_id) VALUES('2021-06-25T21:40:00', '350', '2', 2, 1,1,1 );
-INSERT INTO TERMIN(datum, cena, brojprijavljenihclanova, trening_id, sala_id, trener_id, fitnesscentar_id) VALUES('2021-07-25T22:40:00', '500', '5', 1, 3,2,1 );
+INSERT INTO TERMIN(datum, cena, brojprijavljenihclanova, trening_id, sala_id, trener_id, fitnesscentar_id) VALUES('2021-06-26T22:40:00', '500', '5', 1, 3,2,1 );
 INSERT INTO TERMIN(datum, cena, brojprijavljenihclanova, trening_id, sala_id, trener_id, fitnesscentar_id) VALUES('2021-07-24T11:30:00', '350', '2', 2, 5,3,2 );
 INSERT INTO TERMIN(datum, cena, brojprijavljenihclanova, trening_id, sala_id, trener_id, fitnesscentar_id) VALUES('2021-07-26T11:40:00', '350', '2', 3, 5,4,2 );
+INSERT INTO TERMIN(datum, cena, brojprijavljenihclanova, trening_id, sala_id, trener_id, fitnesscentar_id) VALUES('2021-06-12T11:30:00', '350', '4', 2, 5,3,1 );
+INSERT INTO TERMIN(datum, cena, brojprijavljenihclanova, trening_id, sala_id, trener_id, fitnesscentar_id) VALUES('2021-06-21T11:40:00', '350', '5', 3, 5,4,2 );
+
 INSERT INTO ODRADJENTRENING(clan_id, termin_id) VALUES(1,1);
+INSERT INTO ODRADJENTRENING(clan_id, termin_id) VALUES(1,2);
 INSERT INTO ODRADJENTRENING(clan_id, termin_id) VALUES(2,1);
+INSERT INTO ODRADJENTRENING(clan_id, termin_id) VALUES(2,2);
+INSERT INTO ODRADJENTRENING(clan_id, termin_id) VALUES(3,2);
 INSERT INTO ODRADJENTRENING(clan_id, termin_id) VALUES(3,1);
-INSERT INTO REZERVISANTRENING(clan_id, termin_id) VALUES(1,2);
-INSERT INTO REZERVISANTRENING(clan_id, termin_id) VALUES(2,1);
-INSERT INTO OCENJENTRENING(termin_id, ocena, clan_id) VALUES(1,'9',1);
-INSERT INTO OCENJENTRENING(termin_id, ocena, clan_id) VALUES(2, '7',3);
-INSERT INTO OCENJENTRENING(termin_id, ocena, clan_id) VALUES(3, '8',2);
+INSERT INTO ODRADJENTRENING(clan_id, termin_id) VALUES(1,5);
+INSERT INTO ODRADJENTRENING(clan_id, termin_id) VALUES(2,6);
+
+
+INSERT INTO REZERVISANTRENING(clan_id, termin_id) VALUES(1,3);
+INSERT INTO REZERVISANTRENING(clan_id, termin_id) VALUES(2,3);
+INSERT INTO OCENJENTRENING(termin_id, ocena, clan_id) VALUES(1,'9' ,1);
+INSERT INTO OCENJENTRENING(termin_id, ocena, clan_id) VALUES(2,'8' ,2);
+INSERT INTO OCENJENTRENING(termin_id, ocena, clan_id) VALUES(1,'7',3);
+INSERT INTO OCENJENTRENING(termin_id, ocena, clan_id) VALUES(2,NULL ,1);
+INSERT INTO OCENJENTRENING(termin_id, ocena, clan_id) VALUES(1,NULL ,2);
+INSERT INTO OCENJENTRENING(termin_id, ocena, clan_id) VALUES(2,NULL,3);
+INSERT INTO OCENJENTRENING(termin_id, ocena, clan_id) VALUES(5,'5' ,1);
+INSERT INTO OCENJENTRENING(termin_id, ocena, clan_id) VALUES(6,'6',2);
+
+

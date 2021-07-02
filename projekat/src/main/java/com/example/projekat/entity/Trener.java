@@ -36,6 +36,8 @@ public class Trener implements Serializable  {
 	@Column
 	private boolean aktivan;
 
+	private double n;
+
 	public double getProsecnaocena() {
 		return prosecnaocena;
 	}
@@ -117,11 +119,16 @@ public class Trener implements Serializable  {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
 
+	public double getN() {
+		return n;
+	}
 
+	public void setN(double n) {
+		this.n = n;
+	}
 
-	public Trener(Long id, String korisnickoime, String lozinka, String ime, String prezime, int telefon, String email, Date datumrodjenja, Uloga uloga, double prosecnaocena,boolean aktivan) {
+	public Trener(Long id, String korisnickoime, String lozinka, String ime, String prezime, int telefon, String email, Date datumrodjenja, Uloga uloga, double prosecnaocena, boolean aktivan, double n) {
 		this.id = id;
 		this.korisnickoime = korisnickoime;
 		this.lozinka = lozinka;
@@ -133,6 +140,7 @@ public class Trener implements Serializable  {
 		this.uloga = uloga;
 		this.prosecnaocena = prosecnaocena;
 		this.aktivan = aktivan;
+		this.n = n;
 	}
 
 	public Trener() {

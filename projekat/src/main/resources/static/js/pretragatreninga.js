@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     if(localStorage.getItem("uloga")!= "CLANFITNESCENTRA"){
         document.getElementById("listatermina").style.visibility="hidden";
         document.getElementById("terminprijava1").style.visibility="hidden";
@@ -66,9 +67,7 @@ $(document).on("click", "#pretrazi", function(event){
                 row += "<td>" + res[i].cena + "</td>";
                 row += "<td>" + res[i].brojprijavljenihclanova + "</td>"
                 row += "<td>" + res[i].nazivfitnescentra + "</td>";
-                row += "<td id = "+ i +">" + res[i].oznaka + "</td>";
-                row += "<td>" + res[i].ime + "</td>";
-                row += "<td>" + res[i].prezime + "</td>";
+
                 row += "<td>" + res[i].nazivtreninga + "</td>";
                 row += "<td>" + res[i].opis + "</td>";
                 row += "<td>" + res[i].tip + "</td>";
@@ -85,8 +84,10 @@ $(document).on("click", "#pretrazi", function(event){
         }
     });
 });
-if(localStorage.getItem("uloga") === "CLANFITNESCENTRA"){
+
+
 $(document).on("click", '.terminprijava', function(event){
+    if(localStorage.getItem("uloga") === "CLANFITNESCENTRA"){
 
     var uloga = localStorage.getItem("uloga");
     var termin = $("input[name=brprijavljenih]:checked").val();
@@ -115,36 +116,160 @@ $(document).on("click", '.terminprijava', function(event){
             alert("Vec je popunjena sala za odabrani termin!");
         }
 
-    });
+    });}
+    else{
+        if(localStorage.getItem("uloga") === "TRENER"){
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href = "trener.html";
+        }
+        else if(localStorage.getItem("uloga") === "ADMINISTRATOR"){
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href = "administrator.html";
+        }
+        else{
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href ="login.html";
+        }
+
+    }
+
+});
 
 
-});}
 
 
 
-if(localStorage.getItem("uloga") === "CLANFITNESCENTRA"){
 $(document).on("click", "#listatermina", function(event){
+    if(localStorage.getItem("uloga") === "CLANFITNESCENTRA"){
     window.location.href ="termini.html";
-    event.preventDefault();
+    event.preventDefault();}
+    else{
+            if(localStorage.getItem("uloga") === "TRENER"){
+                alert("Nemate pristup ovoj stranici!");
+                window.location.href = "trener.html";
+            }
+            else if(localStorage.getItem("uloga") === "ADMINISTRATOR"){
+                alert("Nemate pristup ovoj stranici11!");
+                window.location.href = "administrator.html";
+            }
+            else{
+                alert("Nemate pristup ovoj stranici!");
+                window.location.href ="login.html";
+            }
 
+        }
 
+});
 
-
-
-});}
 
 
 
 $(document).on("click", "#odradjenitreninzi", function(event){
-    event.preventDefault();
+    if(localStorage.getItem('uloga') === "CLANFITNESCENTRA") {
+        event.preventDefault();
 
-    window.location.href = "odradjenitreninzi.html";
+        window.location.href = "odradjenitreninzi.html";
 
+    }
 
+    else{
+        if(localStorage.getItem("uloga") === "TRENER"){
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href = "trener.html";
+        }
+        else if(localStorage.getItem("uloga") === "ADMINISTRATOR"){
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href = "administrator.html";
+        }
+        else{
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href ="login.html";
+        }
 
-
+    }
 
 
 
 
 });
+
+
+
+
+$(document).on("click", "#odradjeniocenjeni", function(){
+
+    if(localStorage.getItem("uloga") === "CLANFITNESCENTRA") {
+
+        window.location.href = "odradjeniocenjeni.html";
+    }
+
+    else{
+        if(localStorage.getItem("uloga") === "TRENER"){
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href = "trener.html";
+        }
+        else if(localStorage.getItem("uloga") === "ADMINISTRATOR"){
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href = "administrator.html";
+        }
+        else{
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href ="login.html";
+        }
+
+    }
+
+});
+
+
+
+
+$(document).on("click", "#odradjenineocenjeni", function() {
+    if(localStorage.getItem("uloga") === "CLANFITNESCENTRA"){
+
+    window.location.href = "odradjenineocenjeni.html";
+}
+    else{
+        if(localStorage.getItem("uloga") === "TRENER"){
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href = "trener.html";
+        }
+        else if(localStorage.getItem("uloga") === "ADMINISTRATOR"){
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href = "administrator.html";
+        }
+        else{
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href ="login.html";
+        }
+
+    }
+});
+
+
+
+$(document).on("click", '#odabir', function(event){
+    if(localStorage.getItem("uloga") === "CLANFITNESCENTRA") {
+
+
+        localStorage.setItem('termin', $("input[name=brprijavljenih]:checked").val());
+        window.location.href = "prijavazatrening.html";
+    }
+    else{
+        if(localStorage.getItem("uloga") === "TRENER"){
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href = "trener.html";
+        }
+        else if(localStorage.getItem("uloga") === "ADMINISTRATOR"){
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href = "administrator.html";
+        }
+        else{
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href ="login.html";
+        }
+
+    }
+
+});
+

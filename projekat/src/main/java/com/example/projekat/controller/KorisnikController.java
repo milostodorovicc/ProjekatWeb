@@ -192,4 +192,72 @@ public class KorisnikController {
     }
 
 
+
+    @PostMapping (consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE, value ="/izmenjenikorisnik")
+    public ResponseEntity<ClanDTO> izmeniclana(@RequestBody Clanfitnescentra clanfitnescentra) throws Exception {
+
+        Clanfitnescentra noviclanfitnescentra = korisnikService.izmeniclana(clanfitnescentra);
+
+        ClanDTO clanDTO = new ClanDTO(noviclanfitnescentra.getKorisnickoime(),noviclanfitnescentra.getLozinka(), noviclanfitnescentra.getIme(), noviclanfitnescentra.getPrezime(),noviclanfitnescentra.getTelefon(), noviclanfitnescentra.getEmail(), noviclanfitnescentra.getDatumrodjenja());
+
+
+        return new ResponseEntity<>(clanDTO, HttpStatus.CREATED);
+    }
+
+
+
+    @GetMapping(value = "/ocenjeni", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<OcenjentreningDTO>> ocenjenitreninzi(@RequestParam(value = "korisnik" ) Long korisnik,@RequestParam(value = "uloga") String uloga) throws Exception{
+
+
+
+
+        List<Termin> neocenjeni = this.korisnikService.ocenjenitermini(korisnik, uloga);
+        List<OcenjentreningDTO> treningDTOS1 = new ArrayList<>();
+
+        for (Termin termin1 : neocenjeni) {
+
+          Ocenjentrening ocenjentrening = this.korisnikService.ocenjen(termin1, korisnik);
+            OcenjentreningDTO treningDTO = new OcenjentreningDTO(termin1.getDatum(), termin1.getCena(),
+                    termin1.getBrojprijavljenihclanova(),termin1.getFitnesscentar().getNaziv(), termin1.getSala().getOznaka(),termin1.getTrener().getIme(),termin1.getTrener().getPrezime(),
+                    termin1.getTrening().getNaziv(),termin1.getTrening().getOpis(),termin1.getTrening().getTip(),termin1.getTrening().getTrajanje(), termin1.getId(), ocenjentrening.getOcena());
+            treningDTOS1.add(treningDTO);
+        }
+
+
+
+        return new ResponseEntity<>(treningDTOS1, HttpStatus.OK);
+
+    }
+
+
+
+
+
+    @GetMapping(value = "/neocenjeni", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<OcenjentreningDTO>> neocenjenitreninzi(@RequestParam(value = "korisnik" ) Long korisnik,@RequestParam(value = "uloga") String uloga) throws Exception{
+
+
+
+
+        List<Termin> neocenjeni = this.korisnikService.neocenjenitermini(korisnik, uloga);
+        List<OcenjentreningDTO> treningDTOS1 = new ArrayList<>();
+
+        for (Termin termin1 : neocenjeni) {
+
+            Ocenjentrening ocenjentrening = this.korisnikService.ocenjen(termin1, korisnik);
+            OcenjentreningDTO treningDTO = new OcenjentreningDTO(termin1.getDatum(), termin1.getCena(),
+                    termin1.getBrojprijavljenihclanova(),termin1.getFitnesscentar().getNaziv(), termin1.getSala().getOznaka(),termin1.getTrener().getIme(),termin1.getTrener().getPrezime(),
+                    termin1.getTrening().getNaziv(),termin1.getTrening().getOpis(),termin1.getTrening().getTip(),termin1.getTrening().getTrajanje(), termin1.getId(), ocenjentrening.getOcena());
+            treningDTOS1.add(treningDTO);
+        }
+
+
+
+        return new ResponseEntity<>(treningDTOS1, HttpStatus.OK);
+
+    }
+
+
 }

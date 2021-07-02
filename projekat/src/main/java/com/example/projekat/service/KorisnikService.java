@@ -46,4 +46,19 @@ public interface KorisnikService {
 
     Clanfitnescentra nadjiclana( Long korisnik,String uloga) throws Exception;
 
+    Clanfitnescentra izmeniclana( Clanfitnescentra clanfitnescentra) throws Exception;
+
+    List<Termin> ocenjenitermini(Long korisnik, String uloga) throws Exception;
+
+    Ocenjentrening ocenjen(Termin termin1, Long korisnik);
+
+    List<Termin> neocenjenitermini(Long korisnik, String uloga) throws Exception;
+
+    Ocenjentrening ocenitrening(String uloga, Long korisnik, Long termin, Double ocena) throws Exception;
+
+    Termin odabirtermina(String uloga, Long termin) throws Exception;
+
+    List<Fitnesscentar> svifitnescentri( String uloga) throws Exception;
+
+    Fitnesscentar nadjifitnescentar(Long fitnescentar, String uloga) throws Exception;
 }

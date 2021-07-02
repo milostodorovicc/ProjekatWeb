@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -32,7 +34,7 @@ public class Clanfitnescentra implements Serializable    {
 	@Column(unique = true)
 	private String email;
 	@Column
-	private Date datumrodjenja;
+	private LocalDate datumrodjenja;
 	@Enumerated(EnumType.STRING)
 	private Uloga uloga;
 
@@ -72,14 +74,23 @@ public class Clanfitnescentra implements Serializable    {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Date getDatumrodjenja() {
+	public LocalDate getDatumrodjenja() {
 		return datumrodjenja;
 	}
-	public void setDatumrodjenja(Date datumrodjenja) {
+	public void setDatumrodjenja(LocalDate datumrodjenja) {
 		this.datumrodjenja = datumrodjenja;
 	}
 
 
+
+
+	public Set<Ocenjentrening> getOcenjentrening() {
+		return ocenjentrening;
+	}
+
+	public void setOcenjentrening(Set<Ocenjentrening> ocenjentrening) {
+		this.ocenjentrening = ocenjentrening;
+	}
 
 	public Long getId() {
 		return id;

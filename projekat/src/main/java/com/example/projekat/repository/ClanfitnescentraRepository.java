@@ -8,5 +8,6 @@ public interface ClanfitnescentraRepository extends JpaRepository<Clanfitnescent
 
     Clanfitnescentra findByKorisnickoimeAndLozinka(String korisnickoime, String lozinka);
     boolean existsClanfitnescentraByKorisnickoimeOrLozinkaOrEmail(String korisnickoime, String lozinka, String email);
+    Clanfitnescentra findByEmail(String email);
 
 }

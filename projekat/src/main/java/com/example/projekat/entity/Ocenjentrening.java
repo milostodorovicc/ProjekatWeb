@@ -1,5 +1,7 @@
 package com.example.projekat.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -12,12 +14,12 @@ public class Ocenjentrening implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    private double ocena;
-
+    @Column(nullable = true)
+    private Double ocena;
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     private Termin termin;
-
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     private Clanfitnescentra clan;
 
@@ -31,12 +33,20 @@ public class Ocenjentrening implements Serializable {
         this.id = id;
     }
 
-    public double getOcena() {
+    public Double getOcena() {
         return ocena;
     }
 
-    public void setOcena(double ocena) {
+    public void setOcena(Double ocena) {
         this.ocena = ocena;
+    }
+
+    public Clanfitnescentra getClan() {
+        return clan;
+    }
+
+    public void setClan(Clanfitnescentra clan) {
+        this.clan = clan;
     }
 
     public Termin getTermin() {
@@ -48,7 +58,7 @@ public class Ocenjentrening implements Serializable {
     }
 
 
-    public Ocenjentrening(Long id, double ocena) {
+    public Ocenjentrening(Long id, Double ocena) {
         this.id = id;
         this.ocena = ocena;
 
