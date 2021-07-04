@@ -16,7 +16,7 @@ if(localStorage.getItem('uloga') === "CLANFITNESCENTRA"){
         url: url ,
         dataType: "json",
         success: function (res) {
-            alert("Usao u success");
+
 
 
 
@@ -109,12 +109,14 @@ $(document).on("click", "#ocena", function(event){
 
         success: function (res) {
             console.log(res);
-            alert("Usao u success");
+            alert("Uspesno ste ocenili izabrani termin!");
+            window.location.reload(true);
 
 
         },
         error: function () {
             alert("Greška!");
+            window.location.reload(true);
         }
     });
 

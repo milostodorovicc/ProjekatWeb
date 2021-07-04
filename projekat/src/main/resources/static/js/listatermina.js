@@ -68,6 +68,19 @@ if(localStorage.getItem('uloga')=== "CLANFITNESCENTRA") {
         var termin = $("input[name=otkazitermin]:checked").val();
         var korisnik = localStorage.getItem("id");
 
+
+        if( termin === 'undefined'){
+            alert("Niste odabrali termin!");
+            window.location.href = "pretragatreninga.html";
+
+        }
+
+        if( termin === null){
+            alert("Niste odabrali termin!");
+            window.location.href = "pretragatreninga.html";
+
+        }
+
         let url = new URL('http://localhost:8011/api/korisnici/otkazitermin');
 
         url.searchParams.append('uloga', uloga);

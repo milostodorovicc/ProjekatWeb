@@ -4,11 +4,17 @@ import java.util.ArrayList;
 import com.example.projekat.entity.*;
 import com.example.projekat.repository.*;
 import com.example.projekat.service.KorisnikService;
+import com.sun.xml.internal.ws.policy.spi.PolicyAssertionValidator;
+import javassist.tools.web.BadHttpRequest;
 import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import javax.swing.*;
+import javax.xml.ws.Response;
 import java.awt.*;
 import java.lang.reflect.Field;
 import java.time.LocalDateTime;
@@ -16,7 +22,10 @@ import java.util.*;
 import java.util.List;
 
 import static com.example.projekat.entity.Uloga.CLANFITNESCENTRA;
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 import static java.sql.Types.NULL;
+import static jdk.nashorn.internal.objects.Global.undefined;
 
 @Service
 public class KorisnikServiceImpl implements KorisnikService {
@@ -28,11 +37,12 @@ public class KorisnikServiceImpl implements KorisnikService {
     private final TreningRepository treningRepository;
     private final FitnescentarRepository fitnescentarRepository;
     private final OcenjentreningRepository ocenjentreningRepository;
+    private final SalaRepository salaRepository;
 
 
 
     @Autowired
-    public KorisnikServiceImpl(ClanfitnescentraRepository clanfitnescentraRepository, TrenerRepository trenerRepository, AdministratorRepository administratorRepository, TerminRepository terminRepository, TreningRepository treningRepository, FitnescentarRepository fitnescentarRepository, OcenjentreningRepository ocenjentreningRepository) {
+    public KorisnikServiceImpl(ClanfitnescentraRepository clanfitnescentraRepository, TrenerRepository trenerRepository, AdministratorRepository administratorRepository, TerminRepository terminRepository, TreningRepository treningRepository, FitnescentarRepository fitnescentarRepository, OcenjentreningRepository ocenjentreningRepository, SalaRepository salaRepository) {
         this.clanfitnescentraRepository = clanfitnescentraRepository;
         this.trenerRepository = trenerRepository;
         this.administratorRepository = administratorRepository;
@@ -40,6 +50,7 @@ public class KorisnikServiceImpl implements KorisnikService {
         this.treningRepository = treningRepository;
         this.fitnescentarRepository = fitnescentarRepository;
         this.ocenjentreningRepository = ocenjentreningRepository;
+        this.salaRepository = salaRepository;
     }
 
     @Override
@@ -171,6 +182,8 @@ public class KorisnikServiceImpl implements KorisnikService {
            if(!uloga.equals("ADMINISTRATOR")){
                throw new Exception("Nemate pristup ovim podacima!");
            }
+
+           fitnescentar.setAktivan(true);
            Fitnesscentar novifitnescentar = this.fitnescentarRepository.save(fitnescentar);
            return novifitnescentar;
        }
@@ -224,15 +237,36 @@ public class KorisnikServiceImpl implements KorisnikService {
 
 
     @Override
-    public Termin prijavitermin(Long termin, Long korisnik, String uloga) throws Exception{
+    public Termin prijavitermin(String termin, Long korisnik, String uloga) throws Exception{
         if (!uloga.equals( "CLANFITNESCENTRA")) {
             throw new Exception("Nemate pristup ovim podacima!");
         }
 
+
+
+
+
+
+
+        if(termin.equals("undefined") ){
+            throw new Exception("Niste izabrali termin!");
+        }
+        if(termin.equals("null")){
+            throw new Exception("Niste izabrali termin!");
+        }
+
+        Long l = Long.parseLong(termin);
+
         Termin termin3 = new Termin();
         Clanfitnescentra clanfitnescentra3 = new Clanfitnescentra();
 
-        Termin termin2 = this.terminRepository.getOne(termin);
+        Termin termin2 = this.terminRepository.getOne(l);
+        if(!termin2.isAktivan()){
+            throw new Exception("Termin(Fitnes centar) vise nije aktivan");
+        }
+        if(!termin2.getFitnesscentar().isAktivan()){
+            throw new Exception("Fitnes centar u kojem se odvija trening vise nije aktivan!");
+        }
       Clanfitnescentra clanfitnescentra2 =  this.clanfitnescentraRepository.getOne( korisnik);
 
 
@@ -273,14 +307,23 @@ public class KorisnikServiceImpl implements KorisnikService {
 
 
     @Override
-    public  Set<Termin> otkazitermin(Long korisnik, String uloga, Long termin) throws Exception{
+    public  Set<Termin> otkazitermin(Long korisnik, String uloga, String termin) throws Exception{
 
         if(!uloga.equals("CLANFITNESCENTRA")){
             throw new Exception("Nemate pristup ovim podacima!");
         }
 
+        if(termin.equals("undefined") ){
+            throw new Exception("Niste izabrali termin!");
+        }
+        if(termin.equals("null")){
+            throw new Exception("Niste izabrali termin!");
+        }
+
+        Long l = Long.parseLong(termin);
+
         Clanfitnescentra clan = this.clanfitnescentraRepository.getOne(korisnik);
-        Termin termin1 = this.terminRepository.getOne(termin);
+        Termin termin1 = this.terminRepository.getOne(l);
 
         clan.removetermin(termin1);
         termin1.removeclan1(clan);
@@ -437,11 +480,27 @@ public class KorisnikServiceImpl implements KorisnikService {
 
 
     @Override
-    public Ocenjentrening ocenitrening(String uloga, Long korisnik, Long termin, Double ocena) throws Exception{
+    public Ocenjentrening ocenitrening(String uloga, Long korisnik, String termin, Double ocena) throws Exception{
         if(!uloga.equals("CLANFITNESCENTRA")){
             throw new Exception("Nemate pristup ovim podacima!");
         }
-        Termin termin1 = this.terminRepository.getOne(termin);
+
+
+        if(termin.equals("undefined") ){
+            throw new Exception("Niste izabrali termin!");
+        }
+        if(termin.equals("null")){
+            throw new Exception("Niste izabrali termin!");
+        }
+
+        Long l = Long.parseLong(termin);
+        Termin termin1 = this.terminRepository.getOne(l);
+        Clanfitnescentra clan1 = this.clanfitnescentraRepository.getOne(korisnik);
+
+        Ocenjentrening ocenjentrening2 = this.ocenjentreningRepository.findByTerminAndClan(termin1, clan1);
+        if(ocenjentrening2.getOcena()!=null){
+            throw new Exception("Vec ste ocenili ovaj trening!");
+        }
 
         double prosecna = termin1.getTrener().getProsecnaocena();
 //        if(ocena!=null){
@@ -477,14 +536,29 @@ public class KorisnikServiceImpl implements KorisnikService {
 
 
     @Override
-    public  Termin odabirtermina(String uloga, Long termin) throws Exception{
+    public  Termin odabirtermina(String uloga, String termin) throws Exception{
         if(!uloga.equals("CLANFITNESCENTRA")){
             throw new Exception("Nemate pristup ovim podacima!");
 
         }
 
-        Termin termin1 = this.terminRepository.getOne(termin);
-        return termin1;
+
+        if(termin.equals("undefined") ){
+            throw new Exception("Niste izabrali termin!");
+        }
+        if(termin.equals("null")){
+            throw new Exception("Niste izabrali termin!");
+        }
+
+        Long l = Long.parseLong(termin);
+
+        Termin termin1 = this.terminRepository.getOne(l);
+        if(!termin1.getFitnesscentar().isAktivan()){
+            termin1.setAktivan(false);
+        }
+
+        Termin termin2 = this.terminRepository.save(termin1);
+        return termin2;
 
 
 
@@ -498,27 +572,245 @@ public class KorisnikServiceImpl implements KorisnikService {
             throw new Exception ("Nemate pristup ovim podacima!");
 
         }
+
+
         List<Fitnesscentar> svifitnescentri1 = this.fitnescentarRepository.findAll();
-        return svifitnescentri1;
+
+        List<Fitnesscentar> svifitnescentri2 = new ArrayList<>();
+
+        for(Fitnesscentar fitnescentar: svifitnescentri1){
+            if(fitnescentar.isAktivan()==TRUE){
+                svifitnescentri2.add(fitnescentar);
+            }
+        }
+        return svifitnescentri2;
 
 
 
    }
 
    @Override
-   public Fitnesscentar nadjifitnescentar(Long fitnescentar, String uloga) throws Exception{
+   public Fitnesscentar nadjifitnescentar(String fitnescentar, String uloga) throws Exception{
         if(!uloga.equals("ADMINISTRATOR")){
             throw new Exception("Nemate pristup ovim podacima");
         }
 
-        Fitnesscentar fitnescentar1 = this.fitnescentarRepository.getOne(fitnescentar);
+
+       if(fitnescentar.equals("undefined") ){
+           throw new Exception("Niste izabrali fitnes centar!");
+       }
+       if(fitnescentar.equals("null")){
+           throw new Exception("Niste izabrali fitnes centar!");
+       }
+
+       Long l = Long.parseLong(fitnescentar);
+        Fitnesscentar fitnescentar1 = this.fitnescentarRepository.getOne(l);
         return fitnescentar1;
    }
 
 
+    @Override
+    public Fitnesscentar izbrisifitnescentar(String fitnescentar, String uloga) throws Exception{
+        if(!uloga.equals("ADMINISTRATOR")){
+            throw new Exception("Nemate pristup ovim podacima");
+        }
+
+
+        if(fitnescentar.equals("undefined") ){
+            throw new Exception("Niste izabrali fitnes centar!");
+        }
+        if(fitnescentar.equals("null")){
+            throw new Exception("Niste izabrali fitnes centar!");
+        }
+
+        Long l = Long.parseLong(fitnescentar);
+
+        Fitnesscentar fitnescentar1 = this.fitnescentarRepository.getOne(l);
+        fitnescentar1.setAktivan(FALSE);
+        Fitnesscentar fitnescentar2 = this.fitnescentarRepository.save(fitnescentar1);
+        return fitnescentar2;
+    }
 
 
 
+
+    @Override
+    public Fitnesscentar izmenifitnescentar(Fitnesscentar fitnescentar1, String fitnescentar, String uloga) throws Exception{
+        if(!uloga.equals("ADMINISTRATOR")){
+            throw new Exception("Nemate pristup ovim podacima!");
+        }
+
+        if(fitnescentar.equals("undefined") ){
+          throw new Exception("Niste izabrali fitnes centar!");
+        }
+        if(fitnescentar.equals("null")){
+            throw new Exception("Niste izabrali fitnes centar!");
+        }
+        Long l = Long.parseLong(fitnescentar);
+        Fitnesscentar fitnescentar2 = this.fitnescentarRepository.getOne(l);
+        fitnescentar2.setNaziv(fitnescentar1.getNaziv());
+        fitnescentar2.setAdresa(fitnescentar1.getAdresa());
+        fitnescentar2.setBrojtelefonacentrale(fitnescentar1.getBrojtelefonacentrale());
+        fitnescentar2.setEmail(fitnescentar1.getEmail());
+
+        Fitnesscentar novifitnescentar = this.fitnescentarRepository.save(fitnescentar2);
+        return novifitnescentar;
+
+
+    }
+
+
+    @Override
+    public Sala dodajnovusalu(Sala sala, String fitnescentar1, String uloga) throws Exception{
+    if(!uloga.equals("ADMINISTRATOR")){
+        throw new Exception("Nemate pristup ovim podacima!");
+    }
+
+        if(fitnescentar1.equals("undefined") ){
+            throw new Exception("Niste izabrali fitnes centar!");
+        }
+        if(fitnescentar1.equals("null")){
+            throw new Exception("Niste izabrali fitnes centar!");
+        }
+        Long l = Long.parseLong(fitnescentar1);
+        sala.setAktivan(true);
+        Sala salanova = this.salaRepository.save(sala);
+
+        Fitnesscentar fitnescentar = this.fitnescentarRepository.getOne(l);
+
+    salanova.setFitnesscentar(fitnescentar);
+
+    Sala salanova1 = this.salaRepository.save(salanova);
+
+    return salanova1;
+
+
+
+
+    }
+
+
+    @Override
+    public Set<Sala> svesale(String fitnescentar, String uloga) throws Exception{
+        if(!uloga.equals("ADMINISTRATOR")){
+            throw new Exception("Nemate pristup ovim podacima!");
+        }
+
+        if(fitnescentar.equals("undefined")){
+            throw new Exception("Niste izabrali fitnes centar!");
+        }
+        if(fitnescentar.equals("null")){
+            throw new Exception("Niste izabrali fitnes centar!");
+        }
+
+
+
+
+        Long l = Long.parseLong(fitnescentar);
+        Fitnesscentar salafitnescentar = this.fitnescentarRepository.getOne(l);
+
+        Set<Sala> svesale1 = salafitnescentar.getSala();
+        Set<Sala> svesale2 = new HashSet<>();
+        for(Sala sala: svesale1){
+            if(sala.isAktivan()==TRUE){
+                svesale2.add(sala);
+            }
+        }
+
+        return svesale2;
+
+
+    }
+
+
+
+    @Override
+    public Sala jednasala(String sala, String uloga) throws Exception{
+        if(!uloga.equals("ADMINISTRATOR")){
+            throw new Exception("Nemate pristup ovim podacima!");
+        }
+
+
+        if(sala.equals("undefined")){
+            throw new Exception("Niste izabrali salu!");
+        }
+        if(sala.equals("null")){
+            throw new Exception("Niste izabrali salu!");
+        }
+
+        Long l = Long.parseLong(sala);
+
+        Sala sala2 = this.salaRepository.getOne(l);
+        if(sala2.isAktivan()==FALSE){
+            throw new Exception("Sala vise nije u funkciji!");
+        }
+        return sala2;
+
+
+
+
+   }
+
+
+
+    @Override
+    public Sala izmenisalu(Sala sala, String sala1, String uloga) throws Exception{
+        if(!uloga.equals("ADMINISTRATOR")){
+            throw new Exception("Nemate pristup ovim podacima!");
+        }
+
+        if(sala1.isEmpty() ){
+            throw new Exception("Niste izabrali salu!");
+        }
+
+
+        if(sala1.equals("undefined") ){
+            throw new Exception("Niste izabrali salu!");
+        }
+        if(sala1.equals("null")){
+            throw new Exception("Niste izabrali salu!");
+        }
+        Long l = Long.parseLong(sala1);
+        Sala sala3 = this.salaRepository.getOne(l);
+       sala3.setKapacitet(sala.getKapacitet());
+       sala3.setOznaka(sala.getOznaka());
+
+       Sala sala4 = this.salaRepository.save(sala3);
+       return sala4;
+
+
+
+
+    }
+
+
+
+
+
+    @Override
+    public Sala izbrisisalu( String sala1, String uloga) throws Exception{
+        if(!uloga.equals("ADMINISTRATOR")){
+            throw new Exception("Nemate pristup ovim podacima!");
+        }
+
+        if(sala1.equals("undefined")){
+            throw new Exception("Niste izabrali salu!");
+        }
+
+        if(sala1.equals("null")){
+            throw new Exception("Niste izabrali salu!");
+        }
+
+        Long l = Long.parseLong(sala1);
+
+        Sala sala3 = this.salaRepository.getOne(l);
+        sala3.setAktivan(FALSE);
+        Sala sala = this.salaRepository.save(sala3);
+
+       return sala;
+
+
+    }
 
 
 }

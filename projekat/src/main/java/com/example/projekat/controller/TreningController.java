@@ -37,7 +37,7 @@ public class TreningController {
 
             TreningDTO treningDTO = new TreningDTO(termin.getDatum(), termin.getCena(),
                     termin.getBrojprijavljenihclanova(),termin.getFitnesscentar().getNaziv(), termin.getSala().getOznaka(),termin.getTrener().getIme(),termin.getTrener().getPrezime(),
-            termin.getTrening().getNaziv(),termin.getTrening().getOpis(),termin.getTrening().getTip(),termin.getTrening().getTrajanje(), termin.getId() );
+            termin.getTrening().getNaziv(),termin.getTrening().getOpis(),termin.getTrening().getTip(),termin.getTrening().getTrajanje(), termin.getId(), termin.isAktivan() );
             treningDTOS.add(treningDTO);
         }
 
@@ -62,7 +62,7 @@ public class TreningController {
 
           TreningDTO treningDTO = new TreningDTO(termin.getDatum(), termin.getCena(),
                   termin.getBrojprijavljenihclanova(),termin.getFitnesscentar().getNaziv(), termin.getSala().getOznaka(),termin.getTrener().getIme(),termin.getTrener().getPrezime(),
-                  termin.getTrening().getNaziv(),termin.getTrening().getOpis(),termin.getTrening().getTip(),termin.getTrening().getTrajanje(), termin.getId());
+                  termin.getTrening().getNaziv(),termin.getTrening().getOpis(),termin.getTrening().getTip(),termin.getTrening().getTrajanje(), termin.getId(), termin.isAktivan());
           treningDTOS1.add(treningDTO);
        }
 
@@ -85,7 +85,7 @@ public class TreningController {
 
             TreningDTO treningDTO = new TreningDTO(termin.getDatum(), termin.getCena(),
                     termin.getBrojprijavljenihclanova(),termin.getFitnesscentar().getNaziv(), termin.getSala().getOznaka(),termin.getTrener().getIme(),termin.getTrener().getPrezime(),
-                    termin.getTrening().getNaziv(),termin.getTrening().getOpis(),termin.getTrening().getTip(),termin.getTrening().getTrajanje(), termin.getId());
+                    termin.getTrening().getNaziv(),termin.getTrening().getOpis(),termin.getTrening().getTip(),termin.getTrening().getTrajanje(), termin.getId(), termin.isAktivan());
             treningDTOS.add(treningDTO);
         }
 
@@ -99,7 +99,7 @@ public class TreningController {
             produces = MediaType.APPLICATION_JSON_VALUE, value ="/oceni")
     public ResponseEntity<Ocenjentrening> ocenitrening(@RequestParam(value = "uloga") String uloga,
                                                           @RequestParam(value = "korisnik")Long korisnik,
-                                                          @RequestParam(value = "termin") Long termin,
+                                                          @RequestParam(value = "termin") String termin,
                                                           @RequestParam(value = "ocena") Double ocena) throws Exception {
 
 
@@ -119,7 +119,7 @@ public class TreningController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = "/odabir")
     public ResponseEntity<TreningDTO> odabirtreninga(@RequestParam(value = "uloga" ) String uloga,
-                                                        @RequestParam(value = "termin") Long termin
+                                                        @RequestParam(value = "termin") String termin
                                                         ) throws Exception{
 
         Termin termin1 = this.korisnikService.odabirtermina(uloga, termin);
@@ -129,7 +129,7 @@ public class TreningController {
 
             TreningDTO treningDTO = new TreningDTO(termin1.getDatum(), termin1.getCena(),
                     termin1.getBrojprijavljenihclanova(),termin1.getFitnesscentar().getNaziv(), termin1.getSala().getOznaka(),termin1.getTrener().getIme(),termin1.getTrener().getPrezime(),
-                    termin1.getTrening().getNaziv(),termin1.getTrening().getOpis(),termin1.getTrening().getTip(),termin1.getTrening().getTrajanje(), termin1.getId());
+                    termin1.getTrening().getNaziv(),termin1.getTrening().getOpis(),termin1.getTrening().getTip(),termin1.getTrening().getTrajanje(), termin1.getId(), termin1.isAktivan());
 
 
 

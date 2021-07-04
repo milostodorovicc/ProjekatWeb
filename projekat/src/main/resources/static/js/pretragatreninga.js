@@ -252,8 +252,8 @@ $(document).on("click", '#odabir', function(event){
     if(localStorage.getItem("uloga") === "CLANFITNESCENTRA") {
 
 
-        localStorage.setItem('termin', $("input[name=brprijavljenih]:checked").val());
-        window.location.href = "prijavazatrening.html";
+        let termin =  $("input[name=brprijavljenih]:checked").val();
+        window.location.href = "prijavazatrening.html?id="+termin;
     }
     else{
         if(localStorage.getItem("uloga") === "TRENER"){

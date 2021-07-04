@@ -93,7 +93,7 @@ public class KorisnikController {
 
 
             @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, value= "/prijavljeni")
-    public ResponseEntity<TreningDTO> prijavljenitermini(@RequestParam(value = "termin") Long termin,@RequestParam(value = "korisnik") Long korisnik,@RequestParam(value = "uloga") String uloga) throws Exception   {
+    public ResponseEntity<TreningDTO> prijavljenitermini(@RequestParam(value = "termin") String termin,@RequestParam(value = "korisnik") Long korisnik,@RequestParam(value = "uloga") String uloga) throws Exception   {
 
 
 
@@ -102,7 +102,7 @@ public class KorisnikController {
 
                 TreningDTO treningDTO = new TreningDTO(termin1.getDatum(), termin1.getCena(),
                         termin1.getBrojprijavljenihclanova(),termin1.getFitnesscentar().getNaziv(), termin1.getSala().getOznaka(),termin1.getTrener().getIme(),termin1.getTrener().getPrezime(),
-                        termin1.getTrening().getNaziv(),termin1.getTrening().getOpis(),termin1.getTrening().getTip(),termin1.getTrening().getTrajanje(), termin1.getId());
+                        termin1.getTrening().getNaziv(),termin1.getTrening().getOpis(),termin1.getTrening().getTip(),termin1.getTrening().getTrajanje(), termin1.getId(), termin1.isAktivan());
 
 
         return new ResponseEntity<>(treningDTO, HttpStatus.CREATED);
@@ -129,7 +129,7 @@ public class KorisnikController {
 
             TreningDTO treningDTO = new TreningDTO(termin.getDatum(), termin.getCena(),
                     termin.getBrojprijavljenihclanova(),termin.getFitnesscentar().getNaziv(), termin.getSala().getOznaka(),termin.getTrener().getIme(),termin.getTrener().getPrezime(),
-                    termin.getTrening().getNaziv(),termin.getTrening().getOpis(),termin.getTrening().getTip(),termin.getTrening().getTrajanje(), termin.getId());
+                    termin.getTrening().getNaziv(),termin.getTrening().getOpis(),termin.getTrening().getTip(),termin.getTrening().getTrajanje(), termin.getId(), termin.isAktivan());
             treningDTOS1.add(treningDTO);
         }
 
@@ -138,7 +138,7 @@ public class KorisnikController {
 
 
     @GetMapping(value = "/otkazitermin", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Set<TreningDTO>> otkazitermin(@RequestParam(value = "korisnik" ) Long korisnik,@RequestParam(value = "uloga") String uloga, @RequestParam(value = "termin") Long termin) throws Exception{
+    public ResponseEntity<Set<TreningDTO>> otkazitermin(@RequestParam(value = "korisnik" ) Long korisnik,@RequestParam(value = "uloga") String uloga, @RequestParam(value = "termin") String termin) throws Exception{
 
 
         Set<Termin> listatermina1 = this.korisnikService.otkazitermin(korisnik, uloga, termin);
@@ -149,7 +149,7 @@ public class KorisnikController {
 
             TreningDTO treningDTO = new TreningDTO(termin1.getDatum(), termin1.getCena(),
                     termin1.getBrojprijavljenihclanova(),termin1.getFitnesscentar().getNaziv(), termin1.getSala().getOznaka(),termin1.getTrener().getIme(),termin1.getTrener().getPrezime(),
-                    termin1.getTrening().getNaziv(),termin1.getTrening().getOpis(),termin1.getTrening().getTip(),termin1.getTrening().getTrajanje(), termin1.getId());
+                    termin1.getTrening().getNaziv(),termin1.getTrening().getOpis(),termin1.getTrening().getTip(),termin1.getTrening().getTrajanje(), termin1.getId(), termin1.isAktivan());
             treningDTOS1.add(treningDTO);
         }
 
@@ -170,7 +170,7 @@ public class KorisnikController {
 
             TreningDTO treningDTO = new TreningDTO(termin1.getDatum(), termin1.getCena(),
                     termin1.getBrojprijavljenihclanova(),termin1.getFitnesscentar().getNaziv(), termin1.getSala().getOznaka(),termin1.getTrener().getIme(),termin1.getTrener().getPrezime(),
-                    termin1.getTrening().getNaziv(),termin1.getTrening().getOpis(),termin1.getTrening().getTip(),termin1.getTrening().getTrajanje(), termin1.getId());
+                    termin1.getTrening().getNaziv(),termin1.getTrening().getOpis(),termin1.getTrening().getTip(),termin1.getTrening().getTrajanje(), termin1.getId(), termin1.isAktivan());
             treningDTOS1.add(treningDTO);
         }
 

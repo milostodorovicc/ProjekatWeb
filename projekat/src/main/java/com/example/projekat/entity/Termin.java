@@ -24,9 +24,16 @@ public class Termin implements Serializable {
     private double cena;
     private int brojprijavljenihclanova;
 
+    boolean aktivan;
 
 
+    public boolean isAktivan() {
+        return aktivan;
+    }
 
+    public void setAktivan(boolean aktivan) {
+        this.aktivan = aktivan;
+    }
 
     public LocalDateTime getDatum() {
         return datum;

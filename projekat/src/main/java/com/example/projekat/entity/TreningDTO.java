@@ -18,9 +18,11 @@ public class TreningDTO {
    private Double trajanje;
    private Long id;
 
+   boolean aktivan;
 
 
-    public TreningDTO(LocalDateTime datum, double cena, int brojprijavljenihclanova, String nazivfitnescentra, int oznaka, String ime, String prezime, String nazivtreninga, String opis, String tip, Double trajanje, Long id) {
+
+    public TreningDTO(LocalDateTime datum, double cena, int brojprijavljenihclanova, String nazivfitnescentra, int oznaka, String ime, String prezime, String nazivtreninga, String opis, String tip, Double trajanje, Long id, boolean aktivan) {
         this.datum = datum;
         this.cena = cena;
         this.brojprijavljenihclanova = brojprijavljenihclanova;
@@ -33,10 +35,18 @@ public class TreningDTO {
         this.tip = tip;
         this.trajanje = trajanje;
         this.id = id;
+        this.aktivan = aktivan;
 
     }
 
 
+    public boolean isAktivan() {
+        return aktivan;
+    }
+
+    public void setAktivan(boolean aktivan) {
+        this.aktivan = aktivan;
+    }
 
     public LocalDateTime getDatum() {
         return datum;

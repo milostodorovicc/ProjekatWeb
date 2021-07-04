@@ -36,11 +36,11 @@ public interface KorisnikService {
 
    List<Fitnesscentar> findFitnescentar();
 
-   Termin prijavitermin( Long termin,Long  korisnik, String uloga) throws Exception;
+   Termin prijavitermin( String termin,Long  korisnik, String uloga) throws Exception;
 
    Set<Termin> prijavljenitermini1(Long korisnik, String uloga) throws Exception;
 
-    Set<Termin> otkazitermin(Long korisnik, String uloga, Long termin) throws Exception;
+    Set<Termin> otkazitermin(Long korisnik, String uloga, String termin) throws Exception;
 
     Set<Termin> odradjenitreninzi(Long korisnik, String uloga) throws Exception;
 
@@ -54,11 +54,25 @@ public interface KorisnikService {
 
     List<Termin> neocenjenitermini(Long korisnik, String uloga) throws Exception;
 
-    Ocenjentrening ocenitrening(String uloga, Long korisnik, Long termin, Double ocena) throws Exception;
+    Ocenjentrening ocenitrening(String uloga, Long korisnik, String termin, Double ocena) throws Exception;
 
-    Termin odabirtermina(String uloga, Long termin) throws Exception;
+    Termin odabirtermina(String uloga, String termin) throws Exception;
 
     List<Fitnesscentar> svifitnescentri( String uloga) throws Exception;
 
-    Fitnesscentar nadjifitnescentar(Long fitnescentar, String uloga) throws Exception;
+    Fitnesscentar nadjifitnescentar(String fitnescentar, String uloga) throws Exception;
+
+    Fitnesscentar izbrisifitnescentar(String fitnescentar, String uloga) throws Exception;
+
+    Fitnesscentar izmenifitnescentar(Fitnesscentar fitnescentar1, String fitnescentar, String uloga) throws Exception;
+
+    Sala dodajnovusalu(Sala sala, String fitnescentar1, String uloga) throws Exception;
+
+    Set<Sala> svesale(String fitnescentar, String uloga) throws Exception;
+
+    Sala jednasala(String sala, String uloga) throws Exception;
+
+    Sala izmenisalu(Sala sala, String sala1, String uloga) throws Exception;
+
+    Sala izbrisisalu(String sala1, String uloga) throws Exception;
 }

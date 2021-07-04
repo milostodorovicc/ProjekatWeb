@@ -1,5 +1,7 @@
 package com.example.projekat.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -12,7 +14,10 @@ public class Sala implements Serializable  {
 	private Long id;
 	@Column
 	private int kapacitet;
+	@Column
 	private int oznaka;
+
+	private boolean aktivan;
 
 
 
@@ -26,7 +31,7 @@ public class Sala implements Serializable  {
 	public Sala() {
 	}
 
-
+    @JsonIgnore
 	@OneToMany(mappedBy ="sala", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set <Termin> termini = new HashSet<>();
 
@@ -62,9 +67,15 @@ public class Sala implements Serializable  {
 		this.termini = termini;
 	}
 
+	public boolean isAktivan() {
+		return aktivan;
+	}
 
+	public void setAktivan(boolean aktivan) {
+		this.aktivan = aktivan;
+	}
 
-
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Fitnesscentar fitnesscentar;
 

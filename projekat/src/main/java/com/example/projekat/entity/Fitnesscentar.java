@@ -22,6 +22,8 @@ public class Fitnesscentar implements Serializable {
 	@Column(unique = true)
 	private String email;
 
+	boolean aktivan;
+
 
 	public Fitnesscentar(Long id, String naziv, String adresa, int brojtelefonacentrale,String email) {
 		this.naziv = naziv;
@@ -78,9 +80,15 @@ public class Fitnesscentar implements Serializable {
 		this.email = email;
 	}
 
+	public boolean isAktivan() {
+		return aktivan;
+	}
 
+	public void setAktivan(boolean aktivan) {
+		this.aktivan = aktivan;
+	}
 
-    @JsonIgnore
+	@JsonIgnore
 	@OneToMany(mappedBy ="fitnesscentar", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set <Trener>  trener =  new HashSet<>();
 
