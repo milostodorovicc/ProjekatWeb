@@ -3,6 +3,7 @@ package com.example.projekat.controller;
 
 import com.example.projekat.entity.*;
 import com.example.projekat.service.KorisnikService;
+import jdk.nashorn.internal.ir.RuntimeNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,7 +26,7 @@ public class TreningController {
 
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, value= "/svitreninzi")
-    public ResponseEntity<List<TreningDTO>> getTreninzi() {
+    public ResponseEntity<List<TreningDTO>> getTermini() {
 
         List<Termin> terminlist = this.korisnikService.findTermini();
 
@@ -141,6 +142,99 @@ public class TreningController {
 
 
 
+
+
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE, value= "/novitrening")
+    public ResponseEntity<Trening> novitrening(@RequestBody Trening trening, @RequestParam(value = "uloga") String uloga) throws Exception {
+
+
+
+        Trening trening1 = this.korisnikService.novitrening(trening, uloga);
+
+
+
+
+        return new ResponseEntity<>(trening1, HttpStatus.OK);
+
+    }
+
+
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, value= "/svitreninzi1")
+    public ResponseEntity<List<Trening>> svitreninzi1( @RequestParam(value = "uloga") String uloga) throws Exception {
+
+
+
+        List<Trening> svitreninzi = this.korisnikService.svitreninzi( uloga);
+
+
+
+
+        return new ResponseEntity<>(svitreninzi, HttpStatus.OK);
+
+    }
+
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE, value= "/novitermin1")
+    public ResponseEntity<TreningDTO> novitrening(@RequestBody Termin termin, @RequestParam(value = "uloga") String uloga, @RequestParam(value = "trening") String trening, @RequestParam(value = "sala") String sala, @RequestParam(value = "korisnik") Long korisnik  ) throws Exception {
+
+
+
+       Termin termin1 = this.korisnikService.novitermin(termin, uloga, trening, sala, korisnik);
+
+        TreningDTO treningDTO = new TreningDTO(termin1.getDatum(), termin1.getCena(),
+                termin1.getBrojprijavljenihclanova(),termin1.getFitnesscentar().getNaziv(), termin1.getSala().getOznaka(),termin1.getTrener().getIme(),termin1.getTrener().getPrezime(),
+                termin1.getTrening().getNaziv(),termin1.getTrening().getOpis(),termin1.getTrening().getTip(),termin1.getTrening().getTrajanje(), termin1.getId(), termin1.isAktivan());
+
+
+
+        return new ResponseEntity<>(treningDTO, HttpStatus.OK);
+
+    }
+
+
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, value= "/nadjitrening")
+    public ResponseEntity<Trening> nadjitrening( @RequestParam(value = "uloga") String uloga, @RequestParam(value = "trening") String trening) throws Exception {
+
+
+
+       Trening trening1 = this.korisnikService.nadjitrening( uloga, trening);
+
+       Trening trening2 = new Trening();
+       trening2.setId(trening1.getId());
+       trening2.setNaziv(trening1.getNaziv());
+        trening2.setOpis(trening1.getOpis());
+        trening2.setTip(trening1.getTip());
+        trening2.setTrajanje(trening1.getTrajanje());
+
+
+
+
+        return new ResponseEntity<>(trening2, HttpStatus.OK);
+
+    }
+
+
+
+
+
+
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE, value= "/izmenitrening")
+    public ResponseEntity<Trening> izmenitrening(@RequestBody Trening trening1, @RequestParam(value = "uloga") String uloga, @RequestParam(value = "trening") String trening) throws Exception {
+
+
+
+        Trening trening2 = this.korisnikService.izmenitrening(trening1, uloga, trening);
+
+
+
+
+        return new ResponseEntity<>(trening2, HttpStatus.OK);
+
+    }
 
 
 }

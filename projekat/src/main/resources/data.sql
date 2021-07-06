@@ -20,10 +20,10 @@ INSERT INTO SALA(kapacitet, oznaka, fitnesscentar_id,aktivan) VALUES('60','320',
 INSERT INTO SALA(kapacitet, oznaka, fitnesscentar_id, aktivan) VALUES('80','330',1, TRUE);
 INSERT INTO SALA(kapacitet, oznaka, fitnesscentar_id, aktivan) VALUES('100','340',2, TRUE);
 
-INSERT INTO TRENER(korisnickoime, lozinka, ime, prezime, telefon, email, datumrodjenja, uloga, prosecnaocena, fitnesscentar_id, aktivan, n) VALUES ('alex', 'ferguson','Alex','Ferguson','063467','aaaa@gmail.com','1945-03-1','TRENER','8.0',1, false,1);
-INSERT INTO TRENER(korisnickoime, lozinka, ime, prezime, telefon, email, datumrodjenja, uloga, prosecnaocena, fitnesscentar_id, aktivan, n) VALUES ('jurgeen', 'klop','Jurgen','Klop','061987','jjjj@gmail.com','1965-07-1','TRENER','8.0',1, false,1);
+INSERT INTO TRENER(korisnickoime, lozinka, ime, prezime, telefon, email, datumrodjenja, uloga, prosecnaocena, fitnesscentar_id, aktivan, n) VALUES ('alex', 'ferguson','Alex','Ferguson','063467','aaaa@gmail.com','1945-03-1','TRENER','8.0',1, true,1);
+INSERT INTO TRENER(korisnickoime, lozinka, ime, prezime, telefon, email, datumrodjenja, uloga, prosecnaocena, fitnesscentar_id, aktivan, n) VALUES ('jurgeen', 'klop','Jurgen','Klop','061987','jjjj@gmail.com','1965-07-1','TRENER','8.0',1, true,1);
 INSERT INTO TRENER(korisnickoime, lozinka, ime, prezime, telefon, email, datumrodjenja, uloga, prosecnaocena,fitnesscentar_id, aktivan, n) VALUES ('pep', 'guardiola','Pep','Guardiola','065467','pep@gmail.com','1970-03-1','TRENER','5.0',2, true,1);
-INSERT INTO TRENER(korisnickoime, lozinka, ime, prezime, telefon, email, datumrodjenja, uloga, prosecnaocena,fitnesscentar_id, aktivan, n) VALUES ('marian', 'vajda','Marian','Vajda','063456','marianvjd@gmail.com','1965-03-1','TRENER','6.0',2, false,1);
+INSERT INTO TRENER(korisnickoime, lozinka, ime, prezime, telefon, email, datumrodjenja, uloga, prosecnaocena,fitnesscentar_id, aktivan, n) VALUES ('marian', 'vajda','Marian','Vajda','063456','marianvjd@gmail.com','1965-03-1','TRENER','6.0',2, true,1);
 
 
 INSERT INTO TERMIN(datum, cena, brojprijavljenihclanova, trening_id, sala_id, trener_id, fitnesscentar_id, aktivan) VALUES('2021-06-25T21:40:00', '350', '2', 2, 1,1,1, TRUE );

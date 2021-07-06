@@ -75,4 +75,18 @@ public interface KorisnikService {
     Sala izmenisalu(Sala sala, String sala1, String uloga) throws Exception;
 
     Sala izbrisisalu(String sala1, String uloga) throws Exception;
+
+    Trening novitrening(Trening trening, String uloga) throws Exception;
+
+    List<Trening> svitreninzi(String uloga) throws Exception;
+
+    Set<Sala> nadjisale(Long korisnik,String uloga) throws Exception;
+
+    Termin novitermin(Termin termin, String uloga, String trening, String sala, Long korisnik) throws Exception;
+
+    Trener aktivantrener(Trener trener, String fitnesscentar, String uloga1) throws Exception;
+
+    Trening nadjitrening(String uloga, String trening) throws Exception;
+
+    Trening izmenitrening(Trening trening1, String uloga, String trening) throws Exception;
 }

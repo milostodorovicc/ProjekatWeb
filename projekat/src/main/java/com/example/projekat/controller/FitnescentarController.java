@@ -165,4 +165,18 @@ public class FitnescentarController {
     }
 
 
+
+
+
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = "/nadjisale1")
+    public ResponseEntity<Set<Sala>> izbrisifitnescentar(@RequestParam(value = "korisnik")  Long korisnik,@RequestParam(value = "uloga")  String uloga) throws Exception{
+
+        Set<Sala> salefitnescentra = this.korisnikService.nadjisale(korisnik, uloga);
+
+
+        return new ResponseEntity<>(salefitnescentra, HttpStatus.CREATED);
+
+    }
+
 }

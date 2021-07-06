@@ -273,3 +273,88 @@ $(document).on("click", '#odabir', function(event){
 
 });
 
+
+
+
+
+
+$(document).on("click", '#novitrening', function(){
+if(localStorage.getItem("uloga") === "TRENER") {
+    window.location.href = "novitrening.html";
+}
+else{
+        if(localStorage.getItem("uloga") === "CLANFITNESCENTRA"){
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href = "clanfitnescentra.html";
+        }
+        else if(localStorage.getItem("uloga") === "ADMINISTRATOR"){
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href = "administrator.html";
+        }
+        else{
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href ="login.html";
+        }
+
+    }
+
+
+
+
+
+});
+
+$(document).on("click", '#svitreninzi', function(){
+    if(localStorage.getItem("uloga") === "TRENER") {
+        window.location.href = "svitreninzi.html";
+    }
+    else{
+        if(localStorage.getItem("uloga") === "CLANFITNESCENTRA"){
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href = "clanfitnescentra.html";
+        }
+        else if(localStorage.getItem("uloga") === "ADMINISTRATOR"){
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href = "administrator.html";
+        }
+        else{
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href ="login.html";
+        }
+
+    }
+
+
+
+
+
+});
+
+$(document).on("click", "#registracijatrenera", function(event){
+    if(localStorage.getItem('uloga') === "ADMINISTRATOR") {
+
+
+        window.location.href = "registracijatrenera.html";
+
+    }
+
+    else{
+        if(localStorage.getItem("uloga") === "TRENER"){
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href = "trener.html";
+        }
+        else if(localStorage.getItem("uloga") === "CLANFITNESCENTRA"){
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href = "clanfitnescentra.html";
+        }
+        else{
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href ="login.html";
+        }
+
+    }
+
+
+
+
+});
