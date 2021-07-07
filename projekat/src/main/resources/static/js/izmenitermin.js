@@ -7,14 +7,12 @@ $(document).ready(function () {
         let urlParams = new URLSearchParams(window.location.search);
         let termin = urlParams.get('id');
 
-        if(termin === 'undefined'){
+        if(termin === 'undefined' || termin === null){
             alert('Niste odabrali termin!');
             window.location.href = "terminitrenera.html";
         }
-        if(termin === null){
-            alert('Niste odabrali termin!');
-            window.location.href = "terminitrenera.html";
-        }
+
+        else{
 
         url.searchParams.append('uloga', localStorage.getItem('uloga'));
         url.searchParams.append('termin', termin);
@@ -38,7 +36,7 @@ $(document).ready(function () {
             error: function () {
                 alert("Greška!");
             }
-        });
+        });}}
 
 
 
@@ -46,7 +44,7 @@ $(document).ready(function () {
 
 
 
-    } else {
+    else {
         if (localStorage.getItem("uloga") === "ADMINISTRATOR") {
             alert("Nemate pristup ovoj stranici!");
             window.location.href = "administrator.html";
@@ -83,7 +81,7 @@ $(document).on("click", '#svesale', function(){
             url: url,
             dataType: "json",
             success: function (res) {
-                alert("Usao u success");
+
 
 
                 console.log(res);
@@ -139,6 +137,14 @@ $(document).on("click", '#promenatermina', function(){
 
         let sala = $("input[name=sala]:checked").val();
 
+
+        if(typeof sala === 'undefined' || sala === null) {
+            alert('Niste odabrali salu!');
+            window.location.reload(true);
+        }
+
+        else{
+
         let datum = $('#datumivreme').val();
         let cena = $('#cena').val();
 
@@ -173,9 +179,9 @@ $(document).on("click", '#promenatermina', function(){
 
             },
             error: function () {
-                alert("GNiste uspeli da izmenite termin!");
+                alert("Niste uspeli da izmenite termin!");
             }
-        });
+        });}}
 
 
 
@@ -183,7 +189,7 @@ $(document).on("click", '#promenatermina', function(){
 
 
 
-    } else {
+     else {
         if (localStorage.getItem("uloga") === "ADMINISTRATOR") {
             alert("Nemate pristup ovoj stranici!");
             window.location.href = "administrator.html";

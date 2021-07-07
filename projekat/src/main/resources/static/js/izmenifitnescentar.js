@@ -4,17 +4,17 @@ $(document).ready(function (){
         let urlParams = new URLSearchParams(window.location.search);
         let fitnescentar = urlParams.get('id');
 
-        if( fitnescentar === 'undefined' ){
+        if( fitnescentar === 'undefined' || fitnescentar === null ){
             alert("Niste odabrali fitnes centar");
             window.location.href = "svifitnescentri.html";
         }
-        if( fitnescentar === null ){
-            alert("Niste odabrali fitnes centar");
-            window.location.href = "svifitnescentri.html";
-        }
+        // if( fitnescentar === null ){
+        //     alert("Niste odabrali fitnes centar");
+        //     window.location.href = "svifitnescentri.html";
+        // }
 
 
-
+else{
     // var fitnescentar = localStorage.getItem('fitnescentar');
     var uloga = localStorage.getItem('uloga');
 
@@ -33,7 +33,7 @@ $(document).ready(function (){
 
         success: function (res) {
 
-       alert("Usao u success");
+
 
 
             $("input#naziv").val(res.naziv);
@@ -50,7 +50,7 @@ $(document).ready(function (){
             window.location.href = "svifitnescentri.html";
         }
 
-    });}
+    });}}
 
     else{
         if(localStorage.getItem("uloga") === "TRENER"){

@@ -16,7 +16,7 @@ $(document).ready(function () {
             url: url,
             dataType: "json",
             success: function (res) {
-                alert("Usao u success");
+
 
 
                 console.log(res);
@@ -75,8 +75,13 @@ $(document).on("click", '#izmenitermin', function(){
     if(localStorage.getItem("uloga") === "TRENER"){
          let termin = $("input[name=izmenitermin]:checked").val();
 
+         if(typeof termin === 'undefined' || termin === null){
+             alert("Niste odabrali termin");
+             window.location.reload(true);
+         }
+      else{
         window.location.href ="izmenitermin.html?id="+termin;
-    }
+    }}
     else{
         if(localStorage.getItem("uloga") === "CLANFITNESCENTRA"){
             alert("Nemate pristup ovoj stranici!");

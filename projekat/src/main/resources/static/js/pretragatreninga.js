@@ -2,7 +2,11 @@ $(document).ready(function () {
 
     if(localStorage.getItem("uloga")!= "CLANFITNESCENTRA"){
         document.getElementById("listatermina").style.visibility="hidden";
-        document.getElementById("terminprijava1").style.visibility="hidden";
+         document.getElementById("odabir").style.visibility="hidden";
+        document.getElementById("odradjenitreninzi").style.visibility="hidden";
+        document.getElementById("odradjeniocenjeni").style.visibility="hidden";
+        document.getElementById("odradjenineocenjeni").style.visibility="hidden";
+
     }
 });
 
@@ -253,8 +257,13 @@ $(document).on("click", '#odabir', function(event){
 
 
         let termin =  $("input[name=brprijavljenih]:checked").val();
+        if(typeof termin === 'undefined' || termin ===null){
+            alert("Niste odabrali termin!");
+            window.location.reload(true);
+        }else{
+
         window.location.href = "prijavazatrening.html?id="+termin;
-    }
+    }}
     else{
         if(localStorage.getItem("uloga") === "TRENER"){
             alert("Nemate pristup ovoj stranici!");

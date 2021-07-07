@@ -7,18 +7,15 @@ $(document).on("click", '#novasala1', function () {
     let fitnescentar1 = urlParams.get('id');
 
     console.log(fitnescentar1)
-    alert("eee");
 
 
-    if(fitnescentar1 === 'undefined' ){
+
+    if(fitnescentar1 === 'undefined' || fitnescentar1 ===null ){
         alert("Niste odabrali fitnes centar!");
         window.location.href = "svifitnescentri.html";
     }
 
-        if(fitnescentar1 == null ){
-            alert("Niste odabrali fitnes centar!");
-            window.location.href = "svifitnescentri.html";
-        }
+       else{
 
 
 
@@ -49,7 +46,7 @@ $(document).on("click", '#novasala1', function () {
         error: function () {
             alert("Greška!");
         }
-    });}
+    });}}
 
     else{
         if(localStorage.getItem("uloga") === "TRENER"){
@@ -78,7 +75,19 @@ $(document).on("click", '#novasala1', function () {
 
 $(document).ready(function () {
     if (localStorage.getItem('uloga') === "ADMINISTRATOR") {
-        alert("ok");
+        let urlParams = new URLSearchParams(window.location.search);
+        let fitnescentar1 = urlParams.get('id');
+
+        console.log(fitnescentar1)
+
+
+
+        if(fitnescentar1 === 'undefined' || fitnescentar1 ===null ){
+            alert("Niste odabrali fitnes centar!");
+            window.location.href = "svifitnescentri.html";
+        }else{
+            alert("imate pristup ovoj stranici!")
+        }
     } else {
         if (localStorage.getItem("uloga") === "TRENER") {
             alert("Nemate pristup ovoj stranici!");

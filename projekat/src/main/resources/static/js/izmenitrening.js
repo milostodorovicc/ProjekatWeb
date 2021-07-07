@@ -4,17 +4,15 @@ $(document).ready(function () {
         let urlParams = new URLSearchParams(window.location.search);
         let trening = urlParams.get('id');
 
-        if( trening === 'undefined'){
+        if( trening === 'undefined' || trening === null){
             alert("Niste odabrali trening!");
             window.location.href = "svitreninzi.html";
 
         }
 
-        if( trening === null){
-            alert("Niste odabrali trening!");
-            window.location.href = "svitreninzi.html";
+        else{
 
-        }
+
 
 
         let url = new URL('http://localhost:8011/api/treninzi/nadjitrening');
@@ -47,7 +45,7 @@ $(document).ready(function () {
             error: function () {
                 alert("Greška!");
             }
-        });
+        });}}
 
 
 
@@ -55,7 +53,7 @@ $(document).ready(function () {
 
 
 
-    } else {
+     else {
         if (localStorage.getItem("uloga") === "ADMINISTRATOR") {
             alert("Nemate pristup ovoj stranici!");
             window.location.href = "administrator.html";

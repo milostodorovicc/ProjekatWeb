@@ -177,9 +177,9 @@ public class KorisnikController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE, value = "/izmenjenikorisnik")
-    public ResponseEntity<ClanDTO> izmeniclana(@RequestBody Clanfitnescentra clanfitnescentra) throws Exception {
+    public ResponseEntity<ClanDTO> izmeniclana(@RequestBody Clanfitnescentra clanfitnescentra, @RequestParam(value = "uloga") String uloga, @RequestParam(value = "korisnik") Long korisnik) throws Exception {
 
-        Clanfitnescentra noviclanfitnescentra = korisnikService.izmeniclana(clanfitnescentra);
+        Clanfitnescentra noviclanfitnescentra = korisnikService.izmeniclana(clanfitnescentra, uloga, korisnik);
 
         ClanDTO clanDTO = new ClanDTO(noviclanfitnescentra.getKorisnickoime(), noviclanfitnescentra.getLozinka(), noviclanfitnescentra.getIme(), noviclanfitnescentra.getPrezime(), noviclanfitnescentra.getTelefon(), noviclanfitnescentra.getEmail(), noviclanfitnescentra.getDatumrodjenja());
 

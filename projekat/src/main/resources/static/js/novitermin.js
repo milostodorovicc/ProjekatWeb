@@ -1,7 +1,15 @@
 $(document).ready(function () {
     if (localStorage.getItem('uloga') === "TRENER") {
+        let urlParams = new URLSearchParams(window.location.search);
+        let trening = urlParams.get('id');
+        if( trening === 'undefined' || trening === null){
+            alert("Niste odabrali trening!");
+            window.location.href = "svitreninzi.html";
+
+        }
 
 
+     else{
         let url = new URL('http://localhost:8011/api/fitnescentar/nadjisale1');
 
 
@@ -15,7 +23,7 @@ $(document).ready(function () {
             url: url,
             dataType: "json",
             success: function (res) {
-                alert("Usao u success");
+
 
 
                 console.log(res);
@@ -36,7 +44,7 @@ $(document).ready(function () {
             error: function () {
                 alert("Greška!");
             }
-        });
+        });}}
 
 
 
@@ -44,7 +52,7 @@ $(document).ready(function () {
 
 
 
-    } else {
+     else {
         if (localStorage.getItem("uloga") === "ADMINISTRATOR") {
             alert("Nemate pristup ovoj stranici!");
             window.location.href = "administrator.html";
@@ -74,33 +82,17 @@ $(document).on("click", '#novitermin2', function(){
 
 
 
-        if( typeof sala === 'undefined'){
-            alert("Niste odabrali salu!");
-            window.location.reload(true);
-
-        }
-
-        if( sala === null){
-            alert("Niste odabrali salu!");
+        if( typeof sala === 'undefined' || sala === null){
+            alert("Niste odabrali salu !");
             window.location.reload(true);
 
         }
 
 
-        if( trening === 'undefined'){
-            alert("Niste odabrali trening!");
-            window.location.href = "svitreninzi.html";
-
-        }
-
-        if( trening === null){
-            alert("Niste odabrali trening!");
-            window.location.href = "svitreninzi.html";
-
-        }
 
 
 
+else{
 
         let datum = $('#datumivreme').val();
         let cena = $('#cena').val();
@@ -132,11 +124,11 @@ $(document).on("click", '#novitermin2', function(){
             error: function () {
                 alert("Greška!");
             }
-        });
+        });}}
 
 
 
-    }
+
 
 
     else {

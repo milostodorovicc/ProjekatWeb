@@ -6,19 +6,15 @@ $(document).ready(function (event) {
         let urlParams = new URLSearchParams(window.location.search);
         let termin = urlParams.get('id');
 
-        if( termin === 'undefined'){
-            alert("Niste odabrali termin!");
-            window.location.href = "pretragatreninga.html";
-
-        }
-
-        if( termin === null){
+        if( termin === 'undefined' || termin === null){
             alert("Niste odabrali termin!");
             window.location.href = "pretragatreninga.html";
 
         }
 
 
+
+else{
     var uloga = localStorage.getItem("uloga");
     // var termin = localStorage.getItem('termin');
 
@@ -36,7 +32,9 @@ $(document).ready(function (event) {
         url: url ,
         dataType: "json",
         success: function (res) {
-            alert("Usao u success");
+
+            console.log(res);
+
 
 
 
@@ -71,7 +69,7 @@ $(document).ready(function (event) {
         error: function () {
             alert("Greška!");
         }
-    });}
+    });}}
 
     else{
         if(localStorage.getItem("uloga") === "TRENER"){
@@ -104,17 +102,13 @@ $(document).ready(function (event) {
             let urlParams = new URLSearchParams(window.location.search);
             let termin = urlParams.get('id');
 
-            if( termin === 'undefined'){
+            if( termin === 'undefined' || termin === null){
                 alert("Niste odabrali termin!");
                 window.location.href = "pretragatreninga.html";
 
             }
 
-            if( termin === null){
-                alert("Niste odabrali termin!");
-                window.location.href = "pretragatreninga.html";
-
-            }
+   else{
 
         var uloga = localStorage.getItem("uloga");
         // var termin = localStorage.getItem('termin');
@@ -140,10 +134,11 @@ $(document).ready(function (event) {
                 alert("Uspesno ste se prijavili za odabrani termin!");
             },
             error: function () {
+                // window.location.reload()
                 alert("Greska!");
             }
 
-        });}
+        });}}
 
         else{
             if(localStorage.getItem("uloga") === "TRENER"){

@@ -258,10 +258,20 @@ public class KorisnikServiceImpl implements KorisnikService {
 
         Long l = Long.parseLong(termin);
 
+
         Termin termin3 = new Termin();
         Clanfitnescentra clanfitnescentra3 = new Clanfitnescentra();
 
         Termin termin2 = this.terminRepository.getOne(l);
+        if(!termin2.getTrener().isAktivan()){
+            throw new Exception("Trener vise nije aktivan!");
+        }
+        if(!termin2.getSala().isAktivan()){
+            throw new Exception("Sala vise nije aktivna!");
+        }
+
+
+
         if(!termin2.isAktivan()){
             throw new Exception("Termin(Fitnes centar) vise nije aktivan");
         }
@@ -269,6 +279,14 @@ public class KorisnikServiceImpl implements KorisnikService {
             throw new Exception("Fitnes centar u kojem se odvija trening vise nije aktivan!");
         }
       Clanfitnescentra clanfitnescentra2 =  this.clanfitnescentraRepository.getOne( korisnik);
+
+        Set<Termin> noviset = clanfitnescentra2.getTermin1();
+
+        for(Termin termin5: noviset){
+            if(termin5.getId() == termin2.getId()){
+                throw new Exception("Vec ste se prijavili za ovaj termin!");
+            }
+        }
 
 
         if(termin2.getBrojprijavljenihclanova()<termin2.getSala().getKapacitet()) {
@@ -374,13 +392,13 @@ public class KorisnikServiceImpl implements KorisnikService {
     }
 
    @Override
-    public Clanfitnescentra izmeniclana(Clanfitnescentra clanfitnescentra) throws Exception{
-       Uloga uloga = clanfitnescentra.getUloga();
-        if(!(uloga.equals(CLANFITNESCENTRA))){
+    public Clanfitnescentra izmeniclana(Clanfitnescentra clanfitnescentra, String uloga, Long korisnik) throws Exception{
+
+        if(!(uloga.equals("CLANFITNESCENTRA"))){
             throw new Exception("Nemate pristup ovim podacima!");
         }
 
-        Clanfitnescentra clan = this.clanfitnescentraRepository.findByEmail(clanfitnescentra.getEmail());
+        Clanfitnescentra clan = this.clanfitnescentraRepository.getOne(korisnik);
 
         clan.setIme(clanfitnescentra.getIme());
         clan.setPrezime(clanfitnescentra.getPrezime());
@@ -493,6 +511,12 @@ public class KorisnikServiceImpl implements KorisnikService {
         if(termin.equals("null")){
             throw new Exception("Niste izabrali termin!");
         }
+
+//        if(ocena == null){
+//            throw new Exception("Niste uneli ocenu!");
+//        }
+
+
 
         Long l = Long.parseLong(termin);
         Termin termin1 = this.terminRepository.getOne(l);
@@ -903,6 +927,7 @@ public class KorisnikServiceImpl implements KorisnikService {
         termin1.setBrojprijavljenihclanova(0);
         termin1.setTrener(trener2);
         termin1.setFitnesscentar(fitcentar2);
+        termin1.setAktivan(true);
 
         Termin termin3 = this.terminRepository.save(termin1);
 

@@ -46,7 +46,7 @@ public interface KorisnikService {
 
     Clanfitnescentra nadjiclana( Long korisnik,String uloga) throws Exception;
 
-    Clanfitnescentra izmeniclana( Clanfitnescentra clanfitnescentra) throws Exception;
+    Clanfitnescentra izmeniclana( Clanfitnescentra clanfitnescentra, String uloga, Long korisnik) throws Exception;
 
     List<Termin> ocenjenitermini(Long korisnik, String uloga) throws Exception;
 

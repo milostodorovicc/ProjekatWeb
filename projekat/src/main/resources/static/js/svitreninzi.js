@@ -14,7 +14,7 @@ $(document).ready(function () {
             url: url,
             dataType: "json",
             success: function (res) {
-                alert("Usao u success");
+
 
 
                 console.log(res);
@@ -65,10 +65,15 @@ $(document).on("click", '#napravinovitermin', function(){
     if(localStorage.getItem('uloga') === "TRENER") {
         var trening = $("input[name=trening]:checked").val();
 
-        window.location.href = "novitermin.html?id=" + trening;
+        if (typeof trening === 'undefined' || trening === null) {
+            alert("Niste odabrali trening");
+            window.location.reload(true);
+
+        } else {
+            window.location.href = "novitermin.html?id=" + trening;
+        }
+
     }
-
-
     else {
         if (localStorage.getItem("uloga") === "ADMINISTRATOR") {
             alert("Nemate pristup ovoj stranici!");
@@ -91,9 +96,13 @@ $(document).on("click", '#napravinovitermin', function(){
 $(document).on("click", '#izmenitrening', function(){
     if(localStorage.getItem('uloga') === "TRENER") {
         var trening = $("input[name=trening]:checked").val();
+        if(typeof trening === 'undefined' || trening === null){
+            alert("Niste odabrali trening!");
+            window.location.reload(true);
 
+        }else{
         window.location.href = "izmenitrening.html?id=" + trening;
-    }
+    }}
 
 
     else {

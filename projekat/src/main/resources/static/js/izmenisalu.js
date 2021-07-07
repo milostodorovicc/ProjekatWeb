@@ -6,10 +6,10 @@ $(document).ready(function (){
     // var sala = localStorage.getItem('sala');
     var uloga = localStorage.getItem('uloga');
 
-       if( sala === 'undefined'){
+       if( sala === 'undefined' || sala === null){
            alert("Niste odabrali salu");
-           window.history.back();
-       }
+           window.location.href = "svesale.html";
+       }else{
 
     let url = new URL('http://localhost:8011/api/fitnescentar/jednasala');
 
@@ -31,7 +31,7 @@ $(document).ready(function (){
             alert("Greska!");
         }
 
-    });}
+    });}}
 
    else{
        if(localStorage.getItem("uloga") === "TRENER"){
@@ -59,13 +59,16 @@ $(document).on("click", '#izmenisalu', function () {
     if(localStorage.getItem('uloga') === "ADMINISTRATOR") {
         var kapacitet = $("#kapacitet").val();
         var oznaka = $("#oznaka").val();
-        // var sala1 = localStorage.getItem('sala');
+
 
         let urlParams = new URLSearchParams(window.location.search);
         let sala1 = urlParams.get('id');
 
-
-
+         if(sala1 === 'undefined' || sala1 === null){
+             alert("Niste odabrali salu!");
+             window.location.href = "svesale.html";
+         }
+else{
         var novasala = {
             kapacitet,
             oznaka
@@ -87,7 +90,7 @@ $(document).on("click", '#izmenisalu', function () {
             contentType: "application/json",
             data: JSON.stringify(novasala),
             success: function (res) {
-                alert("Usao u success!");
+                alert("Uspesno ste izmenili odabranu salu!");
                 $("input#kapacitet").val(res.kapacitet);
                 $("input#oznaka").val(res.oznaka);
 
@@ -96,11 +99,11 @@ $(document).on("click", '#izmenisalu', function () {
 
             },
             error: function () {
-                alert("Greška!");
+                alert("Greska!");
             }
         });
 
-    }
+    }}
 
 
     else{

@@ -1,4 +1,5 @@
 $(document).on("click", '#novitrening1', function(){
+    if(localStorage.getItem('uloga')=== "TRENER"){
 
 
     let naziv = $('#naziv').val();
@@ -39,5 +40,44 @@ $(document).on("click", '#novitrening1', function(){
         error: function () {
             alert("Greška!");
         }
-    });
+    });}
+    else {
+        if (localStorage.getItem("uloga") === "ADMINISTRATOR") {
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href = "administrator.html";
+        } else if (localStorage.getItem("uloga") === "CLANFITNESCENTRA") {
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href = "clanfitnescentra.html";
+        } else {
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href = "login.html";
+        }
+
+    }
+
+
+
+
+
+});
+
+
+
+$(document).ready(function () {
+    if (localStorage.getItem('uloga') === "TRENER") {
+        alert("ok");
+    } else {
+        if (localStorage.getItem("uloga") === "ADMINISTRATOR") {
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href = "administrator.html";
+        } else if (localStorage.getItem("uloga") === "CLANFITNESCENTRA") {
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href = "clanfitnescentra.html";
+        } else {
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href = "login.html";
+        }
+
+    }
+
 });

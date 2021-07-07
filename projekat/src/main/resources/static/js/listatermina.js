@@ -61,25 +61,23 @@
            }
        }
 
-if(localStorage.getItem('uloga')=== "CLANFITNESCENTRA") {
+
     $(document).on("click", '#otkazitermin', function (event) {
+
+        if(localStorage.getItem('uloga')=== "CLANFITNESCENTRA") {
 
         var uloga = localStorage.getItem("uloga");
         var termin = $("input[name=otkazitermin]:checked").val();
         var korisnik = localStorage.getItem("id");
 
 
-        if( termin === 'undefined'){
+        if(typeof termin === 'undefined' || termin === null){
             alert("Niste odabrali termin!");
-            window.location.href = "pretragatreninga.html";
+            window.location.reload(true);
 
         }
 
-        if( termin === null){
-            alert("Niste odabrali termin!");
-            window.location.href = "pretragatreninga.html";
-
-        }
+      else{
 
         let url = new URL('http://localhost:8011/api/korisnici/otkazitermin');
 
@@ -128,11 +126,10 @@ if(localStorage.getItem('uloga')=== "CLANFITNESCENTRA") {
                 alert("Niste uspeli da otkazete prijavu za odabrani termin!");
             }
 
-        });
+        });}}
 
 
-    });
-}
+
 else {
     if (localStorage.getItem("uloga") === "TRENER") {
         alert("Nemate pristup ovoj stranici!");
@@ -145,3 +142,4 @@ else {
         window.location.href = "login.html"
     }
 }
+    });

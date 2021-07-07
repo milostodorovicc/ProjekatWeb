@@ -2,16 +2,17 @@ $(document).ready(function (){
     if(localStorage.getItem('uloga') === "ADMINISTRATOR"){
     let urlParams = new URLSearchParams(window.location.search);
     let fitnescentar = urlParams.get('id');
-    // var fitnescentar2 = localStorage.getItem('fitnescentar2');
+
     let uloga = localStorage.getItem('uloga');
 
 
 
     let url = new URL('http://localhost:8011/api/fitnescentar/svesale');
-    if( fitnescentar === 'undefined'){
+    if( fitnescentar === 'undefined' || fitnescentar === null){
         alert("Niste odabrali fitnes centar");
         window.location.href = "svifitnescentri.html";
     }
+    else{
 
     url.searchParams.append('fitnescentar', fitnescentar);
     url.searchParams.append('uloga', uloga);
@@ -44,7 +45,7 @@ $(document).ready(function (){
             alert("Greska!");
         }
 
-    });}
+    });}}
 
     else{
         if(localStorage.getItem("uloga") === "TRENER"){
@@ -70,13 +71,14 @@ $(document).ready(function (){
 $(document).on("click", '#izmenisalu', function(){
    if(localStorage.getItem('uloga') === "ADMINISTRATOR") {
        var sala = $("input[name=sala]:checked").val();
-       // if(typeof sala === 'undefined'){
-       //     alert("Niste odabrali salu!!");
-       //     window.location.reload(true);
-       //
-       // }
+        if(typeof sala === 'undefined' || sala === null){
+            alert("Niste odabrali salu!!");
+            window.location.reload(true);
+
+        }
+        else{
        window.location.href = "izmenisalu.html?id=" + sala;
-   }
+   }}
 
    else{
        if(localStorage.getItem("uloga") === "TRENER"){
@@ -107,9 +109,9 @@ $(document).on("click", "#izbrisisalu", function () {
 
 
         console.log(sala1);
-        alert("posle console log");
 
-       if(typeof sala1 === 'undefined'){
+
+       if(typeof sala1 === 'undefined' || sala1 === null){
            alert("Niste odabrali salu");
            window.location.reload(true);
 
@@ -117,7 +119,7 @@ $(document).on("click", "#izbrisisalu", function () {
 
 
 
-
+else{
         var uloga = localStorage.getItem('uloga');
 
         let url = new URL('http://localhost:8011/api/fitnescentar/izbrisisalu');
@@ -143,7 +145,7 @@ $(document).on("click", "#izbrisisalu", function () {
             }
         });
 
-    }
+    }}
 
 
     else{

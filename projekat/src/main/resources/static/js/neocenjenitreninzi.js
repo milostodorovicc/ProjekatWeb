@@ -1,6 +1,7 @@
 
-if(localStorage.getItem('uloga') === "CLANFITNESCENTRA"){
+
     $(document).ready(function () {
+        if(localStorage.getItem('uloga') === "CLANFITNESCENTRA"){
     var uloga = localStorage.getItem("uloga");
 
     var korisnik = localStorage.getItem("id");
@@ -36,10 +37,10 @@ if(localStorage.getItem('uloga') === "CLANFITNESCENTRA"){
                 row += "<td>" + res[i].opis + "</td>";
                 row += "<td>" + res[i].tip + "</td>";
                 row += "<td>" + res[i].trajanje + "</td>";
-                row += "<td>" + "    <input id=  "+res[i].id+"   type=\"number\" name="+res[i].id+"    />" + "</td>";
+                row += "<td>" + "    <input id=  "+res[i].id+"   type=\"number\" name="+res[i].id+"   required = true />" + "</td>";
                 row += "<td>" + "    <input type=\"radio\" name=\"ocena\"  value=" + res[i].id + "  />" + "</td>";
-
-
+                 // let a = "res[i].id";
+                 // document.getElementById("a").required = true;
 
                 row += "</tr>";
                 $('#neocenjenitreninzi').append(row);
@@ -48,9 +49,9 @@ if(localStorage.getItem('uloga') === "CLANFITNESCENTRA"){
         error: function () {
             alert("Greška!");
         }
-    });
+    });}
 
-});}
+
 else{
     if(localStorage.getItem("uloga") === "TRENER"){
         alert("Nemate pristup ovoj stranici!");
@@ -66,10 +67,12 @@ else{
     }
 
 }
+    });
 
 
-if(localStorage.getItem('uloga') === "CLANFITNESCENTRA"){
+
 $(document).on("click", "#ocena", function(event){
+    if(localStorage.getItem('uloga') === "CLANFITNESCENTRA"){
 
      var uloga = localStorage.getItem('uloga');
     var termin = $("input[name=ocena]:checked").val();
@@ -78,15 +81,15 @@ $(document).on("click", "#ocena", function(event){
 
     var ocena = $(`input#${termin}`).val();
 
+    if(typeof termin === 'undefined' ||  ocena === null){
+        alert("Niste izabrali termin !");
+    }
 
 
 
 
-    console.log(ocena);
 
-
-
-
+else{
     let url = new URL('http://localhost:8011/api/treninzi/oceni');
 
     url.searchParams.append('uloga', uloga);
@@ -115,12 +118,12 @@ $(document).on("click", "#ocena", function(event){
 
         },
         error: function () {
-            alert("Greška!");
+            alert("Niste uspeli da ocenite termin!");
             window.location.reload(true);
         }
-    });
+    });}}
 
-});}
+
 
 
 else{
@@ -138,3 +141,4 @@ else{
     }
 
 }
+});

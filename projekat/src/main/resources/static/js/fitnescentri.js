@@ -39,9 +39,9 @@ $(document).ready(function (){
             alert("Nemate pristup ovoj stranici!");
             window.location.href = "trener.html";
         }
-        else if(localStorage.getItem("uloga") === "ADMINISTRATOR"){
+        else if(localStorage.getItem("uloga") === "CLANFITNESCENTRA"){
             alert("Nemate pristup ovoj stranici!");
-            window.location.href = "administrator.html";
+            window.location.href = "clanfitnescentra.html";
         }
         else{
             alert("Nemate pristup ovoj stranici!");
@@ -66,11 +66,11 @@ $(document).on("click", '#izmenifitnescentar', function(){
          if (typeof fitnescentar1 === 'undefined') {
              alert("Niste izabrali fitnes centar");
 
-         }
+         }else{
 
 
          window.location.href = "izmenifitnescentar.html?id=" + fitnescentar1;
-     }
+     }}
 
      else{
          if(localStorage.getItem("uloga") === "TRENER"){
@@ -101,6 +101,7 @@ $(document).on("click", '#izbrisifitnescentar', function(){
             alert("Niste izabrali fitnes centar!");
             window.location.reload(true);
         }
+        else{
 
         let url = new URL('http://localhost:8011/api/fitnescentar/izbrisi');
 
@@ -126,7 +127,7 @@ $(document).on("click", '#izbrisifitnescentar', function(){
             }
 
         });
-    }
+    }}
 
     else{
         if(localStorage.getItem("uloga") === "TRENER"){
@@ -159,10 +160,11 @@ $(document).on("click", '#dodajnovusalu', function(){
     var fitnescentar1 = $("input[name = fitnescentar]:checked").val();
     if( typeof fitnescentar1 === 'undefined'){
         alert("Niste odabrali fitnes centar!");
-        throw new Error("Niste odabrali fitnescentar!");
-    }
+        window.location.reload(true);
+
+    }else{
          window.location.href = "novasala.html?id="+fitnescentar1;
-   }
+   }}
      else{
          if(localStorage.getItem("uloga") === "TRENER"){
              alert("Nemate pristup ovoj stranici!");

@@ -16,7 +16,7 @@ if(localStorage.getItem('uloga')==="CLANFITNESCENTRA") {
             dataType: "json",
 
             success: function (res) {
-                alert("usao u success");
+
 
 
                 $("input:password").val(res.lozinka);
@@ -69,6 +69,11 @@ $(document).on("submit", "#profilkorisnika", function (event) {
         var datumrodjenja = $("#datumrodjenja").val();
         var uloga = localStorage.getItem('uloga');
 
+    let url = new URL('http://localhost:8011/api/korisnici/izmenjenikorisnik');
+
+    url.searchParams.append('uloga', uloga);
+
+    url.searchParams.append('korisnik', localStorage.getItem("id"));
 
 
         var izmenjeniclan = {
@@ -86,18 +91,18 @@ $(document).on("submit", "#profilkorisnika", function (event) {
 
         $.ajax({
             type: "POST",
-            url: "http://localhost:8011/api/korisnici/izmenjenikorisnik",
+            url: url,
             dataType: "json",
             contentType: "application/json",
             data: JSON.stringify(izmenjeniclan),
             success: function (res) {
-                console.log(res);
-                alert("Usao u success");
-                console.log(res);
+
+                alert("Uspesno ste izmenili podatke!");
+
 
             },
             error: function () {
-                alert("Greška!");
+                alert("Niste uspeli da izmenite podatke!");
             }
         });});}
 else{
