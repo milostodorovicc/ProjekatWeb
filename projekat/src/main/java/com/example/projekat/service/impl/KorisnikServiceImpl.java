@@ -1016,4 +1016,143 @@ public class KorisnikServiceImpl implements KorisnikService {
 
     }
 
+
+
+
+    @Override
+    public Set<Termin> terminitrenera(String uloga, Long korisnik) throws Exception{
+        if(!uloga.equals("TRENER")){
+            throw new Exception("Nemate pristup ovim podacima!");
+        }
+
+        Trener trener = this.trenerRepository.getOne(korisnik);
+
+        Set<Termin> termini3 = trener.getTermin();
+
+        Set<Termin> termini4 = new HashSet<>();
+
+        for(Termin termin: termini3){
+            if(termin.getDatum().isAfter(LocalDateTime.now())){
+                termini4.add(termin);
+
+            }
+        }
+
+
+        return termini4;
+
+    }
+
+
+    @Override
+    public Termin nadjitermin(String uloga, String termin) throws Exception{
+        if(!uloga.equals("TRENER")){
+            throw new Exception("Nemate pristup ovim podacima!");
+        }
+
+
+        if(termin.equals("undefined")){
+            throw new Exception("Niste izabrali termin!");
+        }
+
+        if(termin.equals("null")){
+            throw new Exception("Niste izabrali termin!");
+        }
+
+        Long t = Long.parseLong(termin);
+        Termin termin2 = this.terminRepository.getOne(t);
+
+        return termin2;
+
+
+
+
+    }
+
+
+
+
+    @Override
+    public Termin izmenitermin(Termin termin1, String uloga, String termin, String sala) throws Exception{
+        if(!uloga.equals("TRENER")){
+            throw new Exception("Nemate pristup ovim podacima!");
+        }
+
+        if(termin.equals("undefined")){
+            throw new Exception("Niste izabrali termin!");
+        }
+
+        if(termin.equals("null")){
+            throw new Exception("Niste izabrali termin!");
+        }
+        if(sala.equals("undefined")){
+            throw new Exception("Niste izabrali salu!");
+        }
+
+        if(sala.equals("null")){
+            throw new Exception("Niste izabrali salu!");
+        }
+//        HttpStatus badrequest = HttpStatus.BAD_REQUEST;
+
+        Long t = Long.parseLong(termin);
+        Long s = Long.parseLong(sala);
+        Sala salanova = this.salaRepository.getOne(s);
+        Termin promenitermin = this.terminRepository.getOne(t);
+        if(promenitermin.getBrojprijavljenihclanova()!=0){
+            throw new Exception("Vec ima prijavljenih clanova za ovaj termin!");
+        }
+
+        promenitermin.setDatum(termin1.getDatum());
+        promenitermin.setCena(termin1.getCena());
+        promenitermin.setSala(salanova);
+
+        Termin promenjenitermin = this.terminRepository.save(promenitermin);
+
+        return promenjenitermin;
+
+
+
+
+
+
+    }
+
+
+
+    @Override
+    public List<Trener> svitreneri(String uloga) throws Exception{
+        if(!uloga.equals("ADMINISTRATOR")){
+            throw new Exception("Nemate pristup ovim podacima!");
+        }
+
+        List<Trener> aktivnitreneri = this.trenerRepository.findAll();
+        List<Trener> aktivnitreneri1 = new ArrayList<>();
+        for(Trener trener : aktivnitreneri){
+            if(trener.isAktivan()){
+                aktivnitreneri1.add(trener);
+            }
+
+        }
+
+          return aktivnitreneri1;
+
+    }
+
+
+
+    @Override
+    public Trener uklonitrenera(String uloga, String trener) throws Exception{
+        if(!uloga.equals("ADMINISTRATOR")){
+            throw new Exception("Nemate pristup ovim podacima!");
+        }
+        Long t = Long.parseLong(trener);
+
+        Trener uklonjentrener1 = this.trenerRepository.getOne(t);
+        uklonjentrener1.setAktivan(false);
+        Trener uklonjentrener2 = this.trenerRepository.save(uklonjentrener1);
+        return uklonjentrener2;
+
+    }
+
+
 }

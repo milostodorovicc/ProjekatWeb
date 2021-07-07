@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Izmeni termin</title>
+    <script src="js/jquery.min.js"></script>
+
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/izmenitermin.js"></script>
+</head>
+<body>
+<h1>Izmeni termin</h1>
+<form id = "izmenitermin">
+    <label for="datumivreme">Datum i vreme</label>
+    <input type="datetime-local"   id="datumivreme" name="datumivreme" required><br><br>
+    <label for="cena">Cena</label>
+    <input type="number" id="cena" name="cena" required><br><br>
+
+
+
+</form>
+
+<table id ="izmenisalu">
+    <tr>
+        <th>Oznaka</th>
+        <th>Kapacitet</th>
+        <th>Izaberi salu</th>
+
+    </tr>
+
+</table>
+
+<button id ="promenatermina" type = button>Izmeni termin</button>
+<button id ="svesale" type = button>Prikazi sve sale</button>
+
+
+
+
+
+</body>
+</html>

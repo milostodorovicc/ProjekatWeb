@@ -358,3 +358,60 @@ $(document).on("click", "#registracijatrenera", function(event){
 
 
 });
+
+
+
+
+$(document).on("click", '#svitermini1', function(){
+    if(localStorage.getItem("uloga") === "TRENER"){
+        // let trener = localStorage.getItem('id');
+
+        window.location.href ="terminitrenera.html";
+        }
+    else{
+        if(localStorage.getItem("uloga") === "CLANFITNESCENTRA"){
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href = "clanfitnescentra.html";
+        }
+        else if(localStorage.getItem("uloga") === "ADMINISTRATOR"){
+            alert("Nemate pristup ovoj stranici11!");
+            window.location.href = "administrator.html";
+        }
+        else{
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href ="login.html";
+        }
+
+    }
+
+});
+
+
+$(document).on("click", '#uklonitrenera', function(){
+    if(localStorage.getItem("uloga") === "ADMINISTRATOR"){
+
+
+        window.location.href ="uklonitrenera.html";
+    }
+    else{
+        if(localStorage.getItem("uloga") === "CLANFITNESCENTRA"){
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href = "clanfitnescentra.html";
+        }
+        else if(localStorage.getItem("uloga") === "CLANFITNESCENTRA"){
+            alert("Nemate pristup ovoj stranici11!");
+            window.location.href = "clanfitnescentra.html";
+        }
+        else{
+            alert("Nemate pristup ovoj stranici!");
+            window.location.href ="login.html";
+        }
+
+    }
+
+});
+
+
+
+
+

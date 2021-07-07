@@ -89,4 +89,15 @@ public interface KorisnikService {
     Trening nadjitrening(String uloga, String trening) throws Exception;
 
     Trening izmenitrening(Trening trening1, String uloga, String trening) throws Exception;
+
+    Set<Termin> terminitrenera(String uloga, Long korisnik) throws Exception;
+
+    Termin nadjitermin(String uloga, String termin) throws Exception;
+
+    Termin izmenitermin(Termin termin1, String uloga, String termin, String sala) throws Exception;
+
+    List<Trener> svitreneri(String uloga) throws Exception;
+
+    Trener uklonitrenera(String uloga, String trener) throws Exception;
+
 }
