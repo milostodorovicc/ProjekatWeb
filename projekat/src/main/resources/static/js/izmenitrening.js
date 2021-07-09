@@ -77,27 +77,33 @@ $(document).on("click", '#izmenitrening', function(){
         let urlParams = new URLSearchParams(window.location.search);
         let trening = urlParams.get('id');
 
-
-
-        if( trening === 'undefined'){
-            alert("Niste odabrali trening!");
-            window.location.href = "svitreninzi.html";
-
-        }
-
-        if( trening === null){
-            alert("Niste odabrali trening!");
-            window.location.href = "svitreninzi.html";
-
-        }
-
-
-
-
         let naziv = $('#naziv').val();
         let opis = $('#opis').val();
         let tip = $('#tip').val();
         let trajanje = $('#trajanje').val();
+
+
+
+
+        if(!naziv || !opis || !tip || !trajanje){
+            alert("Morate popuniti sve podatke!");
+            return;
+
+        }
+
+
+
+        if( trening === 'undefined' || trening === null){
+            alert("Niste odabrali trening!");
+            window.location.href = "svitreninzi.html";
+
+        }
+
+
+
+
+
+
 
 
         var trening1 = {

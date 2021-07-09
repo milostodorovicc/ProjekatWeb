@@ -16,7 +16,7 @@ $(document).ready(function (event) {
 
 else{
     var uloga = localStorage.getItem("uloga");
-    // var termin = localStorage.getItem('termin');
+
 
     let url = new URL('http://localhost:8011/api/treninzi/odabir');
 
@@ -111,7 +111,7 @@ else{
    else{
 
         var uloga = localStorage.getItem("uloga");
-        // var termin = localStorage.getItem('termin');
+
         var korisnik = localStorage.getItem("id");
 
         let url = new URL('http://localhost:8011/api/korisnici/prijavljeni');
@@ -132,9 +132,11 @@ else{
             success: function (res) {
 
                 alert("Uspesno ste se prijavili za odabrani termin!");
+
+
             },
             error: function () {
-                // window.location.reload()
+
                 alert("Greska!");
             }
 

@@ -16,7 +16,7 @@ if(localStorage.getItem('uloga') === "CLANFITNESCENTRA"){
         url: url ,
         dataType: "json",
         success: function (res) {
-            alert("Usao u success");
+
 
 
 

@@ -30,9 +30,9 @@ INSERT INTO TERMIN(datum, cena, brojprijavljenihclanova, trening_id, sala_id, tr
 INSERT INTO TERMIN(datum, cena, brojprijavljenihclanova, trening_id, sala_id, trener_id, fitnesscentar_id, aktivan) VALUES('2021-06-26T22:40:00', '500', '5', 1, 3,2,1, TRUE );
 INSERT INTO TERMIN(datum, cena, brojprijavljenihclanova, trening_id, sala_id, trener_id, fitnesscentar_id, aktivan) VALUES('2021-07-24T11:30:00', '350', '2', 2, 5,3,2, TRUE );
 INSERT INTO TERMIN(datum, cena, brojprijavljenihclanova, trening_id, sala_id, trener_id, fitnesscentar_id, aktivan) VALUES('2021-07-26T11:40:00', '350', '0', 3, 5,4,2, TRUE );
-INSERT INTO TERMIN(datum, cena, brojprijavljenihclanova, trening_id, sala_id, trener_id, fitnesscentar_id, aktivan) VALUES('2021-06-12T11:30:00', '350', '4', 2, 5,3,1, TRUE );
+INSERT INTO TERMIN(datum, cena, brojprijavljenihclanova, trening_id, sala_id, trener_id, fitnesscentar_id, aktivan) VALUES('2021-06-12T11:30:00', '350', '4', 2, 5,3,2, TRUE );
 INSERT INTO TERMIN(datum, cena, brojprijavljenihclanova, trening_id, sala_id, trener_id, fitnesscentar_id, aktivan) VALUES('2021-06-21T11:40:00', '350', '5', 2, 5,4,2, TRUE );
-INSERT INTO TERMIN(datum, cena, brojprijavljenihclanova, trening_id, sala_id, trener_id, fitnesscentar_id, aktivan) VALUES('2021-08-12T11:30:00', '400', '0', 3, 5,3,1, TRUE );
+INSERT INTO TERMIN(datum, cena, brojprijavljenihclanova, trening_id, sala_id, trener_id, fitnesscentar_id, aktivan) VALUES('2021-08-12T11:30:00', '400', '0', 3, 5,3,2, TRUE );
 INSERT INTO TERMIN(datum, cena, brojprijavljenihclanova, trening_id, sala_id, trener_id, fitnesscentar_id, aktivan) VALUES('2021-09-21T11:40:00', '450', '0', 3, 5,4,2, TRUE );
 
 

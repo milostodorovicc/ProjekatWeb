@@ -64,6 +64,11 @@ $(document).on("click", '#izmenisalu', function () {
         let urlParams = new URLSearchParams(window.location.search);
         let sala1 = urlParams.get('id');
 
+        if(!kapacitet || !oznaka){
+            alert("Morate uneti sve podatke!");
+            return;
+        }
+
          if(sala1 === 'undefined' || sala1 === null){
              alert("Niste odabrali salu!");
              window.location.href = "svesale.html";

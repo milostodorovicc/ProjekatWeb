@@ -80,9 +80,17 @@ $(document).on("click", '#novitermin2', function(){
 
         var korisnik = localStorage.getItem('id');
 
+        let datum = $('#datumivreme').val();
+        let cena = $('#cena').val();
+
+        if(!datum || !cena){
+            alert("Morate popuniti sve podatke!");
+            return;
+        }
 
 
-        if( typeof sala === 'undefined' || sala === null){
+
+        if( typeof sala === 'undefined' || sala === null ){
             alert("Niste odabrali salu !");
             window.location.reload(true);
 
@@ -94,8 +102,7 @@ $(document).on("click", '#novitermin2', function(){
 
 else{
 
-        let datum = $('#datumivreme').val();
-        let cena = $('#cena').val();
+
 
 
         var termin = {
@@ -119,6 +126,7 @@ else{
             data: JSON.stringify(termin),
             success: function (res) {
                 alert("Uspesno ste napravili novi termin!");
+                window.location.reload(true);
 
             },
             error: function () {

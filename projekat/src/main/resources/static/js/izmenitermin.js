@@ -137,16 +137,24 @@ $(document).on("click", '#promenatermina', function(){
 
         let sala = $("input[name=sala]:checked").val();
 
+        let datum = $('#datumivreme').val();
+        let cena = $('#cena').val();
+
+        if(!datum || !cena){
+            alert("Morate popuniti sve podatke!");
+            return;
+        }
 
         if(typeof sala === 'undefined' || sala === null) {
             alert('Niste odabrali salu!');
             window.location.reload(true);
         }
 
+
+
         else{
 
-        let datum = $('#datumivreme').val();
-        let cena = $('#cena').val();
+
 
         let urlParams = new URLSearchParams(window.location.search);
         let termin = urlParams.get('id');

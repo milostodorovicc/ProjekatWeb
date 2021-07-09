@@ -96,8 +96,23 @@ $(document).on("click", '#fitnescentar1', function () {
             email
         }
 
+        if(!naziv || !adresa || !brojtelefonacentrale || !email){
+            alert("Morate popuniti sve podatke!");
+            return;
+        }
 
 
+
+
+        if(fitnescentar === 'undefined' || fitnescentar === null){
+            alert("Niste odabrali fitnes centar");
+            window.location.href = "svifitnescentri.html";
+        }
+
+
+
+
+      else{
 
         var uloga = localStorage.getItem('uloga');
 
@@ -120,7 +135,7 @@ $(document).on("click", '#fitnescentar1', function () {
             error: function () {
                 alert("Greška!");
             }
-        });
+        });}
 
     }
 

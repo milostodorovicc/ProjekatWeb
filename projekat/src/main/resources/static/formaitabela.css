@@ -1,0 +1,203 @@
+table{
+    width: 70%;
+    margin: 0 auto;
+    font-family: Georgia, serif;
+    position:absolute;
+    top:45%;
+    left:15%;
+}
+table tr{
+    line-height: 3em;
+}
+
+
+body{
+
+    background:url('Web-Page-Background-Color.jpg') no-repeat;
+    background-size:cover;
+
+}
+
+/*.akt-tabela h1{*/
+/*    left:40%;*/
+/*    position:absolute;*/
+
+/*}*/
+
+
+
+thead{
+    background:olivedrab
+}
+
+
+
+tbody>tr:nth-child(2n){
+    background:silver;
+}
+
+tbody>tr:nth-child(2n+1){
+    background: white;
+}
+
+
+
+.novitermin{
+    width:350px;
+   position:relative;
+    left:540px;
+}
+
+.novitermin h1{
+    font-size:40px;
+    text-align:center;
+    text-transform:uppercase;
+    margin:40px 0;
+}
+
+
+.novitermin label{
+
+    font-size:20px;
+    margin:15px 0;
+
+}
+
+
+
+
+
+.novitermin input{
+
+    font-size:15px;
+    width:100%;
+    padding:15px 10px;
+    border: 0;
+    outline: none;
+    border-radius:5px;
+
+}
+
+
+
+.novitermin button{
+    font-size: 18px;
+    font-weight: bold;
+    margin:20px 0;
+    padding: 10px 15px;
+    width:50%;
+    border-radius:5px;
+    border:0;
+}
+
+
+
+#novitermin2 {
+    position:relative;
+    bottom:50px;
+    left:1000px;
+    width:100px;
+    height:40px;
+    background-color:silver;
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+.izmenitermin{
+    width:350px;
+    position:relative;
+    left:540px;
+}
+
+.izmenitermin h1{
+    font-size:40px;
+    text-align:center;
+    text-transform:uppercase;
+    margin:40px 0;
+}
+
+
+.izmenitermin label{
+
+    font-size:20px;
+    margin:15px 0;
+
+}
+
+
+
+
+
+.izmenitermin input{
+
+    font-size:15px;
+    width:100%;
+    padding:15px 10px;
+    border: 0;
+    outline: none;
+    border-radius:5px;
+
+}
+
+
+
+.izmenitermin button{
+    font-size: 18px;
+    font-weight: bold;
+    margin:20px 0;
+    padding: 10px 15px;
+    width:50%;
+    border-radius:5px;
+    border:0;
+}
+
+
+
+
+
+
+#svesale{
+    position:relative;
+    width:100px;
+    height:50px;
+    left:120px;
+    bottom:50px;
+    backgorund-color:blue;
+
+
+
+}
+
+
+
+#promenatermina{
+    position:relative;
+    left:1190px;
+    bottom:50px;
+    width:100px;
+    height:50px;
+    backgorund-color:silver;
+
+
+
+}
+
+
+
+
+
+
+
+

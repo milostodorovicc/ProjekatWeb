@@ -1,4 +1,5 @@
-$(document).on("click", '#novitrening1', function(){
+$(document).on("click", "#novitrening1", function(){
+
     if(localStorage.getItem('uloga')=== "TRENER"){
 
 
@@ -15,12 +16,15 @@ $(document).on("click", '#novitrening1', function(){
     }
 
 
-    if(isNaN(trajanje)) {
-        alert("Za cenu morate uneti broj.");
-        $('#trajanje').val('');
-        $('#trajanje').focus();
+
+
+
+
+        if(!naziv || !tip || !opis || !trajanje){
+        alert("Niste uneli neki od podataka!");
         return;
     }
+    else{
 
     let url = new URL('http://localhost:8011/api/treninzi/novitrening');
 
@@ -40,7 +44,7 @@ $(document).on("click", '#novitrening1', function(){
         error: function () {
             alert("Greška!");
         }
-    });}
+    });}}
     else {
         if (localStorage.getItem("uloga") === "ADMINISTRATOR") {
             alert("Nemate pristup ovoj stranici!");

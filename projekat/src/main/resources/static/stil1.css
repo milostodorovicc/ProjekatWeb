@@ -60,4 +60,428 @@
                         border-radius:5px;
                         border:0;
                         }
-                        
+
+
+
+
+
+
+
+
+
+.profilkorisnika{
+    width:350px;
+    top:50%;
+    left:50%;
+    transform:translate(-40%,-40%);
+    position:absolute;
+}
+
+.profilkorisnika h1{
+    font-size:40px;
+    text-align:center;
+    text-transform:uppercase;
+    margin:40px 0;
+}
+
+
+.profilkorisnika label{
+
+    font-size:20px;
+    margin:15px 0;
+
+}
+
+
+
+
+
+.profilkorisnika input{
+
+    font-size:15px;
+    width:100%;
+    padding:15px 10px;
+    border: 0;
+    outline: none;
+    border-radius:5px;
+
+}
+
+
+
+.profilkorisnika button{
+    font-size: 18px;
+    font-weight: bold;
+    margin:20px 0;
+    padding: 10px 15px;
+    width:50%;
+    border-radius:5px;
+    border:0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.novitrening{
+    width:350px;
+    top:50%;
+    left:50%;
+    transform:translate(-40%,-40%);
+    position:absolute;
+}
+
+.novitrening h1{
+    font-size:40px;
+    text-align:center;
+    text-transform:uppercase;
+    margin:40px 0;
+}
+
+
+.novitrening label{
+
+    font-size:20px;
+    margin:15px 0;
+
+}
+
+
+
+
+
+.novitrening input{
+
+    font-size:15px;
+    width:100%;
+    padding:15px 10px;
+    border: 0;
+    outline: none;
+    border-radius:5px;
+
+}
+
+
+
+.novitrening button{
+    font-size: 18px;
+    font-weight: bold;
+    margin:20px 0;
+    padding: 10px 15px;
+    width:50%;
+    border-radius:5px;
+    border:0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.izmenitrening{
+    width:350px;
+    top:50%;
+    left:50%;
+    transform:translate(-40%,-40%);
+    position:absolute;
+}
+
+.izmenitrening h1{
+    font-size:40px;
+    text-align:center;
+    text-transform:uppercase;
+    margin:40px 0;
+}
+
+
+.izmenitrening label{
+
+    font-size:20px;
+    margin:15px 0;
+
+}
+
+
+
+
+
+.izmenitrening input{
+
+    font-size:15px;
+    width:100%;
+    padding:15px 10px;
+    border: 0;
+    outline: none;
+    border-radius:5px;
+
+}
+
+
+
+.izmenitrening button{
+    font-size: 18px;
+    font-weight: bold;
+    margin:20px 0;
+    padding: 10px 15px;
+    width:50%;
+    border-radius:5px;
+    border:0;
+}
+
+
+
+
+
+
+
+
+
+.izmenifitnescentar{
+    width:350px;
+    top:50%;
+    left:50%;
+    transform:translate(-40%,-40%);
+    position:absolute;
+}
+
+.izmenifitnescentar h1{
+    font-size:40px;
+    text-align:center;
+    text-transform:uppercase;
+    margin:40px 0;
+}
+
+
+.izmenifitnescentar label{
+
+    font-size:20px;
+    margin:15px 0;
+
+}
+
+
+
+
+
+.izmenifitnescentar input{
+
+    font-size:15px;
+    width:100%;
+    padding:15px 10px;
+    border: 0;
+    outline: none;
+    border-radius:5px;
+
+}
+
+
+
+.izmenifitnescentar button{
+    font-size: 18px;
+    font-weight: bold;
+    margin:20px 0;
+    padding: 10px 15px;
+    width:50%;
+    border-radius:5px;
+    border:0;
+}
+
+
+
+
+
+
+
+
+
+.novasala{
+    width:350px;
+    top:50%;
+    left:50%;
+    transform:translate(-40%,-40%);
+    position:absolute;
+}
+
+.novasala h1{
+    font-size:40px;
+    text-align:center;
+    text-transform:uppercase;
+    margin:40px 0;
+}
+
+
+.novasala label{
+
+    font-size:20px;
+    margin:15px 0;
+
+}
+
+
+
+
+
+.novasala input{
+
+    font-size:15px;
+    width:100%;
+    padding:15px 10px;
+    border: 0;
+    outline: none;
+    border-radius:5px;
+
+}
+
+
+
+.novasala button{
+    font-size: 18px;
+    font-weight: bold;
+    margin:20px 0;
+    padding: 10px 15px;
+    width:50%;
+    border-radius:5px;
+    border:0;
+}
+
+
+
+
+
+
+.izmenasale{
+    width:350px;
+    top:50%;
+    left:50%;
+    transform:translate(-40%,-40%);
+    position:absolute;
+}
+
+.izmenasale h1{
+    font-size:40px;
+    text-align:center;
+    text-transform:uppercase;
+    margin:40px 0;
+}
+
+
+.izmenasale label{
+
+    font-size:20px;
+    margin:15px 0;
+
+}
+
+
+
+
+
+.izmenasale input{
+
+    font-size:15px;
+    width:100%;
+    padding:15px 10px;
+    border: 0;
+    outline: none;
+    border-radius:5px;
+
+}
+
+
+
+.izmenasale button{
+    font-size: 18px;
+    font-weight: bold;
+    margin:20px 0;
+    padding: 10px 15px;
+    width:50%;
+    border-radius:5px;
+    border:0;
+}
+
+
+
+
+
+
+
+
+
+.registracijatrenera{
+    width:350px;
+    top:50%;
+    left:50%;
+    transform:translate(-40%,-40%);
+    position:absolute;
+}
+
+.registracijatrenera h1{
+    font-size:40px;
+    text-align:center;
+    text-transform:uppercase;
+    margin:40px 0;
+}
+
+
+.registracijatrenera label{
+
+    font-size:20px;
+    margin:15px 0;
+
+}
+
+
+
+
+
+.registracijatrenera input{
+
+    font-size:15px;
+    width:100%;
+    padding:15px 10px;
+    border: 0;
+    outline: none;
+    border-radius:5px;
+
+}
+
+
+
+.registracijatrenera button{
+    font-size: 18px;
+    font-weight: bold;
+    margin:20px 0;
+    padding: 10px 15px;
+    width:50%;
+    border-radius:5px;
+    border:0;
+}

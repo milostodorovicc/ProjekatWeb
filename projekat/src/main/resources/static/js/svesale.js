@@ -36,7 +36,7 @@ $(document).ready(function (){
                     row += "<td>" + "    <input id=" + i + " type=\"radio\" name=\"sala\"  value=" + res[i].id + "  />" + "</td>";
                 }
                 row += "</tr>";
-                $('#svesale').append(row);
+                $('#svesale1').append(row);
             }
         },
         error: function () {

@@ -20,7 +20,7 @@
                 url: url,
                 dataType: "json",
                 success: function (res) {
-                    alert("Usao u success");
+
 
 
                     console.log(res);

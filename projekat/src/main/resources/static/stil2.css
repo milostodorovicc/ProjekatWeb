@@ -69,3 +69,246 @@ tbody>tr:nth-child(2n+1){
 
 
 }
+
+#prijavazatermin1{
+	font-family: Georgia, serif;
+	position:relative;
+	top:400px;
+	left:670px;
+	width:100px;
+	height:75px;
+	background-color:olivedrab;
+
+
+
+}
+
+
+#naslovprijave{
+	position:relative;
+	left:560px;
+}
+
+
+
+
+
+#otkazitermin{
+	font-family: Georgia, serif;
+	position:relative;
+	top:400px;
+	left:1350px;
+	width:100px;
+	height:75px;
+	background-color:silver;
+
+
+
+}
+
+#naslovprijavljenitermini{
+	position:relative;
+	left:540px;
+}
+
+
+#odradjenitreninzi{
+	position:relative;
+	left:590px;
+}
+
+
+#odradjeniocenjeni{
+	position:relative;
+	left:590px;
+}
+
+#ocena{
+	position:relative;
+	left:690px;
+	width:100px;
+	height:50px;
+	background-color:silver;
+}
+
+
+
+#napravinovitermin{
+	position:relative;
+	left:650px;
+	top:100px;
+	width:100px;
+	height:50px;
+	background-color:silver;
+}
+
+
+
+#izmenitrening{
+	position:relative;
+	left:690px;
+	top:110px;
+	width:100px;
+	height:50px;
+	background-color:silver;
+}
+
+
+
+
+#svitermini {
+	position:relative;
+	left:640px;
+
+}
+
+
+
+
+
+
+
+
+
+#izmenitermin {
+	position:relative;
+	left:1200px;
+	top:80px;
+	width:100px;
+	height:50px;
+	backgorund-color:silver;
+
+}
+
+
+#izmenifitnescentar{
+	position:relative;
+	left:230px;
+	top:70px;
+	width:100px;
+	height:50px;
+	background-color:silver;
+
+
+
+
+}
+
+
+
+#izbrisifitnescentar{
+	position:relative;
+	left:450px;
+	top:70px;
+	width:100px;
+	height:50px;
+	background-color:silver;
+
+
+
+
+}
+
+
+
+
+
+
+#dodajnovusalu{
+	position:relative;
+	left:620px;
+	top:70px;
+	width:120px;
+	height:50px;
+	background-color:silver;
+
+
+
+
+}
+
+
+
+
+
+
+#svesale{
+	position:relative;
+	left:840px;
+	top:70px;
+	width:120px;
+	height:50px;
+	background-color:silver;
+
+
+
+
+}
+
+
+#svesalenaslov{
+	position:relative;
+	left:400px;
+
+
+
+
+
+}
+
+
+
+
+
+#izmenisalu{
+	position:relative;
+	left:225px;
+	top:82px;
+	width:100px;
+	height:50px;
+
+
+
+
+
+}
+
+
+
+#izbrisisalu{
+	position:relative;
+	left:1094px;
+	top:82px;
+	width:100px;
+	height:50px;
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+#naslovuklonitrenera{
+	position:relative;
+	left:625px;
+
+}
+
+
+
+
+#uklonitrenera1{
+	position:relative;
+	left:670px;
+	top:60px;
+	width:120px;
+	height:50px;
+
+}

@@ -34,6 +34,13 @@ $(document).on("submit", "#form12", function (event) {
 
         }
 
+        if(isNaN(telefon)){
+            alert("Niste ispunili(pravilno) telefon!");
+            return;
+        }
+
+else{
+
 
         let url = new URL('http://localhost:8011/api/korisnici/aktivantrener' );
         url.searchParams.append('fitnesscentar', fitnesscentar);
@@ -55,7 +62,7 @@ $(document).on("submit", "#form12", function (event) {
                 alert("Greška!");
             }
 
-        });}
+        });}}
 
 
 

@@ -8,7 +8,10 @@ $(document).on("click", '#novasala1', function () {
 
     console.log(fitnescentar1)
 
-
+     if(!kapacitet || !oznaka){
+         alert("Morate uneti sve podatke!");
+         return;
+     }
 
     if(fitnescentar1 === 'undefined' || fitnescentar1 ===null ){
         alert("Niste odabrali fitnes centar!");

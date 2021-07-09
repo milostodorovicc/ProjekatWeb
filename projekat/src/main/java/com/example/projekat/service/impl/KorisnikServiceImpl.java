@@ -1,4 +1,5 @@
 package com.example.projekat.service.impl;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import com.example.projekat.entity.*;
@@ -84,7 +85,7 @@ public class KorisnikServiceImpl implements KorisnikService {
 
         Fitnesscentar fitnesscentar1 = this.fitnescentarRepository.findByNaziv(fitnesscentar);
         trener.setFitnesscentar(fitnesscentar1);
-//        trener.setN(1);
+       trener.setN(0);
         Trener novitrener = this.trenerRepository.save(trener);
         return novitrener;
     }
@@ -135,7 +136,10 @@ public class KorisnikServiceImpl implements KorisnikService {
     @Override
     public List<Termin> findTermini1(String naziv, String opis, String tip, LocalDateTime vremeTreninga, Double cena) {
 
-        List<Termin> termini = this.terminRepository.findByTreningNazivContainsAndTreningOpisContainsAndTreningTipContainsAndDatumGreaterThanEqualAndCenaLessThanEqual(naziv, opis, tip, vremeTreninga, cena);
+
+        LocalDateTime sada = LocalDateTime.now();
+
+        List<Termin> termini = this.terminRepository.findByTreningNazivContainsAndTreningOpisContainsAndTreningTipContainsAndDatumGreaterThanEqualAndCenaLessThanEqual(naziv, opis, tip, sada, cena);
         return termini;
     }
 
@@ -512,9 +516,11 @@ public class KorisnikServiceImpl implements KorisnikService {
             throw new Exception("Niste izabrali termin!");
         }
 
-//        if(ocena == null){
-//            throw new Exception("Niste uneli ocenu!");
-//        }
+
+
+        if(ocena>10 || ocena<1){
+            throw new Exception("Mozete oceniti trening vrednostima od 1 do 10");
+        }
 
 
 
@@ -528,7 +534,7 @@ public class KorisnikServiceImpl implements KorisnikService {
         }
 
         double prosecna = termin1.getTrener().getProsecnaocena();
-//        if(ocena!=null){
+
             double n = termin1.getTrener().getN() + 1;
             termin1.getTrener().setN(n);
             double prosecna1;
@@ -536,7 +542,7 @@ public class KorisnikServiceImpl implements KorisnikService {
             Trener trener = termin1.getTrener();
             trener.setProsecnaocena(prosecna1);
             this.trenerRepository.save(trener);
-//        }
+
 
 
 
@@ -795,8 +801,23 @@ public class KorisnikServiceImpl implements KorisnikService {
         if(sala1.equals("null")){
             throw new Exception("Niste izabrali salu!");
         }
+
+
         Long l = Long.parseLong(sala1);
         Sala sala3 = this.salaRepository.getOne(l);
+
+         Set<Termin> termn = sala3.getTermini();
+
+         for(Termin termin: termn){
+             if(termin.getDatum().isAfter(LocalDateTime.now())) {
+                 if (termin.getBrojprijavljenihclanova() == 0) {
+                    throw new Exception("Ima prijavljenih clanova za termine u ovoj sali!");
+                 }
+             }
+         }
+
+
+
        sala3.setKapacitet(sala.getKapacitet());
        sala3.setOznaka(sala.getOznaka());
 
@@ -914,6 +935,20 @@ public class KorisnikServiceImpl implements KorisnikService {
         Long t = Long.parseLong(trening);
 
         Sala sala2 = this.salaRepository.getOne(s);
+
+       Set<Termin> trmn = sala2.getTermini();
+       for(Termin terminn1: trmn){
+           if(terminn1.getDatum().equals( termin.getDatum())){
+               throw new Exception("Vec postoji termin u izabrano vreme u izabranoj sali!");
+           }
+       }
+
+
+         if(termin.getDatum().isBefore(LocalDateTime.now())){
+             throw new Exception("Datum termina mora biti veci od danasnjeg datuma!");
+         }
+
+
         Trening trening2 = this.treningRepository.getOne(t);
         Trener trener2 = this.trenerRepository.getOne(korisnik);
         Fitnesscentar fitcentar2 = trener2.getFitnesscentar();
@@ -1016,9 +1051,10 @@ public class KorisnikServiceImpl implements KorisnikService {
 
 
        for(Termin termin : termini){
+           if(termin.getDatum().isAfter(LocalDateTime.now())){
            if(termin.getBrojprijavljenihclanova()!= 0){
                throw new Exception("Vec ima prijavljenih clanova, nije moguce menjati trening!");
-           }
+           }}
        }
 
 
@@ -1117,11 +1153,37 @@ public class KorisnikServiceImpl implements KorisnikService {
         if(sala.equals("null")){
             throw new Exception("Niste izabrali salu!");
         }
-//        HttpStatus badrequest = HttpStatus.BAD_REQUEST;
+
+
+
+
+
+
+
+
+
+
 
         Long t = Long.parseLong(termin);
         Long s = Long.parseLong(sala);
         Sala salanova = this.salaRepository.getOne(s);
+
+
+        Set<Termin> trmn = salanova.getTermini();
+        for(Termin terminnn1: trmn){
+            if(terminnn1.getDatum().equals( termin1.getDatum())){
+                throw new Exception("Vec postoji termin u izabrano vreme u izabranoj sali!");
+            }
+        }
+
+
+
+
+
+
+
+
+
         Termin promenitermin = this.terminRepository.getOne(t);
         if(promenitermin.getBrojprijavljenihclanova()!=0){
             throw new Exception("Vec ima prijavljenih clanova za ovaj termin!");

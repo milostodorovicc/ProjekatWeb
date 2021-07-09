@@ -37,7 +37,7 @@
                 row += "<td>" + res[i].opis + "</td>";
                 row += "<td>" + res[i].tip + "</td>";
                 row += "<td>" + res[i].trajanje + "</td>";
-                row += "<td>" + "    <input id=  "+res[i].id+"   type=\"number\" name="+res[i].id+"   required = true />" + "</td>";
+                row += "<td>" + "    <input id=  "+res[i].id+"   type=\"number\" name="+res[i].id+" max = '10' min = '1'  />" + "</td>";
                 row += "<td>" + "    <input type=\"radio\" name=\"ocena\"  value=" + res[i].id + "  />" + "</td>";
                  // let a = "res[i].id";
                  // document.getElementById("a").required = true;
@@ -80,9 +80,12 @@ $(document).on("click", "#ocena", function(event){
     var korisnik = localStorage.getItem("id");
 
     var ocena = $(`input#${termin}`).val();
+    console.log(ocena);
 
-    if(typeof termin === 'undefined' ||  ocena === null){
-        alert("Niste izabrali termin !");
+
+
+    if(typeof termin === 'undefined' ||  !ocena){
+        alert("Niste izabrali termin ili niste ocenili termin !");
     }
 
 
